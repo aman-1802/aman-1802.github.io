@@ -138,7 +138,7 @@ const PORTFOLIO = {
   // ── GOOGLE ANALYTICS ─────────────────────────────────────
   // Replace with your actual GA4 Measurement ID (format: G-XXXXXXXXXX)
   // Get it at: https://analytics.google.com → Admin → Data Streams → Web stream details
-  googleAnalyticsId: "G-XXXXXXXXXX",
+  googleAnalyticsId: "G-KX0GT1GQPX",
 
   // ── GOOGLE SHEETS CONTACT FORM ────────────────────────────
   // 1. Create a Google Sheet
