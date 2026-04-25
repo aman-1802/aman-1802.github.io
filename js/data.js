@@ -13,7 +13,7 @@ const PORTFOLIO = {
   email: "aagarwal1802@gmail.com",
   phone: "+91 8128393043",
   linkedin: "https://www.linkedin.com/in/aman-agarwal-992a70200",
-  github: "https://github.com/aman-agarwal-1802",   // ← update with your real GitHub username
+  github: "https://github.com/aman-1802",
   resumeFile: "assets/Resume_Aman_Agarwal.pdf",
 
   // ── ABOUT ─────────────────────────────────────────────────
