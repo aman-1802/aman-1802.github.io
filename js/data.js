@@ -131,7 +131,7 @@ const PORTFOLIO = {
       date: "April 2026",
       summary: "Inspired by Andrej Karpathy's Second Brain concept, I built multiple AI-powered knowledge bases — one for health, finance, history — using Claude Code. Here's how it works, when to use it, and when not to.",
       file: "blog/second-brain-universe.html",
-      thumbnail: "assets/blog/second-brain-universe.jpg",
+      thumbnail: "assets/blog/second-brain-universe.png",
       tags: ["AI", "Second Brain", "Claude", "Knowledge Management"]
     }
     // ── ADD NEW POSTS HERE ──
