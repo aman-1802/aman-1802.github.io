@@ -153,6 +153,6 @@ const PORTFOLIO = {
   // 2. Go to Extensions → Apps Script
   // 3. Paste the Apps Script from README.md and deploy as Web App
   // 4. Paste the deployed Web App URL here
-  contactFormEndpoint: ""  // ← paste your Google Apps Script Web App URL here
+  contactFormEndpoint: "https://script.google.com/macros/s/AKfycbyTqNhf7Ah9qb1BgjvGIQCRwyBLDQ7R4niaOjvIy9OmtVO0ATtDpQfSxvuUvry1AQsymw/exec"
 
 };
