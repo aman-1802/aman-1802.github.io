@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Second Brain Universe — Aman Agarwal</title>
+  <meta name="description" content="How I built multiple AI knowledge bases using Claude Code, and what I learned about using AI tools correctly." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .blog-post-wrap { max-width: 740px; margin: 0 auto; }
+
+    /* Hero image */
+    .blog-hero-img {
+      width: 100%; border-radius: 16px; margin-bottom: 2rem;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13);
+      display: block;
+    }
+
+    /* Meta bar */
+    .blog-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    .blog-meta-date { font-size: .82rem; color: var(--text-soft); }
+    .blog-meta-tag {
+      font-size: .72rem; font-weight: 600;
+      background: var(--accent-lt); color: var(--accent);
+      padding: .2rem .7rem; border-radius: 99px;
+    }
+
+    /* Body typography */
+    .blog-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
+    .blog-body h2 {
+      font-family: var(--font-head); font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin: 2.5rem 0 .75rem;
+    }
+    .blog-body h3 {
+      font-family: var(--font-head); font-size: 1.1rem; font-weight: 600;
+      color: var(--text); margin: 2rem 0 .5rem;
+    }
+    .blog-body p { margin-bottom: 1.35rem; }
+    .blog-body strong { color: var(--text); font-weight: 600; }
+    .blog-body ul, .blog-body ol {
+      padding-left: 1.5rem; margin-bottom: 1.35rem;
+    }
+    .blog-body li { margin-bottom: .45rem; }
+
+    /* Highlight callout */
+    .blog-callout {
+      background: var(--accent-lt); border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem;
+      margin: 2rem 0; font-size: .97rem; color: var(--text);
+    }
+    .blog-callout strong { color: var(--accent); }
+
+    /* Inline image */
+    .blog-inline-img {
+      width: 100%; border-radius: 12px; margin: 2rem 0;
+      box-shadow: var(--shadow);
+    }
+    .blog-img-caption {
+      text-align: center; font-size: .8rem; color: var(--text-soft);
+      margin-top: -.75rem; margin-bottom: 2rem;
+    }
+
+    /* Divider */
+    .blog-divider {
+      border: none; border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* Citation box */
+    .citation-box {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem 1.75rem; margin: 2.5rem 0;
+    }
+    .citation-label {
+      font-family: var(--font-head); font-size: .7rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .5rem;
+    }
+    .citation-title {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: .35rem;
+    }
+    .citation-meta { font-size: .82rem; color: var(--text-soft); }
+
+    /* Analysis section */
+    .analysis-section {
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem 2.25rem; margin-top: 1.5rem;
+    }
+    .analysis-section h2 {
+      font-family: var(--font-head); font-size: 1.4rem; font-weight: 700;
+      color: var(--text); margin-bottom: 1.5rem;
+      padding-bottom: .75rem; border-bottom: 1px solid var(--border);
+    }
+    .analysis-section h3 {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--accent); margin: 1.75rem 0 .6rem;
+    }
+    .analysis-section p { font-size: .93rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1rem; }
+    .analysis-section ul, .analysis-section ol {
+      padding-left: 1.4rem; margin-bottom: 1rem;
+    }
+    .analysis-section li { font-size: .93rem; color: var(--text-mid); margin-bottom: .5rem; line-height: 1.65; }
+    .analysis-section strong { color: var(--text); font-weight: 600; }
+    .analysis-section em { color: var(--text-soft); }
+
+    /* Pattern highlight pill */
+    .pattern-pill {
+      display: inline-block; background: var(--accent); color: #fff;
+      font-family: var(--font-head); font-size: .75rem; font-weight: 700;
+      padding: .25rem .75rem; border-radius: 99px; margin-bottom: .6rem;
+    }
+
+    /* Table */
+    .analysis-section table {
+      width: 100%; border-collapse: collapse; font-size: .88rem;
+      margin: 1rem 0 1.5rem; overflow-x: auto; display: block;
+    }
+    .analysis-section th {
+      background: var(--accent-lt); color: var(--accent);
+      font-family: var(--font-head); font-weight: 700;
+      padding: .6rem .9rem; text-align: left; border: 1px solid var(--border);
+    }
+    .analysis-section td {
+      padding: .55rem .9rem; border: 1px solid var(--border);
+      color: var(--text-mid); vertical-align: top;
+    }
+    .analysis-section tr:nth-child(even) td { background: var(--bg-soft); }
+
+    /* Blockquote */
+    .analysis-section blockquote {
+      border-left: 3px solid var(--accent); background: var(--accent-lt);
+      border-radius: 0 8px 8px 0; padding: .85rem 1.1rem;
+      margin: 1.25rem 0; font-style: italic;
+      color: var(--text); font-size: .95rem;
+    }
+
+    /* Sources */
+    .sources-chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+    .sources-chip {
+      background: var(--bg-muted); color: var(--text-mid);
+      font-size: .75rem; font-weight: 600; padding: .25rem .7rem;
+      border-radius: 8px; border: 1px solid var(--border);
+    }
+
+    /* Back link */
+    .blog-back { margin-top: 3rem; }
+
+    @media(max-width:600px){
+      .analysis-section { padding: 1.25rem 1rem; }
+      .citation-box { padding: 1.1rem 1rem; }
+    }
+  </style>
+</head>
+<body data-page="blog">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap"><div class="loader-ring"></div><div class="loader-ring-2"></div><div class="loader-monogram">AA</div></div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li><li><a href="../experience.html">Experience</a></li>
+    <li><a href="../projects.html">Projects</a></li><li><a href="../skills.html">Skills</a></li>
+    <li><a href="../education.html">Education</a></li><li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html">Blog</a></li><li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a><a href="../projects.html">Projects</a>
+  <a href="../skills.html">Skills</a><a href="../education.html">Education</a><a href="../certifications.html">Certifications</a>
+  <a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="blog-post-wrap">
+
+      <!-- Thumbnail / Hero -->
+      <img src="../assets/blog/second-brain-universe.jpg"
+           alt="Second Brain Universe — Inspired by Andrej Karpathy"
+           class="blog-hero-img reveal" />
+
+      <!-- Meta -->
+      <div class="blog-meta reveal">
+        <span class="blog-meta-date">April 2026</span>
+        <span class="blog-meta-tag">AI</span>
+        <span class="blog-meta-tag">Second Brain</span>
+        <span class="blog-meta-tag">Claude</span>
+        <span class="blog-meta-tag">Knowledge Management</span>
+        <span class="blog-meta-tag">Productivity</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-size:clamp(1.7rem,4vw,2.6rem);margin-bottom:2rem;line-height:1.2" class="reveal">
+        Second Brain Universe: How I Built Multiple AI Knowledge Bases Using Claude
+      </h1>
+
+      <!-- Body -->
+      <div class="blog-body reveal">
+
+        <p>
+          Recently, there was a tweet by <strong>Andrej Karpathy</strong> on how one can have their own knowledge base
+          on any topic and how it compounds over time — which he names the <strong>Second Brain</strong>.
+        </p>
+
+        <h2>The Idea</h2>
+        <p>
+          The concept is simple: dump all the resources of a topic into one folder called <strong>/raw</strong>.
+          This can include anything — documents, web pages, scripts, past write-ups, or even YouTube transcripts,
+          all in a single folder. The best part? You don't need to organise it. Just dump it in there.
+        </p>
+        <p>
+          The tool Karpathy suggested was <strong>Obsidian</strong>, which I believe is perfect for this. By just
+          installing an extension in Google Chrome, dumping becomes effortless — just a matter of a few clicks.
+        </p>
+
+        <h2>How It Works</h2>
+        <p>
+          Then comes an LLM model and a coding agent. I used <strong>Claude Code</strong> for this. By passing simple
+          instructions — which I copy-pasted from the tweet and tweaked with Claude's help — the agent makes a
+          <strong>wiki</strong> out of that knowledge base. It creates summaries, marks important names and events,
+          and makes things interconnected.
+        </p>
+
+        <div class="blog-callout">
+          <strong>The best part:</strong> when you open the wiki in Obsidian, you see a brain-like structure with
+          multiple nodes and interconnections — just like a brain having billions of neurons, each connected with one another.
+        </div>
+
+        <p>
+          That's all — we are good to go. Open the chatbot (in my case, Claude Code), direct the agent to the folder,
+          and start asking questions by instructing it to answer from the wiki. It gives a well-refined answer drawn
+          from multiple sources you dumped in the folder.
+        </p>
+        <p>
+          The output can be generated in any format, and this output is then again fed back into <strong>/raw</strong> —
+          acting as a new resource. And the loop continues. With time, you build your own brain trained on exactly the
+          resources you care about.
+        </p>
+        <p>
+          Karpathy has also introduced <strong>health check runs</strong> that periodically delete any contradictory or
+          irrelevant information, keeping the knowledge base lean and accurate.
+        </p>
+
+        <h2>Taking It One Step Further — Second Brain Universe</h2>
+        <p>
+          Instead of having a single brain, I created <strong>multiple brains</strong> for each topic — health,
+          finance, history. I asked Claude to write simple terminal commands so I don't have to create folders each
+          time or write instructions manually. Now, two commands from the terminal and my brain folders are created,
+          ready for dumping.
+        </p>
+
+        <img src="../assets/blog/second-brain-universe.jpg"
+             alt="Second Brain Universe concept map"
+             class="blog-inline-img" />
+        <p class="blog-img-caption">The Second Brain Universe — multiple knowledge bases, each compounding over time.</p>
+
+        <h2>When to Use It — and When NOT To</h2>
+        <p>
+          I realised that Claude uses a lot of tokens to read files and create the wiki, so I fixed it by adding a
+          feature that moves indexed files to a separate folder automatically — so the next run doesn't re-read old files.
+        </p>
+        <p>
+          What I can't fix is the token cost of answering queries, since the agent now has to cross-reference several
+          texts to respond. This led to an important realisation:
+        </p>
+
+        <div class="blog-callout">
+          <strong>Don't use this for basic questions</strong> — those can be handled by any chat agent with far fewer
+          tokens. Use it for <strong>complex, deep questions</strong> where cross-referencing multiple sources gives
+          jaw-dropping results.
+        </div>
+
+        <p>
+          For example: I built a brain on the topic of history, dumped resources about the current Iran–US conflict and
+          their shared history, then asked Claude: <em>"Can you find any patterns whenever the US operates on foreign land?"</em>
+          It took several minutes and a lot of tokens — but the answer was worth the wait.
+        </p>
+
+        <h2>The Key Takeaway</h2>
+        <p>
+          Every tool and model has its strengths and limitations. We need to find what they are best at, then delegate
+          work accordingly. Don't rely on any one single tool or model for the entire workflow — <strong>diversify the
+          tasks based on how skillful a tool is</strong>. This way, we make the best use of AI.
+        </p>
+
+      </div>
+
+      <hr class="blog-divider" />
+
+      <!-- Citation -->
+      <div class="citation-box reveal">
+        <div class="citation-label">Featured Analysis — Referenced in This Post</div>
+        <div class="citation-title">Patterns in How the US Approaches Foreign Lands</div>
+        <div class="citation-meta">Generated by Claude Code · History-Brain · April 2026 · Based on US–Iran case study (wiki sources)</div>
+      </div>
+
+      <!-- Full analysis content -->
+      <div class="analysis-section reveal">
+        <h2>Patterns in How the US Approaches Foreign Lands</h2>
+        <p style="font-size:.85rem;color:var(--text-soft);margin-bottom:1.5rem">
+          The following is the actual output generated by Claude Code from the History-Brain knowledge base,
+          in response to the query: <em>"Can you find any patterns whenever the US operates on foreign land?"</em>
+          The US–Iran relationship served as the primary case study.
+        </p>
+
+        <p>
+          The US–Iran relationship is a 70-year case study that reveals <strong>recurring, identifiable patterns</strong>
+          in how the US engages in foreign lands. These are not one-off decisions — they are a playbook repeated
+          across administrations and regions.
+        </p>
+
+        <!-- Pattern 1 -->
+        <h3><span class="pattern-pill">Pattern 1</span> Strategic and Economic Interests Dressed as Ideology</h3>
+        <p>The US consistently acts in its strategic/economic interest but frames it in ideological terms to win domestic support.</p>
+        <ul>
+          <li><strong>1953:</strong> Mosaddegh nationalized Iranian oil → Britain lost its monopoly → US framed him as a "potential communist aligned with the Soviets" to justify the CIA coup. The real motivation: keeping oil in Western hands.</li>
+          <li><strong>1980–88:</strong> US backed Saddam Hussein (who used chemical weapons) against Iran — not out of democratic principle, but to prevent an Iranian victory that would threaten Gulf oil supplies.</li>
+          <li><strong>Cold War framing:</strong> Any government that nationalized resources or moved toward the Soviet orbit was labeled "communist" — justifying intervention regardless of the actual political nature of the government.</li>
+        </ul>
+        <blockquote>Pattern: Label the target with a threatening ideology first, intervene second.</blockquote>
+
+        <!-- Pattern 2 -->
+        <h3><span class="pattern-pill">Pattern 2</span> Technology Transfer → Future Blowback</h3>
+        <p>The US transfers technology to allies for short-term strategic gain, creating long-term threats it must later address — often militarily.</p>
+        <ul>
+          <li><strong>Atoms for Peace (1957):</strong> US gave Iran a nuclear research reactor and trained Iranian scientists. The Shah's nuclear program — and the Islamic Republic's continuation of it — trace directly to this.</li>
+          <li><strong>2025:</strong> The US bombed Iran's nuclear facilities (Fordow, Isfahan, Natanz) — striking infrastructure built on the foundation of US-provided technology.</li>
+          <li>Israel and Pakistan received similar nuclear technology; Pakistan's proliferation network later helped Iran acquire centrifuge designs.</li>
+        </ul>
+        <blockquote>Pattern: The US arms or equips allies; allies later become adversaries or proliferate the technology; the US then has to deal with the consequences — sometimes at the cost of further instability.</blockquote>
+
+        <!-- Pattern 3 -->
+        <h3><span class="pattern-pill">Pattern 3</span> Public Stance ≠ Private Conduct (The Double Standard)</h3>
+        <p>The US publicly champions values (democracy, non-proliferation, human rights) while privately doing the opposite.</p>
+        <ul>
+          <li><strong>Publicly:</strong> championed democracy in the Middle East. <strong>Privately:</strong> overthrew Iran's democracy and installed an authoritarian Shah, then funded SAVAK — the Shah's brutal secret police.</li>
+          <li><strong>Publicly:</strong> Reagan designated Iran a State Sponsor of Terror (1984) and banned arms sales. <strong>Privately:</strong> the Reagan administration sold weapons to Iran (Iran-Contra, 1986) and funneled proceeds to Nicaraguan rebels — illegally.</li>
+          <li><strong>Publicly:</strong> opposes nuclear proliferation. <strong>Privately:</strong> gave nuclear technology to Iran, Israel, and Pakistan under Atoms for Peace.</li>
+        </ul>
+        <blockquote>Pattern: Official US policy and actual US conduct routinely diverge when there is something to be gained covertly. This breeds deep international cynicism about US stated values.</blockquote>
+
+        <!-- Pattern 4 -->
+        <h3><span class="pattern-pill">Pattern 4</span> Economic Sanctions as the Primary Coercive Instrument</h3>
+        <p>Before military force, the US defaults to economic strangulation — escalating over time until either the target complies or war begins.</p>
+        <ul>
+          <li>1980: Asset freeze after hostage crisis</li>
+          <li>1984: Military sanctions after terror designation</li>
+          <li>1996: Penalizing foreign companies that invest in Iran</li>
+          <li>2011–15: Multilateral sanctions contract Iran's economy 20%, unemployment to 20%</li>
+          <li>2015: JCPOA — sanctions relief in exchange for nuclear limits</li>
+          <li>2018: Trump reimposed all sanctions → Iran's worst economic crisis in 40 years → nuclear escalation resumes</li>
+        </ul>
+        <p><strong>The sanctions ladder:</strong> Diplomatic pressure → targeted sanctions → comprehensive sanctions → maximum pressure → military action</p>
+        <blockquote>Pattern: Sanctions rarely fully achieve stated goals but become politically entrenched because removing them feels like "rewarding" the adversary. They can deepen grievances and empower hardliners.</blockquote>
+
+        <!-- Pattern 5 -->
+        <h3><span class="pattern-pill">Pattern 5</span> The Blowback Loop</h3>
+        <p>US interventions consistently generate the very threats they were meant to eliminate — or create new, worse problems.</p>
+        <table>
+          <thead>
+            <tr><th>US Action</th><th>Intended Outcome</th><th>Actual Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1953 coup</td><td>Protect oil, block Soviets</td><td>Foundational grievance → 1979 revolution</td></tr>
+            <tr><td>Supported the Shah</td><td>Stable pro-US Iran</td><td>Shah's repression → mass uprising → Islamic Republic</td></tr>
+            <tr><td>Atoms for Peace</td><td>Cold War alliance strengthening</td><td>Created Iran's nuclear program</td></tr>
+            <tr><td>Backed Iraq in Iran-Iraq War</td><td>Prevent Iranian regional dominance</td><td>Saddam grew too powerful → Gulf War 1991</td></tr>
+            <tr><td>JCPOA withdrawal (2018)</td><td>Maximum pressure on Iran</td><td>Worst Iranian economic crisis + nuclear escalation + proxy war expansion</td></tr>
+            <tr><td>Assassination of Soleimani (2020)</td><td>Decapitate Iran's proxy network</td><td>Iran vowed revenge; hardliners gained domestic power</td></tr>
+          </tbody>
+        </table>
+        <blockquote>Pattern: Each US "solution" in a foreign land plants seeds for the next crisis, often in 10–30 year cycles.</blockquote>
+
+        <!-- Pattern 6 -->
+        <h3><span class="pattern-pill">Pattern 6</span> Proxy and Alliance-Based Power Projection</h3>
+        <p>The US rarely occupies directly for long. It prefers to project power through regional allies and client states.</p>
+        <ul>
+          <li>The Shah's Iran was the "policeman of the Gulf" — the US outsourced regional stability to him</li>
+          <li>Israel functions as the US's primary military partner and proxy in the region</li>
+          <li>Saudi Arabia and Gulf states provide basing rights and petrodollar recycling</li>
+          <li>Post-1979: the US had to rebuild its entire regional alliance architecture after losing Iran</li>
+        </ul>
+        <blockquote>Alliance-based power is cheaper in blood and money, but creates deep dependency. When a client state falls or turns hostile, the US loses its entire regional position overnight — as happened in 1979.</blockquote>
+
+        <!-- Pattern 7 -->
+        <h3><span class="pattern-pill">Pattern 7</span> Negotiation and Pressure Simultaneously</h3>
+        <p>The US runs diplomatic negotiations and maximum economic/military pressure in parallel — a high-stakes gamble.</p>
+        <ul>
+          <li>Under Trump's second term (2025): bombing Iran's nuclear sites <em>while</em> engaging in nuclear talks</li>
+          <li>JCPOA (2015): achieved through unprecedented sanctions + diplomatic opening</li>
+          <li>This can work (JCPOA was signed) but is fragile — one administration can undo what another built (2018 withdrawal)</li>
+        </ul>
+        <blockquote>Pattern: US foreign policy is highly subject to domestic political cycles. Agreements made by one administration are not binding on the next — which severely undermines US credibility as a negotiating partner.</blockquote>
+
+        <!-- Meta pattern -->
+        <h3 style="color:var(--text)">The Meta-Pattern: Structural Realism vs. Stated Idealism</h3>
+        <p>Across all these patterns, a consistent underlying logic emerges:</p>
+        <blockquote style="font-size:1rem;font-weight:600">
+          The US acts as a Realist power (interests first) while speaking the language of Idealism (democracy, freedom, non-proliferation).
+        </blockquote>
+        <p>
+          This gap between rhetoric and action is the single biggest generator of anti-American sentiment in regions where
+          the US intervenes. Countries that experience US intervention directly — as Iran did in 1953 — don't see an
+          idealistic democracy-spreader. They see a powerful state protecting its oil and strategic access, willing to
+          overthrow their government and arm their enemies when convenient.
+        </p>
+        <blockquote>
+          Intervention → resentment → anti-American movement → US labels them "terrorist/communist/rogue state"
+          → more intervention → deeper resentment
+        </blockquote>
+
+        <!-- Sources -->
+        <p style="margin-top:2rem;margin-bottom:.5rem;font-size:.82rem;color:var(--text-soft);font-weight:600;">SOURCES (wiki pages cross-referenced)</p>
+        <div class="sources-chips">
+          <span class="sources-chip">1953-coup</span>
+          <span class="sources-chip">atoms-for-peace</span>
+          <span class="sources-chip">iran-contra-affair</span>
+          <span class="sources-chip">iran-iraq-war</span>
+          <span class="sources-chip">sanctions-on-iran</span>
+          <span class="sources-chip">axis-of-resistance</span>
+          <span class="sources-chip">jcpoa</span>
+          <span class="sources-chip">1979-islamic-revolution</span>
+          <span class="sources-chip">iran-hostage-crisis</span>
+        </div>
+      </div>
+
+      <!-- Back -->
+      <div class="blog-back reveal">
+        <a href="../blog.html" class="btn btn-outline">← Back to Blog</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff">Aman Agarwal<span style="color:#818cf8">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script src="../js/data.js"></script><script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>

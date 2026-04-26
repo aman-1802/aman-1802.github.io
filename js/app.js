@@ -318,6 +318,7 @@ function renderBlog() {
   }
   c.innerHTML = PORTFOLIO.blog.map((post,i)=>`
     <a href="${post.file}" class="blog-card tilt-card reveal reveal-delay-${(i%3)+1}" style="text-decoration:none;color:inherit;display:block">
+      ${post.thumbnail ? `<img src="${post.thumbnail}" alt="${post.title}" style="width:100%;height:190px;object-fit:cover;display:block;" />` : ''}
       <div class="blog-card-body">
         <div class="blog-tags">${post.tags.map(t=>`<span class="blog-tag">${t}</span>`).join('')}</div>
         <div class="blog-card-title">${post.title}</div>

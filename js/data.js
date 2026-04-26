@@ -126,12 +126,22 @@ const PORTFOLIO = {
   // Each post needs a corresponding HTML file in the /blog folder.
   // Template: { title, date, summary, file: "blog/my-post.html", tags: [] }
   blog: [
+    {
+      title: "Second Brain Universe: How I Built Multiple AI Knowledge Bases Using Claude",
+      date: "April 2026",
+      summary: "Inspired by Andrej Karpathy's Second Brain concept, I built multiple AI-powered knowledge bases — one for health, finance, history — using Claude Code. Here's how it works, when to use it, and when not to.",
+      file: "blog/second-brain-universe.html",
+      thumbnail: "assets/blog/second-brain-universe.jpg",
+      tags: ["AI", "Second Brain", "Claude", "Knowledge Management"]
+    }
+    // ── ADD NEW POSTS HERE ──
     // {
-    //   title: "How I Built a Multi-Agent Sales System in n8n",
-    //   date: "May 2025",
-    //   summary: "A walkthrough of architecting a multi-agent pipeline for sales automation using n8n.",
-    //   file: "blog/multi-agent-sales.html",
-    //   tags: ["n8n", "AI", "Automation"]
+    //   title: "Your Post Title",
+    //   date: "Month Year",
+    //   summary: "Short description shown on the blog card.",
+    //   file: "blog/your-post-filename.html",
+    //   thumbnail: "assets/blog/your-thumbnail.jpg",
+    //   tags: ["Tag1", "Tag2"]
     // }
   ],
 
