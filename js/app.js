@@ -5,8 +5,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  // ── CREATIVE LOADER ──────────────────────────────────────
-  initLoader();
+  // ── CREATIVE LOADER — only once per session ──────────────
+  const loader = document.getElementById('page-loader');
+  if (loader) {
+    if (sessionStorage.getItem('loaderShown')) {
+      loader.classList.add('hidden');
+    } else {
+      sessionStorage.setItem('loaderShown', '1');
+      initLoader();
+    }
+  }
 
   // ── PAGE TRANSITIONS (intercept links) ───────────────────
   initPageTransitions();
@@ -237,14 +245,10 @@ function renderSkills() {
   const cards = document.getElementById('skill-cards');
   if (cards) {
     cards.innerHTML = PORTFOLIO.skills.technical.map(s => {
-      const filled = Math.round(s.level / 20);
-      const dots = Array.from({length: 5}, (_, i) =>
-        `<span class="skill-dot${i < filled ? ' filled' : ''}"></span>`).join('');
       const icon = ICONS[s.name] || '⚙️';
       return `<div class="skill-card reveal">
         <div class="skill-card-icon">${icon}</div>
         <div class="skill-card-name">${s.name}</div>
-        <div class="skill-card-dots">${dots}</div>
       </div>`;
     }).join('');
     reObserve(cards);
@@ -276,7 +280,7 @@ function renderEducation() {
       <div>
         <div class="edu-degree">${e.degree}</div>
         <div class="edu-institution">${e.institution}</div>
-        <div class="edu-meta"><span>${e.period}</span><span class="edu-cgpa">CGPA: ${e.cgpa}</span></div>
+        <div class="edu-meta"><span>${e.period}</span></div>
         <p class="edu-details">${e.details}</p>
       </div>
     </div>`).join('');

@@ -7,8 +7,8 @@ const PORTFOLIO = {
 
   // ── PERSONAL INFO ─────────────────────────────────────────
   name: "Aman Agarwal",
-  title: "Mechanical Engineer · AI Automation Builder · Full-Stack Developer",
-  tagline: "I build AI-driven automation systems and full-stack apps — independently, using no-code and AI-first tools.",
+  title: "Mechanical Engineer · AI Automation Builder",
+  tagline: "I build AI-driven automation systems — independently, using no-code and AI-first tools.",
   location: "Ahmedabad, Gujarat, India",
   email: "aagarwal1802@gmail.com",
   phone: "+91 8128393043",
@@ -18,8 +18,8 @@ const PORTFOLIO = {
 
   // ── ABOUT ─────────────────────────────────────────────────
   about: `I'm a Mechanical Engineering graduate from SVNIT Surat who discovered a passion for building
-    software systems from the ground up. I specialize in AI-driven workflow automation and full-stack
-    development, creating tools that replace manual processes with intelligent, connected systems.
+    software systems from the ground up. I specialize in AI-driven workflow automation, creating tools
+    that replace manual processes with intelligent, connected systems.
     My approach is independent and self-taught — I leverage no-code platforms, AI-first tools, and
     modern APIs to ship fast, functional products. I enjoy owning entire projects end-to-end, from
     architecture to deployment.`,
@@ -30,7 +30,7 @@ const PORTFOLIO = {
       role: "Engineering Intern",
       company: "Marudhar Industries Limited",
       period: "Jan 2025 – May 2025",
-      location: "Rajasthan, India",
+      location: "Ahmedabad, Gujarat, India",
       highlights: [
         "Built digital web applications that fully replaced manual paper-based processes on the shop floor.",
         "Integrated apps with Google Sheets for real-time data sync across departments.",
@@ -81,14 +81,13 @@ const PORTFOLIO = {
   // ── SKILLS ────────────────────────────────────────────────
   skills: {
     technical: [
-      { name: "n8n / Workflow Automation", level: 92 },
-      { name: "Python", level: 80 },
-      { name: "API Integrations", level: 85 },
-      { name: "Multi-Agent AI Systems", level: 78 },
-      { name: "OOP & Software Design", level: 75 },
-      { name: "Full-Stack Development", level: 70 },
-      { name: "Google Sheets / Apps Script", level: 82 },
-      { name: "MS Office Suite", level: 88 }
+      { name: "n8n / Workflow Automation" },
+      { name: "Python" },
+      { name: "API Integrations" },
+      { name: "Multi-Agent AI Systems" },
+      { name: "OOP & Software Design" },
+      { name: "Google Sheets / Apps Script" },
+      { name: "MS Office Suite" }
     ],
     soft: [
       "Problem Solving",
@@ -97,7 +96,7 @@ const PORTFOLIO = {
       "Clear Communication",
       "Systems Thinking"
     ],
-    tools: ["n8n", "Python", "VS Code", "Git", "Google Workspace", "Postman", "Notion", "Make (Integromat)"]
+    tools: ["n8n", "Python", "VS Code", "Git", "Google Workspace", "Notion"]
   },
 
   // ── EDUCATION ─────────────────────────────────────────────
@@ -106,8 +105,7 @@ const PORTFOLIO = {
       degree: "B.Tech — Mechanical Engineering",
       institution: "SVNIT Surat (Sardar Vallabhbhai National Institute of Technology)",
       period: "2021 – 2025",
-      cgpa: "7.61 / 10",
-      details: "Four-year undergraduate program covering thermodynamics, fluid mechanics, manufacturing, and engineering design. Independently pursued software development and AI automation throughout the degree."
+      details: "Four-year undergraduate program covering thermodynamics, fluid mechanics, manufacturing, and engineering design. Independently explored software development and self-taught automation and AI throughout the degree."
     }
   ],
 
