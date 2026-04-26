@@ -105,7 +105,7 @@ const PORTFOLIO = {
       degree: "B.Tech — Mechanical Engineering",
       institution: "SVNIT Surat (Sardar Vallabhbhai National Institute of Technology)",
       period: "2021 – 2025",
-      details: "Four-year undergraduate program covering thermodynamics, fluid mechanics, manufacturing, and engineering design. Independently explored software development and self-taught automation and AI throughout the degree."
+      details: "Four-year undergraduate program covering thermodynamics, fluid mechanics, manufacturing, and engineering design. Independently explored software development and self-taught automation and AI."
     }
   ],
 
