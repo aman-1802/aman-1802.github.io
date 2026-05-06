@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What I Learned Building My First AI Agent — Aman Agarwal</title>
+  <meta name="description" content="From simple scripts to intelligent agents — what building a broken Telegram bot taught me about the real architecture of automation." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .blog-post-wrap { max-width: 740px; margin: 0 auto; }
+
+    .blog-hero-img {
+      width: 100%; border-radius: 16px; margin-bottom: 2rem;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13); display: block;
+    }
+
+    .blog-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    .blog-meta-date { font-size: .82rem; color: var(--text-soft); }
+    .blog-meta-tag {
+      font-size: .72rem; font-weight: 600;
+      background: var(--accent-lt); color: var(--accent);
+      padding: .2rem .75rem; border-radius: 6px; white-space: nowrap;
+    }
+
+    .blog-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
+    .blog-body h2 {
+      font-family: var(--font-head); font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin: 2.75rem 0 .75rem;
+    }
+    .blog-body p { margin-bottom: 1.35rem; }
+    .blog-body strong { color: var(--text); font-weight: 600; }
+
+    .blog-callout {
+      background: var(--accent-lt); border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem;
+      margin: 2rem 0; font-size: .97rem; color: var(--text);
+    }
+    .blog-callout strong { color: var(--accent); }
+
+    .blog-divider {
+      border: none; border-top: 1px solid var(--border); margin: 3rem 0;
+    }
+
+    /* Era cards */
+    .era-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem; margin: 2rem 0;
+    }
+    .era-card {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.35rem 1.5rem;
+    }
+    .era-number {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 700; margin-bottom: .75rem;
+    }
+    .era-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .25rem;
+    }
+    .era-title {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: .5rem;
+    }
+    .era-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* Key insight box */
+    .insight-box {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem 2rem; margin: 2.5rem 0;
+      text-align: center;
+    }
+    .insight-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .insight-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
+    }
+    .insight-text {
+      font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+      color: var(--text); line-height: 1.55;
+    }
+  </style>
+</head>
+<body data-page="blog-post">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap">
+      <div class="loader-ring"></div><div class="loader-ring-2"></div>
+      <div class="loader-monogram">AA</div>
+    </div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li><li><a href="../projects.html">Projects</a></li>
+    <li><a href="../skills.html">Skills</a></li><li><a href="../education.html">Education</a></li>
+    <li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a>
+  <a href="../projects.html">Projects</a><a href="../skills.html">Skills</a><a href="../education.html">Education</a>
+  <a href="../certifications.html">Certifications</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="blog-post-wrap">
+
+      <!-- Back link -->
+      <a href="../blog.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--accent);text-decoration:none;margin-bottom:2rem;font-weight:600;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Blog
+      </a>
+
+      <!-- Hero image -->
+      <img src="../assets/blog/first-ai-agent.png" alt="What I Learned Building My First AI Agent" class="blog-hero-img" />
+
+      <!-- Meta -->
+      <div class="blog-meta">
+        <span class="blog-meta-date">May 2026</span>
+        <span class="blog-meta-tag">AI Agents</span>
+        <span class="blog-meta-tag">Automation</span>
+        <span class="blog-meta-tag">n8n</span>
+        <span class="blog-meta-tag">Lessons Learned</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-head);font-size:clamp(1.75rem,4vw,2.4rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:2rem;">
+        What I Learned Building My First AI Agent
+      </h1>
+
+      <!-- Body -->
+      <div class="blog-body">
+
+        <p>Recently, I wanted to build an agentic AI workflow for myself — a dedicated agent that could scan AI-related websites like Anthropic, Claude, and OpenAI, detect new updates, summarize them, and send those updates directly to me on Telegram.</p>
+
+        <p>So I opened Claude in my terminal, explained what I wanted in plain English, and asked it to build the entire agent for me. It worked beautifully. It fetched the latest updates, summarized them, and sent them to Telegram. I even scheduled it for every morning at 9 AM. At that point, I felt like I had finally built an actual AI agent.</p>
+
+        <p>But the next morning, nothing came. At first, I thought maybe there had been no major updates in the last 24 hours. But then a few days passed. Then a week. Still nothing. When I checked the websites manually, I realized they had definitely changed, but my Telegram bot had stayed silent.</p>
+
+        <h2>The Realization</h2>
+
+        <p>That was the moment I understood what I had been missing. The agent was built on my own machine, and my machine was not running at the scheduled time, which meant the workflow itself never ran. It was such a simple thing, but it completely changed how I understood the whole idea of agents and automations. <strong>If you want an automation to work for you 24/7, then you need a system that runs 24/7.</strong> In other words, you need hosting.</p>
+
+        <p>That led me into a much deeper question: what exactly had changed in the world of automation, and why did this whole "agent" concept feel so new when, in reality, parts of it were already familiar?</p>
+
+        <p>The more I explored, the more I realized that <strong>automation is not new at all. It has simply evolved in layers.</strong></p>
+
+        <h2>The Four Eras of Automation</h2>
+
+        <div class="era-grid">
+          <div class="era-card">
+            <div class="era-number">1</div>
+            <div class="era-label">The First Era</div>
+            <div class="era-title">Scripts &amp; Cron Jobs</div>
+            <div class="era-desc">Before LLMs, if I wanted to monitor websites and send myself updates, I would have written a Python script and scheduled it using a cron job. It could fetch, detect, compare, and send — but it could not <em>understand</em>.</div>
+          </div>
+          <div class="era-card">
+            <div class="era-number">2</div>
+            <div class="era-label">The Second Era</div>
+            <div class="era-title">Workflow Tools</div>
+            <div class="era-desc">Tools like Zapier and n8n made automation easier. Instead of writing everything in Python, I could drag and drop nodes, connect services, and design the workflow visually. But I still had to design all the logic myself.</div>
+          </div>
+          <div class="era-card">
+            <div class="era-number">3</div>
+            <div class="era-label">The Third Era</div>
+            <div class="era-title">LLMs Add Intelligence</div>
+            <div class="era-desc">Once models like ChatGPT entered the picture, workflows gained something new: a brain. Now a workflow could also summarize, reason, and extract insights — not just move data from one step to another.</div>
+          </div>
+          <div class="era-card">
+            <div class="era-number">4</div>
+            <div class="era-label">The Fourth Era</div>
+            <div class="era-title">Agentic Automation</div>
+            <div class="era-desc">Instead of manually building the entire logic with if-then flows, I can simply explain the goal in plain English. The LLM generates the instructions, decides which tools to use, and creates the logic dynamically at runtime.</div>
+          </div>
+        </div>
+
+        <h2>Why This Generation Feels Different</h2>
+
+        <p>The most interesting part is not just that it can do the task. It is that it can reason when something breaks. If I am building a daily AI news summarizer and one website blocks the automation, then in the older workflow model, I would need to manually add extra handling for that case. But in this new era, the LLM can often figure out another path on its own. <strong>That ability to reason through failure is what makes this generation of automation feel fundamentally different.</strong></p>
+
+        <p>This is also where a lot of the current hype comes from. Influencers talk about agents as if they are magical systems that can do everything on their own. And to be fair, what they can do is genuinely impressive. But there is one important detail that often gets skipped: if you want an agent to run on schedule, it still needs a system that is running on schedule.</p>
+
+        <div class="blog-callout">
+          That was exactly my problem. I had built the agent, but I had built it on my own machine. When my system was off, the workflow stopped existing in practice. That small realization made the whole space much clearer to me. <strong>The real issue was not whether the agent was smart enough. The issue was whether the environment running it was alive at the right time.</strong>
+        </div>
+
+        <h2>What the Industry Is Building Toward</h2>
+
+        <p>And now the industry is trying to solve even that. Companies like Anthropic, OpenAI, and Google are launching managed agent systems where you no longer have to worry as much about hosting, orchestration, error handling, or memory. Their platforms increasingly handle those layers for you. You describe the task, and they handle much more of the infrastructure behind it.</p>
+
+        <p>One of the most fascinating additions in this new phase is <strong>persistent memory</strong>. Earlier generations of automation would run and then forget everything. But persistent memory allows the system to remember what happened in previous runs. If it found a workaround yesterday, it can remember that today. That is a major step forward because it moves automation closer to continuity rather than repetition.</p>
+
+        <hr class="blog-divider" />
+
+        <h2>The Biggest Thing I Learned</h2>
+
+        <p>So the biggest thing I learned from this whole process is that automation was never new. Agents did not appear out of nowhere. What changed is that each layer removed one more burden from the user. First, we had to write the scripts ourselves. Then workflow tools reduced the coding. Then LLMs added reasoning. And now managed agent platforms are reducing the burden of hosting, orchestration, and memory as well.</p>
+
+        <div class="insight-box">
+          <div class="insight-icon">💡</div>
+          <div class="insight-label">The Key Insight</div>
+          <div class="insight-text">"If something needs to run on time, somewhere, some system has to stay on."</div>
+        </div>
+
+        <p>That lesson seems obvious in hindsight, but for me it was the exact missing piece that finally made the whole architecture of agents, workflows, and managed systems click into place.</p>
+
+      </div>
+      <!-- end blog-body -->
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff">Aman Agarwal<span style="color:#818cf8">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>

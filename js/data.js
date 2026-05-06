@@ -125,6 +125,14 @@ const PORTFOLIO = {
   // Template: { title, date, summary, file: "blog/my-post.html", tags: [] }
   blog: [
     {
+      title: "What I Learned Building My First AI Agent",
+      date: "May 2026",
+      summary: "I built an AI agent that scans websites, summarizes updates, and sends them to Telegram. It worked perfectly — until it didn't. Here's what broke and what it taught me about the real architecture of automation.",
+      file: "blog/first-ai-agent.html",
+      thumbnail: "assets/blog/first-ai-agent.png",
+      tags: ["AI Agents", "Automation", "n8n", "Lessons Learned"]
+    },
+    {
       title: "Second Brain Universe: How I Built Multiple AI Knowledge Bases Using Claude",
       date: "April 2026",
       summary: "Inspired by Andrej Karpathy's Second Brain concept, I built multiple AI-powered knowledge bases — one for health, finance, history — using Claude Code. Here's how it works, when to use it, and when not to.",
