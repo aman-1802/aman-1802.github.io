@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aeon to Telegram — Aman Agarwal</title>
+  <meta name="description" content="An AI-powered automation workflow that monitors Aeon essays, summarizes them using LLMs, and delivers updates directly to Telegram daily." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .proj-post-wrap { max-width: 740px; margin: 0 auto; }
+
+    .proj-hero-img {
+      width: 100%; border-radius: 16px; margin-bottom: 2rem;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13); display: block;
+    }
+
+    .proj-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    .proj-meta-date { font-size: .82rem; color: var(--text-soft); }
+    .proj-meta-tag {
+      font-size: .72rem; font-weight: 600;
+      background: var(--accent-lt); color: var(--accent);
+      padding: .2rem .75rem; border-radius: 6px; white-space: nowrap;
+    }
+
+    .proj-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
+    .proj-body h2 {
+      font-family: var(--font-head); font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin: 2.75rem 0 .75rem;
+    }
+    .proj-body p { margin-bottom: 1.35rem; }
+    .proj-body strong { color: var(--text); font-weight: 600; }
+
+    /* Workflow steps */
+    .workflow-steps {
+      display: flex; flex-direction: column; gap: .75rem;
+      margin: 1.5rem 0;
+    }
+    .workflow-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+    }
+    .workflow-step-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+      background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 700;
+    }
+    .workflow-step-text {
+      font-size: .93rem; color: var(--text-mid); line-height: 1.55;
+      padding-top: 3px;
+    }
+
+    /* Tools grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: .85rem; margin: 1.5rem 0;
+    }
+    .tool-item {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+      display: flex; align-items: flex-start; gap: .85rem;
+    }
+    .tool-icon {
+      font-size: 1.35rem; flex-shrink: 0; line-height: 1;
+    }
+    .tool-name {
+      font-family: var(--font-head); font-size: .9rem; font-weight: 700;
+      color: var(--text); margin-bottom: .2rem;
+    }
+    .tool-desc {
+      font-size: .8rem; color: var(--text-soft); line-height: 1.5;
+    }
+
+    /* Callout */
+    .proj-callout {
+      background: var(--accent-lt); border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem;
+      margin: 2rem 0; font-size: .97rem; color: var(--text);
+    }
+    .proj-callout strong { color: var(--accent); }
+
+    .proj-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    /* Key insight */
+    .insight-box {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem 2rem; margin: 2.5rem 0;
+      text-align: center;
+    }
+    .insight-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .insight-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
+    }
+    .insight-text {
+      font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+      color: var(--text); line-height: 1.55;
+    }
+
+    /* Video section */
+    .demo-video-wrap {
+      margin: 2rem 0; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13);
+      border: 1px solid var(--border);
+    }
+    .demo-video-wrap video {
+      width: 100%; display: block;
+    }
+  </style>
+</head>
+<body data-page="projects">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap">
+      <div class="loader-ring"></div><div class="loader-ring-2"></div>
+      <div class="loader-monogram">AA</div>
+    </div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../skills.html">Skills</a></li><li><a href="../education.html">Education</a></li>
+    <li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a>
+  <a href="../projects.html">Projects</a><a href="../skills.html">Skills</a><a href="../education.html">Education</a>
+  <a href="../certifications.html">Certifications</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="proj-post-wrap">
+
+      <!-- Back link -->
+      <a href="../projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--accent);text-decoration:none;margin-bottom:2rem;font-weight:600;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Projects
+      </a>
+
+      <!-- Hero image -->
+      <img src="../assets/projects/aeon-telegram.png" alt="Aeon to Telegram — AI Essay Summary Automation" class="proj-hero-img" />
+
+      <!-- Meta -->
+      <div class="proj-meta">
+        <span class="proj-meta-date">May 2026</span>
+        <span class="proj-meta-tag">n8n</span>
+        <span class="proj-meta-tag">AI Agents</span>
+        <span class="proj-meta-tag">Automation</span>
+        <span class="proj-meta-tag">Telegram Bot</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-head);font-size:clamp(1.75rem,4vw,2.4rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:2rem;">
+        Aeon to Telegram — AI Essay Summary Automation
+      </h1>
+
+      <!-- Body -->
+      <div class="proj-body">
+
+        <h2>The Problem</h2>
+
+        <p>Aeon publishes incredibly thoughtful long-form essays on philosophy, psychology, science, culture, and technology. But the reality is that most people rarely have the time to read 4,000–6,000 word essays regularly.</p>
+
+        <p><strong>Important ideas often get lost simply because the content is too long to consume consistently.</strong></p>
+
+        <p>I wanted a way to stay intellectually updated without spending hours reading every article manually.</p>
+
+        <h2>What I Built</h2>
+
+        <p>I created an AI-powered automation workflow that continuously monitors newly published or updated essays on Aeon and instantly generates concise 4–5 sentence summaries.</p>
+
+        <p>The summaries are then delivered directly to Telegram in a clean, readable format. The entire workflow runs automatically with <strong>zero manual intervention</strong>.</p>
+
+        <h2>How It Works</h2>
+
+        <div class="workflow-steps">
+          <div class="workflow-step">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-step-text"><strong>Detect</strong> — A scheduled trigger fires daily at 12 PM and checks for newly published or updated Aeon essays via RSS monitoring.</div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-step-text"><strong>Filter</strong> — Each article URL is checked against a structured data table. If it has already been processed, it is skipped entirely — no duplicates, ever.</div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-step-text"><strong>Extract</strong> — The full essay content is fetched and extracted from the page.</div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">4</div>
+            <div class="workflow-step-text"><strong>Summarize</strong> — An LLM processes the article and generates a focused 4–5 sentence summary that captures the core idea without noise.</div>
+          </div>
+          <div class="workflow-step">
+            <div class="workflow-step-num">5</div>
+            <div class="workflow-step-text"><strong>Deliver</strong> — The formatted summary is sent instantly via the Telegram Bot API directly to my personal channel.</div>
+          </div>
+        </div>
+
+        <div class="proj-callout">
+          To avoid duplicate processing, a structured data table is maintained where every scanned article URL is assigned a unique ID. This ensures the bot <strong>only processes fresh content</strong> and skips essays that have already been summarized previously.
+        </div>
+
+        <h2>Tools &amp; Technologies</h2>
+
+        <div class="tools-grid">
+          <div class="tool-item">
+            <div class="tool-icon">⚡</div>
+            <div>
+              <div class="tool-name">n8n</div>
+              <div class="tool-desc">Workflow automation orchestration</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon">✈️</div>
+            <div>
+              <div class="tool-name">Telegram Bot API</div>
+              <div class="tool-desc">Instant message delivery</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon">🤖</div>
+            <div>
+              <div class="tool-name">AI / LLM APIs</div>
+              <div class="tool-desc">Intelligent summarization</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon">📡</div>
+            <div>
+              <div class="tool-name">RSS Monitoring</div>
+              <div class="tool-desc">Detecting new essay updates</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon">🗃️</div>
+            <div>
+              <div class="tool-name">Data Table Tracking</div>
+              <div class="tool-desc">Preventing duplicate article scans</div>
+            </div>
+          </div>
+          <div class="tool-item">
+            <div class="tool-icon">🎯</div>
+            <div>
+              <div class="tool-name">Prompt Engineering</div>
+              <div class="tool-desc">Maintaining concise, meaningful summaries</div>
+            </div>
+          </div>
+        </div>
+
+        <h2>Why I Built This</h2>
+
+        <p>This project was an experiment in combining AI, automation, and information consumption.</p>
+
+        <p>Instead of replacing reading, the goal was to <strong>reduce friction between discovering valuable ideas and actually consuming them</strong>. It demonstrates how AI workflows can transform long-form content into actionable, low-noise knowledge streams.</p>
+
+        <hr class="proj-divider" />
+
+        <h2>Demo</h2>
+
+        <p>Below is a short demo showing how the complete workflow operates in real time — from essay detection to AI summarization and Telegram delivery.</p>
+
+        <div class="demo-video-wrap">
+          <video controls preload="metadata">
+            <source src="../assets/projects/aeon-telegram.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="insight-box">
+          <div class="insight-icon">💡</div>
+          <div class="insight-label">The Result</div>
+          <div class="insight-text">"A lightweight personal knowledge system that converts long-form reading into fast, digestible insights — delivered automatically every morning."</div>
+        </div>
+
+      </div>
+      <!-- end proj-body -->
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff">Aman Agarwal<span style="color:#818cf8">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>

@@ -44,11 +44,14 @@ const PORTFOLIO = {
   // ── PROJECTS ──────────────────────────────────────────────
   projects: [
     {
-      title: "Web Content Monitoring & AI Digest Agent",
-      tags: ["n8n", "AI Agents", "Automation", "API"],
-      description: "An automated agent that continuously monitors specified web pages for content changes, summarizes updates using an LLM, and delivers a structured digest via email or messaging platforms. Eliminates the need to manually track competitor sites or news sources.",
-      github: "",    // ← add GitHub link when available
-      demo: "",      // ← add live demo link when available
+      title: "Aeon to Telegram — AI Essay Summary Automation",
+      tags: ["n8n", "AI Agents", "Automation", "Telegram Bot"],
+      description: "An AI-powered workflow that monitors newly published Aeon essays daily, generates concise AI summaries, and delivers them instantly to Telegram — with duplicate tracking so only fresh content is ever processed.",
+      file: "projects/aeon-telegram.html",
+      thumbnail: "assets/projects/aeon-telegram.png",
+      date: "May 2026",
+      github: "",
+      demo: "",
       featured: true
     },
     {
