@@ -55,6 +55,17 @@ const PORTFOLIO = {
       featured: true
     },
     {
+      title: "SaudaaAI — Voice to Quotation, Instantly",
+      tags: ["n8n", "Python", "Flask", "Sarvam AI", "Gemini", "Telegram Bot"],
+      description: "An end-to-end voice-to-quotation system for Indian commodity buyers. Send a voice message in Hindi or Gujarati on Telegram — get a professional quotation document back in seconds. No app, no portal, no friction.",
+      file: "projects/saudaa-ai.html",
+      thumbnail: "assets/projects/saudaa-ai.png",
+      date: "May 2026",
+      github: "",
+      demo: "",
+      featured: true
+    },
+    {
       title: "Multi-Agent Sales Automation System",
       tags: ["n8n", "Multi-Agent", "Python", "CRM"],
       description: "A multi-agent pipeline that automates the end-to-end sales prospecting workflow — from lead sourcing and enrichment to personalized outreach and follow-up scheduling. Each agent handles a distinct stage, coordinated through an orchestration layer.",
