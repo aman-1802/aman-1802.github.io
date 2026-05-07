@@ -49,7 +49,7 @@ const PORTFOLIO = {
       description: "An AI-powered workflow that monitors newly published Aeon essays daily, generates concise AI summaries, and delivers them instantly to Telegram — with duplicate tracking so only fresh content is ever processed.",
       file: "projects/aeon-telegram.html",
       thumbnail: "assets/projects/aeon-telegram.png",
-      date: "May 2026",
+      date: "March 2026",
       github: "",
       demo: "",
       featured: true
