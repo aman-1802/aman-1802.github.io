@@ -122,14 +122,21 @@ const PORTFOLIO = {
   ],
 
   // ── CERTIFICATIONS ────────────────────────────────────────
-  // Add your certifications here when ready
   certifications: [
-    // {
-    //   title: "Certification Name",
-    //   issuer: "Issuing Organization",
-    //   date: "Month Year",
-    //   link: "https://..."
-    // }
+    {
+      title: "Claude 101",
+      issuer: "Anthropic",
+      date: "April 2026",
+      description: "Covered the fundamentals of prompt engineering and working effectively with Claude. Explored Claude's unique features including Claude Code, agentic workflows, Claude's memory system, and best practices for building AI-powered automation systems.",
+      link: ""
+    },
+    {
+      title: "AI Builder: Create Agents, Voice Agents & Automations in n8n",
+      issuer: "Udemy — Ligency & Ed Donner",
+      date: "March 2026",
+      description: "Built end-to-end automation workflows in n8n including AI agents, voice agents with tool-calling, and multi-step pipelines. Covered workflow design, webhook integrations, HTTP requests, and connecting LLMs to real-world APIs and actions.",
+      link: "https://ude.my/UC-40cad47a-5fdc-4a13-9cc5-ead62c1b77d2"
+    }
   ],
 
   // ── BLOG POSTS ────────────────────────────────────────────

@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommandPalette();
   initMagneticButtons();
   initChatbot();
-  initStatusPanel();
 
   // ── PHASE 3 MOTION ───────────────────────────────────────
   initScrollProgress();
@@ -134,14 +133,28 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ════════════════════════════════════════════════════════════
-//  CREATIVE LOADER — typing name + dual spinner + curtain wipe
+//  CREATIVE LOADER — playful emoji + typing name + fade exit
 // ════════════════════════════════════════════════════════════
 function initLoader() {
   const loader = document.getElementById('page-loader');
   if (!loader) return;
 
-  const typeEl  = loader.querySelector('.loader-type-text');
-  const fill    = loader.querySelector('.loader-progress-fill');
+  const inner = loader.querySelector('.loader-inner');
+
+  // ── Inject ⚡ emoji above the spinner
+  const emoji = document.createElement('div');
+  emoji.className = 'loader-emoji';
+  emoji.textContent = '⚡';
+  inner.insertBefore(emoji, inner.firstChild);
+
+  // ── Inject stack chips below progress bar
+  const chips = document.createElement('div');
+  chips.className = 'loader-chips';
+  chips.innerHTML = '<span>n8n</span><span>Python</span><span>AI Agents</span>';
+  inner.appendChild(chips);
+
+  const typeEl   = loader.querySelector('.loader-type-text');
+  const fill     = loader.querySelector('.loader-progress-fill');
   const fullName = 'Aman Agarwal';
   let i = 0;
 
@@ -153,13 +166,9 @@ function initLoader() {
 
       if (i >= fullName.length) {
         clearInterval(iv);
-        setTimeout(() => {
-          loader.classList.add('exiting');
-          setTimeout(() => {
-            loader.classList.add('exiting-out');
-            setTimeout(() => loader.classList.add('hidden'), 420);
-          }, 260);
-        }, 380);
+        // Show chips briefly, then clean fade — no blue curtain
+        chips.classList.add('visible');
+        setTimeout(() => loader.classList.add('hidden'), 700);
       }
     }, 72);
   }, 180);
@@ -391,6 +400,7 @@ function renderCertifications() {
         <div class="cert-title">${cert.title}</div>
         <div class="cert-issuer">${cert.issuer}</div>
         <div class="cert-date">${cert.date}</div>
+        ${cert.description?`<p class="cert-desc">${cert.description}</p>`:''}
         ${cert.link?`<a href="${cert.link}" target="_blank" class="project-link" style="margin-top:.75rem">View Certificate →</a>`:''}
       </div>`).join('')}</div>`;
     c.querySelectorAll('.tilt-card').forEach(applyTilt);
