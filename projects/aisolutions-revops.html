@@ -520,31 +520,6 @@
 
         <hr class="proj-divider" />
 
-        <h2>Final Architecture</h2>
-
-        <div class="arch-flow">
-          <span class="arch-node">Telegram trigger</span>
-          <span class="arch-arrow">↓</span>
-          <span class="arch-node">Prospecting Agent (n8n)</span>
-          <span class="arch-branch">├── Google Maps Text Search and Place Details</span>
-          <span class="arch-branch">├── Playwright email scraper (FastAPI, port 8001)</span>
-          <span class="arch-branch">├── Airtable Leads + Google Sheets backup</span>
-          <span class="arch-branch">└── OpenAI cold email drafter → Gmail draft</span>
-          <span class="arch-arrow" style="margin-top:.5rem">↓</span>
-          <span class="arch-node">Inbound call from prospect</span>
-          <span class="arch-arrow">↓</span>
-          <span class="arch-node">ElevenLabs Voice Agent</span>
-          <span class="arch-branch">├── ask_aisolutions → FastAPI /ask → RAG pipeline (ChromaDB + Groq)</span>
-          <span class="arch-branch">├── schedule_meeting → n8n webhook → Google Calendar + Gmail + Sheets</span>
-          <span class="arch-branch">└── Sales escalation → n8n webhook → Notification to sales head</span>
-        </div>
-
-        <div class="proj-callout">
-          Everything runs on a <strong>single Hetzner VPS.</strong> n8n handles orchestration, FastAPI serves the RAG and scraper, Caddy handles SSL and routing, and pm2 keeps the Python services alive across reboots.
-        </div>
-
-        <hr class="proj-divider" />
-
         <h2>Demo</h2>
 
         <p>A full walkthrough of the AiSolutions RevOps system — from a Telegram prospecting query all the way through to a booked demo on Google Calendar.</p>
