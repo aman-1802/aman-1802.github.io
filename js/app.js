@@ -139,20 +139,6 @@ function initLoader() {
   const loader = document.getElementById('page-loader');
   if (!loader) return;
 
-  const inner = loader.querySelector('.loader-inner');
-
-  // ── Inject ⚡ emoji above the spinner
-  const emoji = document.createElement('div');
-  emoji.className = 'loader-emoji';
-  emoji.textContent = '⚡';
-  inner.insertBefore(emoji, inner.firstChild);
-
-  // ── Inject stack chips below progress bar
-  const chips = document.createElement('div');
-  chips.className = 'loader-chips';
-  chips.innerHTML = '<span>n8n</span><span>Python</span><span>AI Agents</span>';
-  inner.appendChild(chips);
-
   const typeEl   = loader.querySelector('.loader-type-text');
   const fill     = loader.querySelector('.loader-progress-fill');
   const fullName = 'Aman Agarwal';
@@ -166,9 +152,8 @@ function initLoader() {
 
       if (i >= fullName.length) {
         clearInterval(iv);
-        // Show chips briefly, then clean fade — no blue curtain
-        chips.classList.add('visible');
-        setTimeout(() => loader.classList.add('hidden'), 700);
+        // Clean fade — no blue curtain
+        setTimeout(() => loader.classList.add('hidden'), 500);
       }
     }, 72);
   }, 180);
@@ -397,11 +382,18 @@ function renderCertifications() {
   } else {
     c.innerHTML = `<div class="certs-grid">${PORTFOLIO.certifications.map((cert,i)=>`
       <div class="cert-card tilt-card reveal reveal-delay-${(i%3)+1}">
-        <div class="cert-title">${cert.title}</div>
-        <div class="cert-issuer">${cert.issuer}</div>
-        <div class="cert-date">${cert.date}</div>
-        ${cert.description?`<p class="cert-desc">${cert.description}</p>`:''}
-        ${cert.link?`<a href="${cert.link}" target="_blank" class="project-link" style="margin-top:.75rem">View Certificate →</a>`:''}
+        <div class="cert-thumb cert-thumb-${cert.thumbStyle||'default'}">
+          <div class="cert-thumb-badge">✓ Certificate of Completion</div>
+          <div class="cert-thumb-course">${cert.title}</div>
+          <div class="cert-thumb-by">${cert.issuer}</div>
+        </div>
+        <div class="cert-body">
+          <div class="cert-title">${cert.title}</div>
+          <div class="cert-issuer">${cert.issuer}</div>
+          <div class="cert-date">${cert.date}</div>
+          ${cert.description?`<p class="cert-desc">${cert.description}</p>`:''}
+          ${cert.pdfFile?`<a href="${cert.pdfFile}" target="_blank" rel="noopener" class="cert-view-btn">View Certificate →</a>`:''}
+        </div>
       </div>`).join('')}</div>`;
     c.querySelectorAll('.tilt-card').forEach(applyTilt);
   }
