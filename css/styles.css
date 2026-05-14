@@ -369,6 +369,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .cmd-footer kbd{background:var(--bg-elevated);border:1px solid var(--border);border-radius:4px;padding:.1rem .4rem;font-size:.68rem;margin-right:.25rem;font-family:var(--font-head)}
 .cmd-nav-hint{background:var(--bg-muted);border:1px solid var(--border);border-radius:8px;padding:.28rem .7rem;font-size:.72rem;color:var(--text-soft);cursor:pointer;transition:border-color .2s,color .2s,background .2s;font-family:var(--font-head);line-height:1}
 .cmd-nav-hint:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+@media(max-width:768px){.cmd-nav-hint{display:none}}
 
 /* ── HERO NODE GRAPH ──────────────────────────────────────── */
 .hero-graph{width:100%;height:100%;max-height:460px;filter:drop-shadow(0 8px 48px rgba(91,141,239,0.18))}
