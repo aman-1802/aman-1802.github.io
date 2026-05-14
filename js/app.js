@@ -108,6 +108,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── LUCIDE ICONS INIT ────────────────────────────────────
   if (window.lucide) window.lucide.createIcons();
+
+  // ── PHASE 2 GLOBAL INTERACTIONS ─────────────────────────
+  initSpotlight();
+  initCommandPalette();
+  initMagneticButtons();
 });
 
 // ════════════════════════════════════════════════════════════
@@ -419,4 +424,154 @@ function applyTilt(card) {
     card.style.transform = `perspective(900px) rotateY(${x*12}deg) rotateX(${-y*12}deg) translateY(-5px) scale(1.01)`;
   });
   card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+}
+
+// ════════════════════════════════════════════════════════════
+//  PHASE 2 — SIGNATURE INTERACTIONS
+// ════════════════════════════════════════════════════════════
+
+// ── MOUSE SPOTLIGHT (ambient glow, all pages) ────────────────
+function initSpotlight() {
+  let ticking = false;
+  document.addEventListener('mousemove', e => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--mx', e.clientX + 'px');
+      document.documentElement.style.setProperty('--my', e.clientY + 'px');
+      ticking = false;
+    });
+  });
+}
+
+// ── COMMAND PALETTE ──────────────────────────────────────────
+function initCommandPalette() {
+  const CMD_PAGES = [
+    { label:'Home',           icon:'home',           href:'index.html',          sub:'Portfolio overview' },
+    { label:'About',          icon:'user',           href:'about.html',          sub:'Who I am' },
+    { label:'Experience',     icon:'briefcase',      href:'experience.html',     sub:'Where I\'ve worked' },
+    { label:'Projects',       icon:'rocket',         href:'projects.html',       sub:'Things I\'ve built' },
+    { label:'Skills',         icon:'settings-2',     href:'skills.html',         sub:'My toolkit' },
+    { label:'Education',      icon:'graduation-cap', href:'education.html',      sub:'Academic background' },
+    { label:'Certifications', icon:'award',          href:'certifications.html', sub:'Credentials & courses' },
+    { label:'Blog',           icon:'pen-tool',       href:'blog.html',           sub:'My writing' },
+    { label:'Contact',        icon:'mail',           href:'contact.html',        sub:'Let\'s talk' },
+  ];
+
+  // Inject palette DOM
+  const palette = document.createElement('div');
+  palette.id = 'cmd-palette';
+  palette.className = 'cmd-overlay';
+  palette.setAttribute('aria-hidden', 'true');
+  palette.innerHTML = `
+    <div class="cmd-box" role="dialog" aria-label="Command palette">
+      <div class="cmd-search-row">
+        <i data-lucide="search" class="cmd-search-icon"></i>
+        <input id="cmd-input" type="text" placeholder="Search pages…" autocomplete="off" spellcheck="false" />
+        <kbd class="cmd-esc-key">ESC</kbd>
+      </div>
+      <div class="cmd-results" id="cmd-results" role="listbox"></div>
+      <div class="cmd-footer">
+        <span><kbd>↑</kbd><kbd>↓</kbd> navigate</span>
+        <span><kbd>↵</kbd> open</span>
+        <span><kbd>Ctrl K</kbd> toggle</span>
+      </div>
+    </div>`;
+  document.body.appendChild(palette);
+  if (window.lucide) window.lucide.createIcons();
+
+  const input   = document.getElementById('cmd-input');
+  const results = document.getElementById('cmd-results');
+  let active = 0, filtered = [...CMD_PAGES];
+
+  function renderResults(q = '') {
+    filtered = q
+      ? CMD_PAGES.filter(p => (p.label + p.sub).toLowerCase().includes(q.toLowerCase()))
+      : [...CMD_PAGES];
+    active = 0;
+    results.innerHTML = filtered.length
+      ? filtered.map((p, i) => `
+        <div class="cmd-item${i===0?' cmd-item-active':''}" data-idx="${i}" role="option">
+          <div class="cmd-item-icon"><i data-lucide="${p.icon}"></i></div>
+          <div class="cmd-item-body">
+            <div class="cmd-item-label">${p.label}</div>
+            <div class="cmd-item-sub">${p.sub}</div>
+          </div>
+          <i data-lucide="arrow-right" class="cmd-item-arrow"></i>
+        </div>`).join('')
+      : `<div class="cmd-empty">No results for "<em>${q}</em>"</div>`;
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  function setActive(idx) {
+    results.querySelectorAll('.cmd-item').forEach((el, i) =>
+      el.classList.toggle('cmd-item-active', i === idx));
+    const el = results.querySelectorAll('.cmd-item')[idx];
+    if (el) el.scrollIntoView({ block: 'nearest' });
+    active = idx;
+  }
+
+  function openPalette() {
+    palette.classList.add('open');
+    palette.setAttribute('aria-hidden', 'false');
+    renderResults();
+    setTimeout(() => input.focus(), 60);
+  }
+
+  function closePalette() {
+    palette.classList.remove('open');
+    palette.setAttribute('aria-hidden', 'true');
+    input.value = '';
+  }
+
+  function go() { if (filtered[active]) window.location.href = filtered[active].href; }
+
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      palette.classList.contains('open') ? closePalette() : openPalette();
+    }
+    if (!palette.classList.contains('open')) return;
+    if (e.key === 'Escape')    closePalette();
+    if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(active+1, filtered.length-1)); }
+    if (e.key === 'ArrowUp')   { e.preventDefault(); setActive(Math.max(active-1, 0)); }
+    if (e.key === 'Enter')     { e.preventDefault(); go(); }
+  });
+
+  input.addEventListener('input', e => renderResults(e.target.value));
+  results.addEventListener('click', e => {
+    const item = e.target.closest('.cmd-item');
+    if (item) { active = +item.dataset.idx; go(); }
+  });
+  results.addEventListener('mousemove', e => {
+    const item = e.target.closest('.cmd-item');
+    if (item) setActive(+item.dataset.idx);
+  });
+  palette.addEventListener('click', e => { if (e.target === palette) closePalette(); });
+
+  // ⌘K hint in nav
+  const hamburger = document.getElementById('hamburger');
+  if (hamburger) {
+    const hint = document.createElement('button');
+    hint.className = 'cmd-nav-hint';
+    hint.setAttribute('aria-label', 'Command palette (Ctrl+K)');
+    hint.title = 'Ctrl+K / ⌘K';
+    hint.textContent = '⌘K';
+    hint.addEventListener('click', openPalette);
+    hamburger.parentElement.insertBefore(hint, hamburger);
+  }
+}
+
+// ── MAGNETIC BUTTONS ─────────────────────────────────────────
+function initMagneticButtons() {
+  if (window.matchMedia('(pointer:coarse)').matches) return;
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r  = btn.getBoundingClientRect();
+      const dx = (e.clientX - (r.left + r.width  / 2)) * 0.32;
+      const dy = (e.clientY - (r.top  + r.height / 2)) * 0.32;
+      btn.style.transform = `translate(${dx}px, ${dy}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
 }

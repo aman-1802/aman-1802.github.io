@@ -329,6 +329,54 @@ footer a:hover{color:var(--text)}
 #back-top:hover{background:var(--accent-dk)}
 #back-top svg{width:18px;height:18px}
 
+/* ── MOUSE SPOTLIGHT ─────────────────────────────────────── */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(700px at var(--mx,50vw) var(--my,40vh),rgba(91,141,239,0.055),transparent 80%)}
+
+/* ── COMMAND PALETTE ──────────────────────────────────────── */
+.cmd-overlay{position:fixed;inset:0;z-index:9000;background:rgba(0,0,0,0);display:flex;align-items:flex-start;justify-content:center;padding-top:16vh;pointer-events:none;transition:background .2s}
+.cmd-overlay.open{background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);pointer-events:auto}
+.cmd-box{background:var(--bg-elevated);border:1px solid var(--border-lit);border-radius:var(--radius-lg);width:100%;max-width:560px;margin:0 1rem;box-shadow:var(--shadow-lg);transform:translateY(-14px) scale(0.97);opacity:0;transition:transform .22s var(--ease-spring),opacity .18s var(--ease);overflow:hidden}
+.cmd-overlay.open .cmd-box{transform:none;opacity:1}
+.cmd-search-row{display:flex;align-items:center;gap:.75rem;padding:.9rem 1.25rem;border-bottom:1px solid var(--border)}
+.cmd-search-icon{color:var(--text-soft);flex-shrink:0;width:18px;height:18px;stroke-width:2}
+#cmd-input{flex:1;background:transparent;border:none;outline:none;font-family:var(--font-body);font-size:1rem;color:var(--text)}
+#cmd-input::placeholder{color:var(--text-soft)}
+.cmd-esc-key{background:var(--bg-muted);border:1px solid var(--border);border-radius:6px;padding:.15rem .55rem;font-size:.7rem;color:var(--text-soft);font-family:var(--font-head);flex-shrink:0;white-space:nowrap}
+.cmd-results{max-height:320px;overflow-y:auto;padding:.4rem}
+.cmd-item{display:flex;align-items:center;gap:.85rem;padding:.65rem 1rem;border-radius:var(--radius);cursor:pointer;transition:background .12s}
+.cmd-item:hover,.cmd-item-active{background:var(--accent-lt)}
+.cmd-item-active .cmd-item-label{color:var(--accent)}
+.cmd-item-icon{width:32px;height:32px;border-radius:8px;background:var(--bg-muted);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .12s}
+.cmd-item-active .cmd-item-icon{background:var(--accent-lt)}
+.cmd-item-icon i{width:15px;height:15px;stroke-width:1.5;color:var(--text-mid)}
+.cmd-item-active .cmd-item-icon i{color:var(--accent)}
+.cmd-item-body{flex:1;min-width:0}
+.cmd-item-label{font-family:var(--font-head);font-weight:600;font-size:.9rem;color:var(--text)}
+.cmd-item-sub{font-size:.74rem;color:var(--text-soft);margin-top:.1rem}
+.cmd-item-arrow{width:14px;height:14px;stroke-width:2;color:var(--text-soft);opacity:0;transition:opacity .12s,transform .12s;flex-shrink:0}
+.cmd-item-active .cmd-item-arrow{opacity:1;color:var(--accent);transform:translateX(2px)}
+.cmd-empty{padding:1.75rem;text-align:center;color:var(--text-soft);font-size:.9rem}
+.cmd-empty em{color:var(--text-mid);font-style:normal}
+.cmd-footer{display:flex;gap:1.5rem;padding:.55rem 1.25rem;background:var(--bg-muted);border-top:1px solid var(--border);font-size:.72rem;color:var(--text-soft)}
+.cmd-footer kbd{background:var(--bg-elevated);border:1px solid var(--border);border-radius:4px;padding:.1rem .4rem;font-size:.68rem;margin-right:.25rem;font-family:var(--font-head)}
+.cmd-nav-hint{background:var(--bg-muted);border:1px solid var(--border);border-radius:8px;padding:.28rem .7rem;font-size:.72rem;color:var(--text-soft);cursor:pointer;transition:border-color .2s,color .2s,background .2s;font-family:var(--font-head);line-height:1}
+.cmd-nav-hint:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+
+/* ── HERO NODE GRAPH ──────────────────────────────────────── */
+.hero-graph{width:100%;height:100%;max-height:460px;filter:drop-shadow(0 8px 48px rgba(91,141,239,0.18))}
+.hg-node{transition:filter .25s}
+.hg-node:hover{filter:drop-shadow(0 0 14px rgba(91,141,239,0.55))}
+.hg-orbit{animation:hgOrbit 20s linear infinite;transform-origin:250px 230px}
+@keyframes hgOrbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes flowDash{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}
+.fe-1{animation:flowDash 1.8s linear infinite}
+.fe-2{animation:flowDash 1.8s linear infinite;animation-delay:.26s}
+.fe-3{animation:flowDash 1.8s linear infinite;animation-delay:.52s}
+.fe-4{animation:flowDash 1.8s linear infinite;animation-delay:.78s}
+.fe-5{animation:flowDash 1.8s linear infinite;animation-delay:1.04s}
+.fe-6{animation:flowDash 1.8s linear infinite;animation-delay:1.3s}
+.fe-7{animation:flowDash 1.8s linear infinite;animation-delay:1.56s}
+
 /* ── QUICK-LINK CARDS (home) ──────────────────────────────── */
 .ql-section{background:var(--bg-soft);padding:56px 0;border-top:1px solid var(--border)}
 .ql-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
