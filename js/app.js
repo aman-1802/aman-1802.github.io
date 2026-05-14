@@ -265,7 +265,8 @@ function drawProjectCards(c, activeMonth) {
         <a href="${p.file}" class="blog-card tilt-card reveal reveal-delay-${(i%3)+1}" style="text-decoration:none;color:inherit;display:block">
           ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" style="width:100%;height:190px;object-fit:cover;display:block;" />` : ''}
           <div class="blog-card-body">
-            <div class="project-tags" style="margin-bottom:.75rem">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
+            <div class="project-tags" style="margin-bottom:.6rem">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
+            ${p.metrics && p.metrics.length ? `<div class="proj-metrics">${p.metrics.map(m=>`<span class="proj-metric">${m}</span>`).join('')}</div>` : ''}
             <div class="blog-card-title">${p.title}</div>
             <div class="blog-card-summary">${p.description}</div>
           </div>
