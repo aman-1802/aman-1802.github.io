@@ -207,10 +207,47 @@ function renderExperience() {
 
 function renderProjects() {
   const c = document.getElementById('projects-grid');
+  const filterBar = document.getElementById('projects-filter');
   if (!c) return;
-  c.innerHTML = PORTFOLIO.projects.map((p, i) => {
+
+  // Build unique month list (preserve order from data)
+  const months = ['All', ...new Set(PORTFOLIO.projects.map(p => p.date).filter(Boolean))];
+
+  // Render filter chips
+  if (filterBar) {
+    filterBar.innerHTML = months.map(m => `
+      <button class="proj-filter-btn${m==='All'?' active':''}" data-month="${m}"
+        style="background:${m==='All'?'var(--accent)':'var(--bg)'};color:${m==='All'?'#fff':'var(--text-mid)'};border:1.5px solid ${m==='All'?'var(--accent)':'var(--border)'};padding:.4rem 1.1rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-head)">
+        ${m}
+      </button>`).join('');
+
+    filterBar.querySelectorAll('.proj-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBar.querySelectorAll('.proj-filter-btn').forEach(b => {
+          b.style.background = 'var(--bg)';
+          b.style.color = 'var(--text-mid)';
+          b.style.borderColor = 'var(--border)';
+          b.classList.remove('active');
+        });
+        btn.style.background = 'var(--accent)';
+        btn.style.color = '#fff';
+        btn.style.borderColor = 'var(--accent)';
+        btn.classList.add('active');
+        drawProjectCards(c, btn.dataset.month);
+      });
+    });
+  }
+
+  drawProjectCards(c, 'All');
+}
+
+function drawProjectCards(c, activeMonth) {
+  const filtered = activeMonth === 'All'
+    ? PORTFOLIO.projects
+    : PORTFOLIO.projects.filter(p => p.date === activeMonth);
+
+  c.innerHTML = filtered.map((p, i) => {
     if (p.file) {
-      // Rich card with thumbnail — links to detail page (like blog)
       return `
         <a href="${p.file}" class="blog-card tilt-card reveal reveal-delay-${(i%3)+1}" style="text-decoration:none;color:inherit;display:block">
           ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" style="width:100%;height:190px;object-fit:cover;display:block;" />` : ''}
@@ -222,7 +259,6 @@ function renderProjects() {
           <div class="blog-card-footer"><span class="blog-date">${p.date||''}</span><span class="blog-read">View Project →</span></div>
         </a>`;
     }
-    // Plain card (no detail page yet)
     return `
       <div class="project-card tilt-card reveal reveal-delay-${(i%3)+1}">
         <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
@@ -235,6 +271,11 @@ function renderProjects() {
         </div>
       </div>`;
   }).join('');
+
+  if (filtered.length === 0) {
+    c.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-soft)">No projects for this month yet.</div>`;
+  }
+
   reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
 }

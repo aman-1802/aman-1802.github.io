@@ -41,19 +41,8 @@ const PORTFOLIO = {
     }
   ],
 
-  // ── PROJECTS ──────────────────────────────────────────────
+  // ── PROJECTS (newest first) ───────────────────────────────
   projects: [
-    {
-      title: "Aeon to Telegram — AI Essay Summary Automation",
-      tags: ["n8n", "AI Agents", "Automation", "Telegram Bot"],
-      description: "An AI-powered workflow that monitors newly published Aeon essays daily, generates concise AI summaries, and delivers them instantly to Telegram — with duplicate tracking so only fresh content is ever processed.",
-      file: "projects/aeon-telegram.html",
-      thumbnail: "assets/projects/aeon-telegram.png",
-      date: "March 2026",
-      github: "",
-      demo: "",
-      featured: true
-    },
     {
       title: "AiSolutions RevOps Automation",
       tags: ["n8n", "Python", "RAG", "ElevenLabs", "FastAPI", "Multi-Agent"],
@@ -71,23 +60,18 @@ const PORTFOLIO = {
       description: "An end-to-end voice-to-quotation system for Indian commodity buyers. Send a voice message in Hindi or Gujarati on Telegram — get a professional quotation document back in seconds. No app, no portal, no friction.",
       file: "projects/saudaa-ai.html",
       thumbnail: "assets/projects/saudaa-ai.png",
-      date: "May 2026",
+      date: "April 2026",
       github: "",
       demo: "",
       featured: true
     },
     {
-      title: "Multi-Agent Sales Automation System",
-      tags: ["n8n", "Multi-Agent", "Python", "CRM"],
-      description: "A multi-agent pipeline that automates the end-to-end sales prospecting workflow — from lead sourcing and enrichment to personalized outreach and follow-up scheduling. Each agent handles a distinct stage, coordinated through an orchestration layer.",
-      github: "",
-      demo: "",
-      featured: true
-    },
-    {
-      title: "Personal Expense Tracker",
-      tags: ["Python", "Google Sheets", "API", "Full-Stack"],
-      description: "A full-stack expense tracking application with a clean dashboard, category-wise analytics, and automatic sync to Google Sheets. Built with Python backend and a responsive frontend, with Google OAuth for secure access.",
+      title: "Aeon to Telegram — AI Essay Summary Automation",
+      tags: ["n8n", "AI Agents", "Automation", "Telegram Bot"],
+      description: "An AI-powered workflow that monitors newly published Aeon essays daily, generates concise AI summaries, and delivers them instantly to Telegram — with duplicate tracking so only fresh content is ever processed.",
+      file: "projects/aeon-telegram.html",
+      thumbnail: "assets/projects/aeon-telegram.png",
+      date: "March 2026",
       github: "",
       demo: "",
       featured: true
