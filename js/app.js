@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ── PAGE-SPECIFIC INIT ───────────────────────────────────
   switch (page) {
-    case 'home':           initHero(); break;
+    case 'home':           initHero(); initStatCounters(); break;
     case 'experience':     renderExperience(); break;
     case 'projects':       renderProjects(); break;
     case 'skills':         renderSkills(); break;
@@ -429,6 +429,30 @@ function applyTilt(card) {
 // ════════════════════════════════════════════════════════════
 //  PHASE 2 — SIGNATURE INTERACTIONS
 // ════════════════════════════════════════════════════════════
+
+// ── STAT COUNTERS ────────────────────────────────────────────
+function initStatCounters() {
+  const items = document.querySelectorAll('.stat-number[data-count]');
+  if (!items.length) return;
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      obs.unobserve(entry.target);
+      const el     = entry.target;
+      const target = +el.dataset.count;
+      const suffix = el.dataset.suffix || '';
+      let cur = 0;
+      const duration = 900;
+      const step = Math.max(1, Math.ceil(target / (duration / 30)));
+      const iv = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        el.textContent = cur + suffix;
+        if (cur >= target) clearInterval(iv);
+      }, 30);
+    });
+  }, { threshold: 0.6 });
+  items.forEach(el => obs.observe(el));
+}
 
 // ── MOUSE SPOTLIGHT (ambient glow, all pages) ────────────────
 function initSpotlight() {
