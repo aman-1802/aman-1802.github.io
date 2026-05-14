@@ -509,9 +509,9 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   /* ── Nav: always fully opaque on mobile — !important beats .scrolled specificity */
   nav#main-nav{background:#0A0A0B!important;border-bottom:1px solid var(--border)!important;backdrop-filter:none!important}
   .nav-inner{padding:0 1rem}
-  /* ── Page sections: hardcoded px avoids CSS-var calc bugs on older mobile browsers */
-  .page-section{padding-top:128px;padding-bottom:64px}
-  #hero{padding-top:128px!important}
+  /* ── Page sections: 68px nav + 64px gap so headings clear the nav bar */
+  .page-section{padding-top:132px;padding-bottom:64px}
+  #hero{padding-top:132px!important}
   .nav-links{display:none}
   .nav-hamburger{display:flex}
   .form-row{grid-template-columns:1fr}

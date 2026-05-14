@@ -32,8 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── NAV SCROLL ──────────────────────────────────────────
   const nav = document.getElementById('main-nav');
   const backTop = document.getElementById('back-top');
+  const isMobile = () => window.innerWidth <= 768;
   function onScroll() {
-    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+    // On mobile, nav is always opaque — no transparent state
+    if (nav) nav.classList.toggle('scrolled', isMobile() || window.scrollY > 40);
     if (backTop) backTop.classList.toggle('visible', window.scrollY > 400);
   }
   window.addEventListener('scroll', onScroll, { passive: true });
