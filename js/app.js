@@ -608,7 +608,7 @@ function initCommandPalette() {
     { label:'Skills',         icon:'settings-2',     href:'skills.html',         sub:'My toolkit' },
     { label:'Education',      icon:'graduation-cap', href:'education.html',      sub:'Academic background' },
     { label:'Certifications', icon:'award',          href:'certifications.html', sub:'Credentials & courses' },
-    { label:'Writings',       icon:'pen-tool',       href:'blog.html',           sub:'My writing' },
+    { label:'Blog',           icon:'pen-tool',       href:'blog.html',           sub:'My writing' },
     { label:'Contact',        icon:'mail',           href:'contact.html',        sub:'Let\'s talk' },
   ];
 
