@@ -54,6 +54,16 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backTop) backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   // ── REVEAL ON SCROLL ────────────────────────────────────
+  // Immediately reveal anything already in the viewport so GSAP can't hide it later
+  function revealInView() {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+    });
+  }
+  revealInView();
+  window.addEventListener('load', revealInView);
+
   const revealObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
       if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
@@ -513,18 +523,8 @@ function initGSAP() {
       );
     });
 
-    // ── Section label + title stagger reveal
-    document.querySelectorAll('.page-section').forEach(section => {
-      const label = section.querySelector('.section-label, .eyebrow');
-      const title = section.querySelector('.section-title');
-      if (!label && !title) return;
-      const els = [label, title].filter(Boolean);
-      gsap.fromTo(els,
-        { y: 22, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out',
-          scrollTrigger: { trigger: section, start: 'top 80%', once: true } }
-      );
-    });
+    // ── Section label + title: handled by IntersectionObserver, not GSAP
+    // (GSAP inline opacity:0 overrides .visible on mobile, causing hidden headings)
 
     // ── Timeline items stagger
     const timeline = document.querySelector('.timeline');
