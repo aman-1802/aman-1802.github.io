@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AiSolutions RevOps Automation — Aman Agarwal</title>
+  <meta name="description" content="A four-agent revenue operations system — prospecting, email drafting, voice RAG agent, and demo booking — all on a single self-hosted Hetzner VPS." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    .proj-post-wrap { max-width: 800px; margin: 0 auto; }
+
+    .proj-hero-img {
+      width: 100%; border-radius: 16px; margin-bottom: 2rem;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13); display: block;
+    }
+
+    .proj-meta {
+      display: flex; flex-wrap: wrap; gap: .75rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    .proj-meta-date { font-size: .82rem; color: var(--text-soft); }
+    .proj-meta-tag {
+      font-size: .72rem; font-weight: 600;
+      background: var(--accent-lt); color: var(--accent);
+      padding: .2rem .75rem; border-radius: 6px; white-space: nowrap;
+    }
+
+    .proj-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
+    .proj-body h2 {
+      font-family: var(--font-head); font-size: 1.35rem; font-weight: 700;
+      color: var(--text); margin: 2.75rem 0 .75rem;
+    }
+    .proj-body h3 {
+      font-family: var(--font-head); font-size: 1.08rem; font-weight: 700;
+      color: var(--text); margin: 2rem 0 .5rem;
+    }
+    .proj-body p { margin-bottom: 1.35rem; }
+    .proj-body strong { color: var(--text); font-weight: 600; }
+
+    /* SVG sketch embed */
+    .sketch-wrap {
+      width: 100%; border-radius: 16px; overflow: hidden;
+      margin: 2rem 0; border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+    }
+    .sketch-wrap img { width: 100%; display: block; }
+    .sketch-label {
+      font-size: .75rem; color: var(--text-soft); text-align: center;
+      margin-top: .6rem; font-style: italic;
+    }
+
+    /* Agent cards */
+    .agent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1rem; margin: 1.75rem 0;
+    }
+    .agent-card {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.35rem 1.5rem;
+    }
+    .agent-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 700; margin-bottom: .75rem;
+    }
+    .agent-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .2rem;
+    }
+    .agent-title {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700;
+      color: var(--text); margin-bottom: .5rem;
+    }
+    .agent-desc { font-size: .88rem; color: var(--text-soft); line-height: 1.65; }
+
+    /* Pipeline steps */
+    .pipeline { display: flex; flex-direction: column; gap: 0; margin: 1.75rem 0; }
+    .pipeline-step { display: flex; gap: 1.25rem; align-items: flex-start; padding-bottom: 1.4rem; }
+    .pipeline-step:last-child { padding-bottom: 0; }
+    .pipeline-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+    .pipeline-num {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: .78rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .pipeline-line { width: 2px; flex: 1; background: var(--border); margin-top: 6px; min-height: 20px; }
+    .pipeline-step:last-child .pipeline-line { display: none; }
+    .pipeline-content {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.35rem; flex: 1;
+    }
+    .pipeline-label {
+      font-family: var(--font-head); font-size: .95rem; font-weight: 700;
+      color: var(--text); margin-bottom: .3rem;
+    }
+    .pipeline-desc { font-size: .88rem; color: var(--text-mid); line-height: 1.6; }
+    .pipeline-desc code {
+      background: var(--bg-muted); color: var(--accent);
+      padding: .1rem .4rem; border-radius: 4px;
+      font-size: .82rem; font-family: monospace;
+    }
+
+    /* Difficulty cards */
+    .difficulty-list { display: flex; flex-direction: column; gap: 1.5rem; margin: 1.75rem 0; }
+    .difficulty-card {
+      border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    }
+    .difficulty-header {
+      background: var(--accent-lt); padding: .9rem 1.35rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .difficulty-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: .75rem; font-weight: 700;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .difficulty-title {
+      font-family: var(--font-head); font-size: 1rem; font-weight: 700; color: var(--accent);
+    }
+    .difficulty-body { padding: 1.1rem 1.35rem; background: var(--bg-soft); }
+    .difficulty-problem {
+      font-size: .88rem; color: var(--text-mid); line-height: 1.65; margin-bottom: .85rem;
+    }
+    .difficulty-fix {
+      font-size: .88rem; color: var(--text-mid); line-height: 1.65;
+      border-top: 1px solid var(--border); padding-top: .85rem;
+    }
+    .fix-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: #10b981; margin-bottom: .35rem;
+    }
+
+    /* Learning cards */
+    .learning-list { display: flex; flex-direction: column; gap: 1rem; margin: 1.75rem 0; }
+    .learning-card {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.25rem 1.4rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .learning-icon { font-size: 1.5rem; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .learning-text { font-size: .92rem; color: var(--text-mid); line-height: 1.7; }
+    .learning-text strong { color: var(--text); }
+
+    /* Tools table */
+    .tools-table {
+      width: 100%; border-collapse: collapse;
+      margin: 1.5rem 0; font-size: .91rem;
+    }
+    .tools-table th {
+      background: var(--accent-lt); color: var(--accent);
+      font-family: var(--font-head); font-size: .77rem; font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+      padding: .65rem 1rem; text-align: left;
+      border-bottom: 2px solid var(--accent);
+    }
+    .tools-table td {
+      padding: .65rem 1rem; border-bottom: 1px solid var(--border);
+      color: var(--text-mid); vertical-align: top;
+    }
+    .tools-table td:first-child {
+      color: var(--text); font-weight: 600;
+      font-family: var(--font-head); white-space: nowrap;
+    }
+    .tools-table tr:last-child td { border-bottom: none; }
+    .tools-table tr:hover td { background: var(--bg-soft); }
+
+    /* Arch flow */
+    .arch-flow {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.75rem 2rem; margin: 1.5rem 0;
+      font-size: .88rem; line-height: 2;
+    }
+    .arch-flow .arch-node {
+      display: block; color: var(--text); font-weight: 600;
+      font-family: var(--font-head); font-size: .9rem;
+    }
+    .arch-flow .arch-sub {
+      display: block; color: var(--text-soft); font-size: .8rem;
+      margin-left: 1.25rem; line-height: 1.6;
+    }
+    .arch-flow .arch-arrow {
+      display: block; color: var(--accent); font-size: 1rem; line-height: 1.4;
+    }
+    .arch-flow .arch-branch {
+      display: block; color: var(--text-soft); font-size: .82rem;
+      margin-left: 1rem; line-height: 1.8;
+    }
+
+    /* Callout */
+    .proj-callout {
+      background: var(--accent-lt); border-left: 4px solid var(--accent);
+      border-radius: 0 12px 12px 0; padding: 1.1rem 1.4rem;
+      margin: 2rem 0; font-size: .97rem; color: var(--text);
+    }
+    .proj-callout strong { color: var(--accent); }
+
+    .proj-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    /* Insight box */
+    .insight-box {
+      background: var(--bg-soft); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.75rem 2rem; margin: 2.5rem 0;
+      text-align: center;
+    }
+    .insight-icon { font-size: 2rem; margin-bottom: .75rem; }
+    .insight-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .5rem;
+    }
+    .insight-text {
+      font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+      color: var(--text); line-height: 1.55;
+    }
+
+    /* Video */
+    .demo-video-wrap {
+      margin: 2rem 0; border-radius: 14px; overflow: hidden;
+      box-shadow: 0 8px 40px rgba(79,70,229,.13);
+      border: 1px solid var(--border);
+    }
+    .demo-video-wrap video { width: 100%; display: block; }
+
+    /* Stage divider */
+    .stage-label {
+      display: inline-block;
+      font-size: .72rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent);
+      background: var(--accent-lt); padding: .3rem .9rem;
+      border-radius: 6px; margin-bottom: .5rem;
+    }
+  </style>
+</head>
+<body data-page="projects">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap">
+      <div class="loader-ring"></div><div class="loader-ring-2"></div>
+      <div class="loader-monogram">AA</div>
+    </div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../skills.html">Skills</a></li><li><a href="../education.html">Education</a></li>
+    <li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a>
+  <a href="../projects.html">Projects</a><a href="../skills.html">Skills</a><a href="../education.html">Education</a>
+  <a href="../certifications.html">Certifications</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="proj-post-wrap">
+
+      <!-- Back link -->
+      <a href="../projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--accent);text-decoration:none;margin-bottom:2rem;font-weight:600;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Projects
+      </a>
+
+      <!-- Hero thumbnail -->
+      <img src="../assets/projects/aisolutions-revops.png" alt="AiSolutions RevOps Automation" class="proj-hero-img" />
+
+      <!-- Meta -->
+      <div class="proj-meta">
+        <span class="proj-meta-date">May 2026</span>
+        <span class="proj-meta-tag">n8n</span>
+        <span class="proj-meta-tag">Python</span>
+        <span class="proj-meta-tag">RAG</span>
+        <span class="proj-meta-tag">ElevenLabs</span>
+        <span class="proj-meta-tag">FastAPI</span>
+        <span class="proj-meta-tag">Multi-Agent</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-head);font-size:clamp(1.75rem,4vw,2.4rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:2rem;">
+        AiSolutions RevOps Automation
+      </h1>
+
+      <!-- Body -->
+      <div class="proj-body">
+
+        <p>An end-to-end revenue operations system built for a fictional company called AiSolutions — an AI integration firm working with aluminium coil manufacturers in India. The project covers the entire funnel: discovering prospects, drafting outreach emails, handling inbound voice queries with a custom RAG system, and booking demos onto a real calendar. All four stages are wired together and run on a single self-hosted stack.</p>
+
+        <!-- Architecture SVG -->
+        <h2>Architecture Overview</h2>
+        <div class="sketch-wrap">
+          <img src="../assets/projects/aisolutions-architecture.svg" alt="AiSolutions RevOps Architecture Sketch" />
+        </div>
+        <p class="sketch-label">Hand-sketched architecture diagram — four agents, one server.</p>
+
+        <h2>What the System Does</h2>
+
+        <p>The project is structured as <strong>four agents that hand off to each other</strong>. Each agent owns one stage of the funnel and writes to a shared database so the next stage can pick up where the last one left off.</p>
+
+        <div class="agent-grid">
+          <div class="agent-card">
+            <div class="agent-num">1</div>
+            <div class="agent-label">Stage 1</div>
+            <div class="agent-title">Prospecting Agent</div>
+            <div class="agent-desc">Triggered from Telegram with a natural language query. Uses Google Maps and a custom website scraper to discover real companies, pull websites, and extract contact emails. Qualified leads are written to Airtable with Google Sheets as a permanent backup.</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-num">2</div>
+            <div class="agent-label">Stage 2</div>
+            <div class="agent-title">RevOps Email Drafter</div>
+            <div class="agent-desc">Picks up every new lead and generates a short, four-sentence cold email tailored to that prospect — pain point hook, one-liner on what AiSolutions does, and a CTA for a 30-minute OEE audit call. Drafts are pushed to Gmail as ready-to-send.</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-num">3</div>
+            <div class="agent-label">Stage 3</div>
+            <div class="agent-title">Voice Agent with RAG</div>
+            <div class="agent-desc">Built on ElevenLabs Conversational AI. When a prospect calls, the agent identifies the caller, answers product questions using a custom RAG pipeline built on the company's knowledge base PDF, and routes toward escalation or demo booking.</div>
+          </div>
+          <div class="agent-card">
+            <div class="agent-num">4</div>
+            <div class="agent-label">Stage 4</div>
+            <div class="agent-title">Demo Booking</div>
+            <div class="agent-desc">When the prospect agrees to a demo, the voice agent collects details and calls an n8n webhook that checks Google Calendar for conflicts, creates the event if the slot is free, drafts a confirmation email, and logs the booking into a CRM sheet.</div>
+          </div>
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>Workflow Breakdown</h2>
+
+        <!-- Stage 1 -->
+        <div class="stage-label">Stage 1 — Find Leads</div>
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">1</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Telegram Trigger</div>
+              <div class="pipeline-desc">A Telegram message kicks off the workflow. An AI Agent node parses the query into structured fields — industry, city, requested count — and writes a record to the Airtable Searches table with status Pending.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">2</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Google Maps Discovery</div>
+              <div class="pipeline-desc">The Google Maps Text Search API returns roughly twelve candidates. A Code node normalises the response to extract name, address, rating, and <code>place_id</code> for each. The Place Details API call then returns the website and phone number.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">3</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Playwright Email Scraper</div>
+              <div class="pipeline-desc">If a website exists, the workflow hits a custom FastAPI endpoint on port 8001. That endpoint uses Playwright to load the page in a headless Chromium instance, wait for the DOM to settle, and pull out emails — including obfuscated formats like <code>info [at] company [dot] com</code>. Falls back to <code>/contact</code>, <code>/contact-us</code>, and <code>/about</code> pages if the homepage has nothing.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">4</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Lead Storage</div>
+              <div class="pipeline-desc">Leads with a valid email are scored, saved to the Airtable Leads table, and mirrored to Google Sheets. After the loop completes, an Aggregate node collapses the results and a Telegram message confirms how many leads were captured.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 2 -->
+        <div class="stage-label" style="margin-top:2rem">Stage 2 — Draft the Email</div>
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">1</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">OpenAI Cold Email Generation</div>
+              <div class="pipeline-desc">Sitting inside the same loop as lead capture, an OpenAI node generates a personalised cold email. The prompt is locked to a strict structure — four to five sentences, one hook referencing a specific manufacturing pain, one line on what AiSolutions does, and a CTA for a 30-minute OEE audit. No subject line, no signoff, no fluff.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">2</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Gmail Draft Push</div>
+              <div class="pipeline-desc">The draft is written back to the Airtable Leads record in a <code>draft_email</code> field and optionally pushed to Gmail as a draft so the salesperson can review and send with one click.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 3 -->
+        <div class="stage-label" style="margin-top:2rem">Stage 3 — Handle the Call</div>
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">1</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">RAG Pipeline Preparation</div>
+              <div class="pipeline-desc">The knowledge base PDF runs through a five-step pipeline. PyMuPDF extracts raw text. HierarchicalNodeParser splits it into parent chunks of 1024 tokens, mid-level chunks of 256, and leaf chunks of 64. BGE-base-en-v1.5 embeds the leaf chunks into ChromaDB with parent references kept in metadata.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">2</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">FastAPI /ask Endpoint</div>
+              <div class="pipeline-desc">At query time, the system retrieves the top five leaf chunks, deduplicates by <code>parent_id</code>, and feeds the parent context to Groq's <code>llama-3.1-8b-instant</code>. The <code>/ask</code> endpoint accepts a question and a <code>session_id</code> — isolating conversation memory per caller, capped at eight turns to stay within Groq's token limit. Caddy fronts it with a Let's Encrypt certificate at <code>https://api.aman-n8n.site/ask</code>.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">3</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">ElevenLabs Voice Agent</div>
+              <div class="pipeline-desc">The agent is configured with three tools — <code>ask_aisolutions</code> for RAG calls, <code>schedule_meeting</code> for booking, and a webhook for sales escalation when the agent cannot resolve a query. The system prompt also handles escalation logic verbally if the prospect asks for a human.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stage 4 -->
+        <div class="stage-label" style="margin-top:2rem">Stage 4 — Book the Meeting</div>
+        <div class="pipeline">
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">1</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Data Collection</div>
+              <div class="pipeline-desc">When the conversation reaches a demo agreement, the voice agent collects name, company, email, phone, and preferred datetime in ISO 8601 format, then calls an n8n webhook at <code>/webhook/schedule-meeting</code>.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">2</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Slot Conflict Check</div>
+              <div class="pipeline-desc">The workflow runs a Get Many Events query against Google Calendar within a one-hour window of the requested slot. If any event exists, the workflow returns <code>slot_taken</code> and the voice agent asks for another time.</div>
+            </div>
+          </div>
+          <div class="pipeline-step">
+            <div class="pipeline-left"><div class="pipeline-num">3</div><div class="pipeline-line"></div></div>
+            <div class="pipeline-content">
+              <div class="pipeline-label">Booking Confirmation</div>
+              <div class="pipeline-desc">If the slot is free, a Google Calendar event is created with the prospect added as an attendee, a Gmail confirmation draft is generated, the booking is logged into a CRM Demo Booking sheet, and a success response is returned. The voice agent confirms verbally and the call ends.</div>
+            </div>
+          </div>
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>Difficulties &amp; How They Were Solved</h2>
+
+        <div class="difficulty-list">
+
+          <div class="difficulty-card">
+            <div class="difficulty-header">
+              <div class="difficulty-num">1</div>
+              <div class="difficulty-title">The website scraper kept returning blank emails</div>
+            </div>
+            <div class="difficulty-body">
+              <div class="difficulty-problem">The initial scraper used the <code>requests</code> library and a regex pattern. It worked on a few static sites but failed on the majority. Even when the email was clearly visible in the browser, the scraper returned nothing. The root cause: most modern company websites are built with React, Vue, or Angular. A plain HTTP request only fetches the raw HTML shell — the actual content gets injected later by JavaScript. A simple regex scraper sees a near-empty document.</div>
+              <div class="difficulty-fix">
+                <div class="fix-label">✓ Fix</div>
+                Switched to <strong>Playwright</strong> — a headless browser that actually opens the page, executes all JavaScript, waits for the network to settle, and only then reads the rendered HTML. Rewritten to launch Chromium per request, navigate with a <code>domcontentloaded</code> wait plus a three-second buffer for late-loading scripts, and fall back to <code>/contact</code> and <code>/about</code> if the homepage returned nothing. Deployed as a FastAPI service on port 8001. Email extraction success rate jumped sharply after this change.
+              </div>
+            </div>
+          </div>
+
+          <div class="difficulty-card">
+            <div class="difficulty-header">
+              <div class="difficulty-num">2</div>
+              <div class="difficulty-title">RAG retrieval kept pulling the wrong chunks</div>
+            </div>
+            <div class="difficulty-body">
+              <div class="difficulty-problem">The first version used a SentenceSplitter with a 150-token chunk size. Every test query returned roughly the same set of chunks with cosine distances all clustered between 0.86 and 0.91 regardless of the question. Three other chunking strategies were tried and rejected before the final approach — token splitting at 150 and 300 tokens both fragmented FAQ pairs, a regex-based section splitter helped slightly, and a semantic splitter actually made distances worse.</div>
+              <div class="difficulty-fix">
+                <div class="fix-label">✓ Fix</div>
+                Switched to <strong>HierarchicalNodeParser</strong> with three levels — parent chunks of 1024 tokens, mid-level at 256, and leaf chunks at 64. The retriever searches against small leaf chunks (sharper semantic boundaries), then deduplicates by parent ID and feeds the larger parent context to the LLM. Also upgraded the embedding model from MiniLM to <strong>BGE-base-en-v1.5</strong>, which has better separation on domain-specific text. Edge cases were patched by tightening the system prompt and pinning key facts directly rather than relying on retrieval.
+              </div>
+            </div>
+          </div>
+
+          <div class="difficulty-card">
+            <div class="difficulty-header">
+              <div class="difficulty-num">3</div>
+              <div class="difficulty-title">Calendar slot detection silently broke the workflow</div>
+            </div>
+            <div class="difficulty-body">
+              <div class="difficulty-problem">The Get Many Events node was configured to return events overlapping the requested datetime window. The problem: when no events existed — exactly the free-slot case we wanted — the node returned no items and the workflow halted silently. The IF node downstream never even ran. Two other bugs compounded this: expression fields had double equal signs from toggling expression mode after manually typing the prefix, and the attendees field was configured as an array when the API expected a plain comma-separated string.</div>
+              <div class="difficulty-fix">
+                <div class="fix-label">✓ Fix</div>
+                Enabled <strong>Always Output Data</strong> on the Get Many Events node — with that on, the node produces an empty item when zero events are found, keeping the workflow moving. The IF node was rewritten to check whether the event ID field was empty — empty meant free, present meant taken. The expression and attendees field issues were straightforward to fix once spotted, but they were a reminder of how much time gets lost to small wiring quirks in low-code platforms.
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>Key Learnings</h2>
+
+        <div class="learning-list">
+          <div class="learning-card">
+            <div class="learning-icon">🌐</div>
+            <div class="learning-text"><strong>Static HTTP scrapers will fail on most modern websites.</strong> If a website is built with React, Vue, or Angular — which most company sites now are — a plain <code>requests.get()</code> call returns an empty shell. The content you see in a browser is rendered by JavaScript after the page loads. To scrape these reliably, you need a headless browser like Playwright that actually runs JavaScript before reading the DOM. This is not a problem you can prompt your way around — the architecture has to include a real browser somewhere in the loop.</div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-icon">🧠</div>
+            <div class="learning-text"><strong>RAG quality is mostly about chunking, not the model.</strong> Four different chunking strategies were tried before retrieval started working. Switching embedding models helped at the margins. Tweaking the prompt helped at the margins. But the order-of-magnitude improvement came from hierarchical chunking — small leaf chunks for retrieval, larger parent chunks for context. If retrieval is returning the wrong context, the answer is almost always upstream of the LLM. Start by inspecting what chunks are coming back, look at the cosine distances, and fix the chunking before reaching for a bigger model.</div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-icon">🔇</div>
+            <div class="learning-text"><strong>In low-code platforms, the silent failures are worse than the loud ones.</strong> A node throwing a red error is easy to debug. A node that returns no output and quietly halts the workflow — with no error at all — can eat hours. The habit picked up by the end: enable Always Output Data on any node whose empty output should not terminate the workflow, and double-check loop wiring whenever an iteration count looks wrong.</div>
+          </div>
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>Final Architecture</h2>
+
+        <div class="arch-flow">
+          <span class="arch-node">Telegram trigger</span>
+          <span class="arch-arrow">↓</span>
+          <span class="arch-node">Prospecting Agent (n8n)</span>
+          <span class="arch-branch">├── Google Maps Text Search and Place Details</span>
+          <span class="arch-branch">├── Playwright email scraper (FastAPI, port 8001)</span>
+          <span class="arch-branch">├── Airtable Leads + Google Sheets backup</span>
+          <span class="arch-branch">└── OpenAI cold email drafter → Gmail draft</span>
+          <span class="arch-arrow" style="margin-top:.5rem">↓</span>
+          <span class="arch-node">Inbound call from prospect</span>
+          <span class="arch-arrow">↓</span>
+          <span class="arch-node">ElevenLabs Voice Agent</span>
+          <span class="arch-branch">├── ask_aisolutions → FastAPI /ask → RAG pipeline (ChromaDB + Groq)</span>
+          <span class="arch-branch">├── schedule_meeting → n8n webhook → Google Calendar + Gmail + Sheets</span>
+          <span class="arch-branch">└── Sales escalation → n8n webhook → Notification to sales head</span>
+        </div>
+
+        <div class="proj-callout">
+          Everything runs on a <strong>single Hetzner VPS.</strong> n8n handles orchestration, FastAPI serves the RAG and scraper, Caddy handles SSL and routing, and pm2 keeps the Python services alive across reboots.
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>Demo</h2>
+
+        <p>A full walkthrough of the AiSolutions RevOps system — from a Telegram prospecting query all the way through to a booked demo on Google Calendar.</p>
+
+        <div class="demo-video-wrap">
+          <video controls preload="metadata">
+            <source src="../assets/projects/aisolutions-revops.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <hr class="proj-divider" />
+
+        <h2>The Toolbox</h2>
+
+        <p>Every tool in this stack was chosen deliberately — free or self-hosted infrastructure, running on an 8 GB RAM laptop with no GPU during development.</p>
+
+        <table class="tools-table">
+          <thead><tr><th>Layer</th><th>Tool</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td>PDF Parsing</td><td>PyMuPDF</td><td>Lightweight, accurate text extraction, no native dependencies</td></tr>
+            <tr><td>Chunking</td><td>llama-index HierarchicalNodeParser</td><td>Parent-child chunk hierarchy gave the best retrieval quality after testing four strategies</td></tr>
+            <tr><td>Embeddings</td><td>BGE-base-en-v1.5</td><td>768-dimensional, CPU-friendly, stronger domain retrieval than MiniLM</td></tr>
+            <tr><td>Vector Store</td><td>ChromaDB</td><td>Local persistence, metadata filtering, no server process needed</td></tr>
+            <tr><td>LLM</td><td>Groq + llama-3.1-8b-instant</td><td>Cloud inference, no GPU needed, generous free tier</td></tr>
+            <tr><td>API Layer</td><td>FastAPI + Uvicorn</td><td>Async support, automatic Swagger docs at /docs for testing</td></tr>
+            <tr><td>Process Manager</td><td>pm2</td><td>Keeps FastAPI alive across SSH disconnects and reboots</td></tr>
+            <tr><td>Reverse Proxy + SSL</td><td>Caddy + Let's Encrypt</td><td>Automatic certificate issuance and renewal, no Certbot config needed</td></tr>
+            <tr><td>Voice Agent</td><td>ElevenLabs Conversational AI</td><td>Realistic voice synthesis, native tool calling, ambient thinking sounds</td></tr>
+            <tr><td>Orchestration</td><td>n8n (self-hosted)</td><td>Runs all four agents on the same Hetzner box</td></tr>
+            <tr><td>Headless Browser</td><td>Playwright + Chromium</td><td>Required to render JS-heavy company sites before extracting emails</td></tr>
+            <tr><td>Lead Database</td><td>Airtable + Google Sheets</td><td>Airtable for the 14-day trial, Sheets for permanent storage</td></tr>
+            <tr><td>Calendar + Email</td><td>Google Calendar + Gmail via OAuth</td><td>Slot conflict checks, event creation, and draft generation</td></tr>
+            <tr><td>Hosting</td><td>Hetzner Linux VPS</td><td>Single server running n8n, FastAPI, and the email scraper</td></tr>
+            <tr><td>Domain + DNS</td><td>Namecheap</td><td>Managed the api.aman-n8n.site subdomain</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Toolbox SVG -->
+        <div class="sketch-wrap" style="margin-top:2rem">
+          <img src="../assets/projects/aisolutions-toolbox.svg" alt="AiSolutions Full Toolbox Sketch" />
+        </div>
+        <p class="sketch-label">15+ frameworks · 4 agents · 1 server · all stitched together with curl, pm2 and patience.</p>
+
+        <div class="insight-box">
+          <div class="insight-icon">🏗️</div>
+          <div class="insight-label">The Result</div>
+          <div class="insight-text">"Four agents. One server. Zero cloud vendor lock-in. A full revenue funnel — from cold lead to booked demo — running entirely on self-hosted infrastructure."</div>
+        </div>
+
+      </div>
+      <!-- end proj-body -->
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:#fff">Aman Agarwal<span style="color:#818cf8">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a><a href="../privacy.html">Privacy Policy</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+
+<script src="../js/data.js"></script>
+<script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>

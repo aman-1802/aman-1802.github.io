@@ -1,0 +1,270 @@
+<svg width="1200" height="1400" viewBox="0 0 1200 1400" xmlns="http://www.w3.org/2000/svg" font-family="'Caveat', 'Bradley Hand', 'Comic Sans MS', cursive">
+<defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="3"/>
+<feDisplacementMap in="SourceGraphic" scale="2.2"/>
+</filter>
+<filter id="rough2" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/>
+<feDisplacementMap in="SourceGraphic" scale="2.6"/>
+</filter>
+<filter id="rough3" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="11"/>
+<feDisplacementMap in="SourceGraphic" scale="3"/>
+</filter>
+<filter id="paper">
+<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1"/>
+<feColorMatrix values="0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.87  0 0 0 0.08 0"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+<style>
+.pencil { stroke: #3d3d3a; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.pencil-thin { stroke: #5f5e5a; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+.hand { fill: #2c2c2a; }
+.hand-sm { fill: #5f5e5a; }
+.hand-accent { fill: #993c1d; }
+</style>
+</defs>
+
+<rect width="1200" height="1400" fill="#faf8f1"/>
+<rect width="1200" height="1400" fill="#000" opacity="0.04" filter="url(#paper)"/>
+
+<text x="60" y="80" class="hand" font-size="48" font-weight="600">The Toolbox</text>
+<text x="60" y="115" class="hand-sm" font-size="22">everything that went into building AiSolutions RevOps</text>
+<path d="M 60 128 Q 240 134, 420 128 T 720 130" class="pencil-thin"/>
+
+<g filter="url(#rough)" transform="rotate(-3 200 220)">
+<rect x="80" y="180" width="240" height="80" rx="14" fill="#e6f1fb" fill-opacity="0.55" stroke="#185fa5" stroke-width="1.5"/>
+</g>
+<text x="200" y="218" class="hand" font-size="26" font-weight="600" text-anchor="middle" transform="rotate(-3 200 220)">FastAPI</text>
+<text x="200" y="244" class="hand-sm" font-size="16" text-anchor="middle" transform="rotate(-3 200 240)">REST endpoints</text>
+
+<g filter="url(#rough2)" transform="rotate(4 480 230)">
+<rect x="370" y="190" width="220" height="80" rx="14" fill="#e1f5ee" fill-opacity="0.55" stroke="#0f6e56" stroke-width="1.5"/>
+</g>
+<text x="480" y="228" class="hand" font-size="26" font-weight="600" text-anchor="middle" transform="rotate(4 480 228)">n8n</text>
+<text x="480" y="254" class="hand-sm" font-size="16" text-anchor="middle" transform="rotate(4 480 254)">workflow orchestrator</text>
+
+<g filter="url(#rough)" transform="rotate(-2 770 215)">
+<rect x="650" y="175" width="240" height="80" rx="14" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.5"/>
+</g>
+<text x="770" y="213" class="hand" font-size="26" font-weight="600" text-anchor="middle" transform="rotate(-2 770 213)">ElevenLabs</text>
+<text x="770" y="239" class="hand-sm" font-size="16" text-anchor="middle" transform="rotate(-2 770 239)">Conversational AI</text>
+
+<g filter="url(#rough3)" transform="rotate(5 1030 225)">
+<rect x="920" y="190" width="220" height="80" rx="14" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.5"/>
+</g>
+<text x="1030" y="228" class="hand" font-size="26" font-weight="600" text-anchor="middle" transform="rotate(5 1030 228)">Groq</text>
+<text x="1030" y="254" class="hand-sm" font-size="16" text-anchor="middle" transform="rotate(5 1030 254)">llama-3.1 8b instant</text>
+
+<g filter="url(#rough2)" transform="rotate(3 165 360)">
+<rect x="60" y="320" width="210" height="75" rx="12" fill="#fae6dc" fill-opacity="0.5" stroke="#993c1d" stroke-width="1.4"/>
+</g>
+<text x="165" y="356" class="hand" font-size="24" font-weight="600" text-anchor="middle" transform="rotate(3 165 356)">Playwright</text>
+<text x="165" y="380" class="hand-sm" font-size="15" text-anchor="middle" transform="rotate(3 165 380)">headless Chromium</text>
+
+<g filter="url(#rough)" transform="rotate(-4 400 360)">
+<rect x="300" y="320" width="200" height="75" rx="12" fill="#faf8f1" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="400" y="356" class="hand" font-size="24" font-weight="600" text-anchor="middle" transform="rotate(-4 400 356)">ChromaDB</text>
+<text x="400" y="380" class="hand-sm" font-size="15" text-anchor="middle" transform="rotate(-4 400 380)">vector store</text>
+
+<g filter="url(#rough3)" transform="rotate(2 615 365)">
+<rect x="520" y="325" width="190" height="75" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="615" y="361" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(2 615 361)">PyMuPDF</text>
+<text x="615" y="385" class="hand-sm" font-size="15" text-anchor="middle" transform="rotate(2 615 385)">PDF text extraction</text>
+
+<g filter="url(#rough2)" transform="rotate(-3 825 365)">
+<rect x="720" y="325" width="210" height="75" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="825" y="361" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-3 825 361)">llama-index</text>
+<text x="825" y="385" class="hand-sm" font-size="15" text-anchor="middle" transform="rotate(-3 825 385)">hierarchical chunking</text>
+
+<g filter="url(#rough)" transform="rotate(4 1050 360)">
+<rect x="945" y="320" width="210" height="75" rx="12" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="1050" y="350" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(4 1050 350)">BGE-base-en</text>
+<text x="1050" y="370" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(4 1050 370)">embeddings · 768d</text>
+<text x="1050" y="388" class="hand-sm" font-size="13" text-anchor="middle" transform="rotate(4 1050 388)">CPU-friendly</text>
+
+<g filter="url(#rough2)" transform="rotate(-5 145 490)">
+<rect x="55" y="450" width="180" height="70" rx="12" fill="#faf8f1" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="145" y="484" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-5 145 484)">Hetzner</text>
+<text x="145" y="506" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-5 145 506)">single Linux VPS</text>
+
+<g filter="url(#rough)" transform="rotate(3 370 480)">
+<rect x="270" y="445" width="200" height="70" rx="12" fill="#faeeda" fill-opacity="0.5" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="370" y="478" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(3 370 478)">Caddy</text>
+<text x="370" y="500" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(3 370 500)">reverse proxy + SSL</text>
+
+<g filter="url(#rough3)" transform="rotate(-2 575 490)">
+<rect x="490" y="455" width="170" height="70" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="575" y="488" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-2 575 488)">pm2</text>
+<text x="575" y="510" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-2 575 510)">process manager</text>
+
+<g filter="url(#rough2)" transform="rotate(4 770 485)">
+<rect x="680" y="448" width="180" height="72" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="770" y="480" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(4 770 480)">Let's Encrypt</text>
+<text x="770" y="502" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(4 770 502)">auto SSL certs</text>
+
+<g filter="url(#rough)" transform="rotate(-3 990 490)">
+<rect x="895" y="450" width="190" height="72" rx="12" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="990" y="482" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-3 990 482)">Namecheap</text>
+<text x="990" y="506" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-3 990 506)">domain · DNS</text>
+
+<path d="M 80 580 Q 600 575, 1120 582" class="pencil-thin"/>
+<text x="80" y="608" class="hand-sm" font-size="20" font-style="italic">connected services &amp; APIs</text>
+
+<g filter="url(#rough)" transform="rotate(2 175 680)">
+<rect x="80" y="640" width="190" height="75" rx="12" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="175" y="674" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(2 175 674)">Google Maps</text>
+<text x="175" y="696" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(2 175 696)">Places + Text Search</text>
+
+<g filter="url(#rough2)" transform="rotate(-4 390 680)">
+<rect x="295" y="640" width="195" height="75" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="390" y="673" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-4 390 673)">Google Calendar</text>
+<text x="390" y="695" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-4 390 695)">slot conflict check</text>
+
+<g filter="url(#rough3)" transform="rotate(3 600 680)">
+<rect x="510" y="640" width="180" height="75" rx="12" fill="#fae6dc" fill-opacity="0.5" stroke="#993c1d" stroke-width="1.4"/>
+</g>
+<text x="600" y="675" class="hand" font-size="24" font-weight="600" text-anchor="middle" transform="rotate(3 600 675)">Gmail</text>
+<text x="600" y="697" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(3 600 697)">draft creation</text>
+
+<g filter="url(#rough)" transform="rotate(-2 805 680)">
+<rect x="715" y="640" width="180" height="75" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="805" y="673" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-2 805 673)">Airtable</text>
+<text x="805" y="695" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-2 805 695)">14-day trial DB</text>
+
+<g filter="url(#rough2)" transform="rotate(4 1010 680)">
+<rect x="915" y="640" width="195" height="75" rx="12" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="1010" y="672" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(4 1010 672)">Google Sheets</text>
+<text x="1010" y="694" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(4 1010 694)">permanent backup</text>
+
+<g filter="url(#rough3)" transform="rotate(-3 175 800)">
+<rect x="85" y="760" width="180" height="72" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="175" y="792" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-3 175 792)">Telegram Bot</text>
+<text x="175" y="814" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-3 175 814)">workflow trigger</text>
+
+<g filter="url(#rough)" transform="rotate(2 380 800)">
+<rect x="290" y="760" width="180" height="72" rx="12" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="380" y="793" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(2 380 793)">OpenAI API</text>
+<text x="380" y="815" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(2 380 815)">email drafting</text>
+
+<g filter="url(#rough2)" transform="rotate(-4 580 800)">
+<rect x="495" y="760" width="170" height="72" rx="12" fill="#faf8f1" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="580" y="793" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-4 580 793)">Firecrawl</text>
+<text x="580" y="815" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-4 580 815)">early scraping attempt</text>
+
+<g filter="url(#rough3)" transform="rotate(3 790 800)">
+<rect x="695" y="760" width="190" height="72" rx="12" fill="#fae6dc" fill-opacity="0.5" stroke="#993c1d" stroke-width="1.4"/>
+</g>
+<text x="790" y="793" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(3 790 793)">OAuth 2.0</text>
+<text x="790" y="815" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(3 790 815)">Google auth flow</text>
+
+<g filter="url(#rough)" transform="rotate(-2 1000 800)">
+<rect x="910" y="760" width="180" height="72" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="1000" y="793" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-2 1000 793)">Webhooks</text>
+<text x="1000" y="815" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-2 1000 815)">tool ↔ workflow</text>
+
+<path d="M 80 880 Q 600 875, 1120 882" class="pencil-thin"/>
+<text x="80" y="908" class="hand-sm" font-size="20" font-style="italic">languages, packages &amp; sysadmin</text>
+
+<g filter="url(#rough3)" transform="rotate(-3 165 980)">
+<rect x="75" y="940" width="180" height="72" rx="12" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="165" y="973" class="hand" font-size="24" font-weight="600" text-anchor="middle" transform="rotate(-3 165 973)">Python 3.12</text>
+<text x="165" y="996" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-3 165 996)">RAG + scraper</text>
+
+<g filter="url(#rough)" transform="rotate(3 365 980)">
+<rect x="280" y="940" width="170" height="72" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="365" y="972" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(3 365 972)">Uvicorn</text>
+<text x="365" y="994" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(3 365 994)">ASGI server</text>
+
+<g filter="url(#rough2)" transform="rotate(-4 565 980)">
+<rect x="480" y="940" width="170" height="72" rx="12" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="565" y="972" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-4 565 972)">Docker</text>
+<text x="565" y="994" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-4 565 994)">n8n container</text>
+
+<g filter="url(#rough)" transform="rotate(2 775 980)">
+<rect x="690" y="940" width="170" height="72" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="775" y="972" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(2 775 972)">UFW</text>
+<text x="775" y="994" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(2 775 994)">firewall · port 8001</text>
+
+<g filter="url(#rough3)" transform="rotate(-2 990 980)">
+<rect x="895" y="940" width="190" height="72" rx="12" fill="#fae6dc" fill-opacity="0.5" stroke="#993c1d" stroke-width="1.4"/>
+</g>
+<text x="990" y="972" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-2 990 972)">SSH + nano</text>
+<text x="990" y="994" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-2 990 994)">deploys + edits</text>
+
+<g filter="url(#rough2)" transform="rotate(4 175 1100)">
+<rect x="85" y="1060" width="180" height="72" rx="12" fill="#faf8f1" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="175" y="1093" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(4 175 1093)">Regex</text>
+<text x="175" y="1115" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(4 175 1115)">email + phone parsing</text>
+
+<g filter="url(#rough)" transform="rotate(-3 385 1100)">
+<rect x="290" y="1060" width="190" height="72" rx="12" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="385" y="1093" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-3 385 1093)">ISO 8601</text>
+<text x="385" y="1115" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-3 385 1115)">datetime format</text>
+
+<g filter="url(#rough3)" transform="rotate(2 595 1100)">
+<rect x="500" y="1060" width="190" height="72" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="595" y="1090" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(2 595 1090)">sentence-</text>
+<text x="595" y="1110" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(2 595 1110)">transformers</text>
+
+<g filter="url(#rough)" transform="rotate(-2 800 1100)">
+<rect x="710" y="1060" width="180" height="72" rx="12" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="800" y="1093" class="hand" font-size="22" font-weight="600" text-anchor="middle" transform="rotate(-2 800 1093)">JSON</text>
+<text x="800" y="1115" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(-2 800 1115)">structured outputs</text>
+
+<g filter="url(#rough2)" transform="rotate(3 1010 1100)">
+<rect x="915" y="1060" width="190" height="72" rx="12" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.4"/>
+</g>
+<text x="1010" y="1093" class="hand" font-size="20" font-weight="600" text-anchor="middle" transform="rotate(3 1010 1093)">ngrok</text>
+<text x="1010" y="1115" class="hand-sm" font-size="14" text-anchor="middle" transform="rotate(3 1010 1115)">early dev tunnel</text>
+
+<g transform="rotate(-12 280 195)">
+<text x="280" y="195" class="hand-accent" font-size="36" opacity="0.4">★</text>
+</g>
+<g transform="rotate(15 880 290)">
+<text x="880" y="290" class="hand-accent" font-size="28" opacity="0.4">✦</text>
+</g>
+<g transform="rotate(-8 480 415)">
+<text x="480" y="415" class="hand-accent" font-size="32" opacity="0.4">★</text>
+</g>
+<g transform="rotate(20 1100 540)">
+<text x="1100" y="540" class="hand-accent" font-size="26" opacity="0.4">✦</text>
+</g>
+<g transform="rotate(-15 110 750)">
+<text x="110" y="750" class="hand-accent" font-size="30" opacity="0.4">★</text>
+</g>
+<g transform="rotate(10 690 880)">
+<text x="690" y="880" class="hand-accent" font-size="26" opacity="0.4">✦</text>
+</g>
+
+<path d="M 60 1200 Q 600 1196, 1140 1202" class="pencil-thin"/>
+<text x="600" y="1238" class="hand-sm" font-size="20" font-style="italic" text-anchor="middle">15+ frameworks · 4 agents · 1 server · all stitched together with curl, pm2 and patience</text>
+
+<text x="60" y="1330" class="hand-sm" font-size="16" font-style="italic">aman agarwal · portfolio project · 2026</text>
+</svg>

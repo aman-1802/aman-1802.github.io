@@ -55,6 +55,17 @@ const PORTFOLIO = {
       featured: true
     },
     {
+      title: "AiSolutions RevOps Automation",
+      tags: ["n8n", "Python", "RAG", "ElevenLabs", "FastAPI", "Multi-Agent"],
+      description: "A four-agent revenue operations system — prospecting, cold email drafting, a voice RAG agent, and calendar booking — all running on a single self-hosted Hetzner VPS with n8n, FastAPI, ChromaDB, and ElevenLabs.",
+      file: "projects/aisolutions-revops.html",
+      thumbnail: "assets/projects/aisolutions-revops.png",
+      date: "May 2026",
+      github: "",
+      demo: "",
+      featured: true
+    },
+    {
       title: "SaudaaAI — Voice to Quotation, Instantly",
       tags: ["n8n", "Python", "Flask", "Sarvam AI", "Gemini", "Telegram Bot"],
       description: "An end-to-end voice-to-quotation system for Indian commodity buyers. Send a voice message in Hindi or Gujarati on Telegram — get a professional quotation document back in seconds. No app, no portal, no friction.",

@@ -1,0 +1,193 @@
+<svg width="1200" height="1900" viewBox="0 0 1200 1900" xmlns="http://www.w3.org/2000/svg" font-family="'Caveat', 'Bradley Hand', 'Comic Sans MS', cursive">
+<defs>
+<filter id="rough" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="2" seed="3"/>
+<feDisplacementMap in="SourceGraphic" scale="2.2"/>
+</filter>
+<filter id="rough2" x="-5%" y="-5%" width="110%" height="110%">
+<feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="7"/>
+<feDisplacementMap in="SourceGraphic" scale="2.6"/>
+</filter>
+<filter id="paper">
+<feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1"/>
+<feColorMatrix values="0 0 0 0 0.95  0 0 0 0 0.93  0 0 0 0 0.87  0 0 0 0.08 0"/>
+<feComposite in2="SourceGraphic" operator="in"/>
+</filter>
+<marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+<path d="M2 1 L8 5 L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</marker>
+<style>
+.pencil { stroke: #3d3d3a; stroke-width: 1.4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.pencil-thin { stroke: #5f5e5a; stroke-width: 0.9; fill: none; stroke-linecap: round; }
+.pencil-dash { stroke: #888780; stroke-width: 1; fill: none; stroke-dasharray: 6 4; stroke-linecap: round; }
+.hand { fill: #2c2c2a; }
+.hand-sm { fill: #5f5e5a; }
+</style>
+</defs>
+
+<rect width="1200" height="1900" fill="#faf8f1"/>
+<rect width="1200" height="1900" fill="#000" opacity="0.04" filter="url(#paper)"/>
+
+<text x="60" y="80" class="hand" font-size="48" font-weight="600">AiSolutions RevOps</text>
+<text x="60" y="115" class="hand-sm" font-size="24">end-to-end automation, sketched out</text>
+<path d="M 60 128 Q 320 134, 580 128 T 900 130" class="pencil-thin"/>
+
+<text x="60" y="190" class="hand-sm" font-size="20" font-style="italic">stage 1 — find leads</text>
+
+<g filter="url(#rough)">
+<rect x="80" y="210" width="200" height="80" rx="14" fill="#f1efe8" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="180" y="245" class="hand" font-size="26" text-anchor="middle">Telegram</text>
+<text x="180" y="272" class="hand-sm" font-size="18" text-anchor="middle">"find 10 leads"</text>
+
+<path d="M 282 250 C 340 250, 380 252, 420 252" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough)">
+<rect x="420" y="180" width="700" height="290" rx="20" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.5"/>
+</g>
+<text x="450" y="220" class="hand" font-size="30" font-weight="600">Prospecting Agent</text>
+<text x="450" y="248" class="hand-sm" font-size="20">n8n workflow on Hetzner</text>
+
+<g filter="url(#rough2)">
+<rect x="450" y="270" width="280" height="60" rx="10" stroke="#3d3d3a" stroke-width="1.2" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="590" y="307" class="hand" font-size="22" text-anchor="middle">Google Maps API</text>
+
+<g filter="url(#rough2)">
+<rect x="450" y="345" width="280" height="60" rx="10" stroke="#3d3d3a" stroke-width="1.2" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="590" y="382" class="hand" font-size="22" text-anchor="middle">Place Details API</text>
+
+<path d="M 730 300 C 760 300, 780 308, 798 320" class="pencil-thin" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough2)">
+<rect x="800" y="270" width="290" height="140" rx="10" stroke="#993c1d" stroke-width="1.5" fill="#fae6dc" fill-opacity="0.5"/>
+</g>
+<text x="945" y="305" class="hand" font-size="24" font-weight="600" text-anchor="middle">Playwright Scraper</text>
+<line x1="820" y1="318" x2="1070" y2="318" class="pencil-thin"/>
+<text x="945" y="345" class="hand-sm" font-size="18" text-anchor="middle">headless Chromium</text>
+<text x="945" y="368" class="hand-sm" font-size="18" text-anchor="middle">FastAPI on port 8001</text>
+<text x="945" y="391" class="hand-sm" font-size="18" text-anchor="middle">pulls emails after JS renders</text>
+
+<path d="M 730 378 C 760 378, 780 390, 800 395" class="pencil-thin" marker-end="url(#arrow)"/>
+
+<path d="M 590 410 L 590 440 L 845 440 L 845 412" class="pencil-thin"/>
+<text x="717" y="460" class="hand-sm" font-size="18" text-anchor="middle">loops one company at a time</text>
+
+<path d="M 770 470 L 770 510" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough)">
+<rect x="540" y="510" width="460" height="100" rx="14" fill="#faeeda" fill-opacity="0.6" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="770" y="552" class="hand" font-size="26" font-weight="600" text-anchor="middle">Airtable + Google Sheets</text>
+<text x="770" y="582" class="hand-sm" font-size="19" text-anchor="middle">leads database with permanent backup</text>
+<text x="770" y="603" class="hand-sm" font-size="16" text-anchor="middle">name · email · phone · website · city · score</text>
+
+<text x="60" y="690" class="hand-sm" font-size="20" font-style="italic">stage 2 — draft the email</text>
+
+<path d="M 540 560 C 460 560, 400 600, 340 660 L 340 720" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough)">
+<rect x="140" y="720" width="400" height="130" rx="14" fill="#fbeaf0" fill-opacity="0.5" stroke="#993556" stroke-width="1.4"/>
+</g>
+<text x="340" y="760" class="hand" font-size="28" font-weight="600" text-anchor="middle">Email Drafter</text>
+<text x="340" y="788" class="hand-sm" font-size="19" text-anchor="middle">OpenAI · 4-5 sentence cold email</text>
+<text x="340" y="811" class="hand-sm" font-size="17" text-anchor="middle">hook → what we do → CTA</text>
+<text x="340" y="832" class="hand-sm" font-size="15" text-anchor="middle">written back to lead record</text>
+
+<path d="M 540 785 C 590 785, 620 785, 660 785" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough2)">
+<rect x="660" y="755" width="200" height="65" rx="10" stroke="#3d3d3a" stroke-width="1.2" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="760" y="796" class="hand" font-size="24" text-anchor="middle">Gmail draft</text>
+
+<line x1="60" y1="900" x2="1140" y2="900" class="pencil-dash"/>
+<text x="600" y="888" class="hand-sm" font-size="22" font-style="italic" text-anchor="middle">~ prospect calls in after receiving the email ~</text>
+
+<text x="60" y="960" class="hand-sm" font-size="20" font-style="italic">stage 3 — handle the call</text>
+
+<g filter="url(#rough)">
+<circle cx="140" cy="1030" r="55" fill="#f1efe8" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="140" y="1025" class="hand" font-size="22" text-anchor="middle">Prospect</text>
+<text x="140" y="1050" class="hand-sm" font-size="17" text-anchor="middle">on a call</text>
+
+<path d="M 198 1030 C 250 1030, 290 1030, 320 1030" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough)">
+<rect x="320" y="965" width="380" height="135" rx="16" fill="#e1f5ee" fill-opacity="0.5" stroke="#0f6e56" stroke-width="1.5"/>
+</g>
+<text x="510" y="1003" class="hand" font-size="30" font-weight="600" text-anchor="middle">Voice Agent</text>
+<text x="510" y="1030" class="hand-sm" font-size="19" text-anchor="middle">ElevenLabs Conversational AI</text>
+<text x="510" y="1053" class="hand-sm" font-size="17" text-anchor="middle">verifies caller against the sheet</text>
+<text x="510" y="1075" class="hand-sm" font-size="17" text-anchor="middle">3 tools attached</text>
+<text x="510" y="1093" class="hand-sm" font-size="15" text-anchor="middle">ask · schedule · escalate</text>
+
+<path d="M 700 1000 C 760 1000, 800 1000, 840 1000" class="pencil" marker-end="url(#arrow)"/>
+<text x="770" y="990" class="hand-sm" font-size="15" text-anchor="middle">ask_aisolutions</text>
+
+<g filter="url(#rough)">
+<rect x="840" y="970" width="240" height="80" rx="12" fill="#e6f1fb" fill-opacity="0.5" stroke="#185fa5" stroke-width="1.4"/>
+</g>
+<text x="960" y="1005" class="hand" font-size="22" font-weight="600" text-anchor="middle">FastAPI</text>
+<text x="960" y="1028" class="hand-sm" font-size="17" text-anchor="middle">/ask endpoint</text>
+<text x="960" y="1047" class="hand-sm" font-size="15" text-anchor="middle">HTTPS via Caddy</text>
+
+<path d="M 960 1050 L 960 1100" class="pencil" marker-end="url(#arrow)"/>
+
+<g filter="url(#rough)">
+<rect x="790" y="1100" width="340" height="180" rx="14" fill="#faf8f1" fill-opacity="0.7" stroke="#3d3d3a" stroke-width="1.4"/>
+</g>
+<text x="960" y="1140" class="hand" font-size="26" font-weight="600" text-anchor="middle">RAG Pipeline</text>
+<line x1="815" y1="1155" x2="1105" y2="1155" class="pencil-thin"/>
+<text x="815" y="1183" class="hand-sm" font-size="17">→ PyMuPDF extracts text</text>
+<text x="815" y="1207" class="hand-sm" font-size="17">→ llama-index hierarchical chunks</text>
+<text x="815" y="1231" class="hand-sm" font-size="17">→ BGE embeddings in ChromaDB</text>
+<text x="815" y="1255" class="hand-sm" font-size="17">→ Groq llama-3.1 8b answers</text>
+<text x="815" y="1273" class="hand-sm" font-size="14" font-style="italic">8-turn memory per session</text>
+
+<path d="M 510 1100 C 510 1200, 470 1300, 400 1400" class="pencil" marker-end="url(#arrow)"/>
+<text x="560" y="1240" class="hand-sm" font-size="17">prospect agrees</text>
+<text x="560" y="1262" class="hand-sm" font-size="17">to a demo</text>
+
+<line x1="60" y1="1340" x2="1140" y2="1340" class="pencil-dash"/>
+
+<text x="60" y="1390" class="hand-sm" font-size="20" font-style="italic">stage 4 — book the meeting</text>
+
+<g filter="url(#rough)">
+<rect x="140" y="1410" width="420" height="150" rx="14" fill="#faeeda" fill-opacity="0.55" stroke="#854f0b" stroke-width="1.4"/>
+</g>
+<text x="350" y="1452" class="hand" font-size="30" font-weight="600" text-anchor="middle">Demo Booking</text>
+<text x="350" y="1482" class="hand-sm" font-size="18" text-anchor="middle">n8n webhook · slot conflict check</text>
+<text x="350" y="1506" class="hand-sm" font-size="18" text-anchor="middle">create event · draft confirmation</text>
+<text x="350" y="1530" class="hand-sm" font-size="16" text-anchor="middle">logs booking into CRM sheet</text>
+
+<path d="M 240 1560 L 240 1610" class="pencil" marker-end="url(#arrow)"/>
+<g filter="url(#rough2)">
+<rect x="120" y="1610" width="240" height="65" rx="10" stroke="#3d3d3a" stroke-width="1.2" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="240" y="1651" class="hand" font-size="24" text-anchor="middle">Google Calendar</text>
+
+<path d="M 460 1560 L 460 1610" class="pencil" marker-end="url(#arrow)"/>
+<g filter="url(#rough2)">
+<rect x="370" y="1610" width="180" height="65" rx="10" stroke="#3d3d3a" stroke-width="1.2" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="460" y="1651" class="hand" font-size="24" text-anchor="middle">Gmail draft</text>
+
+<g filter="url(#rough)">
+<rect x="640" y="1410" width="500" height="260" rx="14" stroke="#3d3d3a" stroke-width="1.4" fill="#faf8f1" fill-opacity="0.6"/>
+</g>
+<text x="665" y="1450" class="hand" font-size="26" font-weight="600">One Hetzner VPS runs it all</text>
+<line x1="665" y1="1463" x2="1115" y2="1463" class="pencil-thin"/>
+<text x="665" y="1497" class="hand-sm" font-size="19">· n8n orchestrates every workflow</text>
+<text x="665" y="1527" class="hand-sm" font-size="19">· FastAPI serves RAG + email scraper</text>
+<text x="665" y="1557" class="hand-sm" font-size="19">· Caddy reverse proxy + Let's Encrypt SSL</text>
+<text x="665" y="1587" class="hand-sm" font-size="19">· pm2 keeps Python services alive on reboot</text>
+<text x="665" y="1625" class="hand-sm" font-size="16" font-style="italic">domain: api.aman-n8n.site</text>
+<text x="665" y="1647" class="hand-sm" font-size="16" font-style="italic">DNS managed on Namecheap</text>
+
+<text x="1095" y="1430" class="hand" font-size="40" transform="rotate(-15 1095 1430)" fill="#993c1d">★</text>
+
+<text x="60" y="1820" class="hand-sm" font-size="16" font-style="italic">aman agarwal · portfolio project · 2026</text>
+</svg>
