@@ -377,6 +377,31 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 .fe-6{animation:flowDash 1.8s linear infinite;animation-delay:1.3s}
 .fe-7{animation:flowDash 1.8s linear infinite;animation-delay:1.56s}
 
+/* ── ABOUT TERMINAL CARD ──────────────────────────────────── */
+.av-wrap{display:flex;flex-direction:column;gap:1.25rem;width:100%;max-width:440px;margin:0 auto}
+.av-terminal{background:var(--bg-elevated);border:1px solid var(--border-lit);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-lg);transition:box-shadow .3s}
+.av-terminal:hover{box-shadow:var(--shadow-glow)}
+.av-title-bar{display:flex;align-items:center;gap:.75rem;padding:.65rem 1rem;background:var(--bg-muted);border-bottom:1px solid var(--border)}
+.av-dots{display:flex;gap:.4rem}
+.av-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.av-filename{font-family:var(--font-head);font-size:.72rem;color:var(--text-soft);margin-left:.25rem}
+.av-code{padding:1.25rem 1.5rem;font-family:'Space Grotesk',monospace;font-size:.9rem;line-height:1.95}
+.av-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:.15rem}
+.av-indent{padding-left:1.5rem}
+.av-brace{color:var(--text-mid);font-weight:500}
+.av-key{color:var(--accent-warm);font-weight:600}
+.av-punct{color:var(--text-soft)}
+.av-str{color:#7DD3A8}
+.av-success{color:var(--success);font-weight:600}
+.av-cursor{color:var(--accent);animation:cursorBlink .7s step-end infinite;margin-left:2px;font-weight:300}
+.av-chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.av-chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--bg-elevated);border:1px solid var(--border-lit);border-radius:99px;padding:.3rem .9rem;font-size:.78rem;font-weight:600;color:var(--text-mid);font-family:var(--font-head);transition:border-color .2s,color .2s,background .2s;cursor:default}
+.av-chip i{width:13px;height:13px;stroke-width:1.5;flex-shrink:0}
+.av-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-lt)}
+
+/* ── SCROLL PROGRESS BAR (phase 3) ───────────────────────── */
+.scroll-progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-2));z-index:10000;pointer-events:none;transition:width .05s linear}
+
 /* ── STAT STRIP (home) ────────────────────────────────────── */
 .stats-strip{background:var(--bg-muted);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:44px 0}
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}

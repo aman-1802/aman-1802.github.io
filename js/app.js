@@ -113,6 +113,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSpotlight();
   initCommandPalette();
   initMagneticButtons();
+
+  // ── PHASE 3 MOTION ───────────────────────────────────────
+  initScrollProgress();
+  initGSAP();
 });
 
 // ════════════════════════════════════════════════════════════
@@ -429,6 +433,131 @@ function applyTilt(card) {
 // ════════════════════════════════════════════════════════════
 //  PHASE 2 — SIGNATURE INTERACTIONS
 // ════════════════════════════════════════════════════════════
+
+// ════════════════════════════════════════════════════════════
+//  PHASE 3 — MOTION POLISH
+// ════════════════════════════════════════════════════════════
+
+// ── SCROLL PROGRESS BAR ──────────────────────────────────────
+function initScrollProgress() {
+  const bar = document.createElement('div');
+  bar.className = 'scroll-progress';
+  document.body.appendChild(bar);
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+      bar.style.width = (Math.min(pct, 1) * 100) + '%';
+      ticking = false;
+    });
+  }, { passive: true });
+}
+
+// ── GSAP SCROLL CHOREOGRAPHY ─────────────────────────────────
+function loadGSAP(cb) {
+  if (window.gsap && window.ScrollTrigger) { cb(); return; }
+  const s1 = document.createElement('script');
+  s1.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+  s1.onload = () => {
+    const s2 = document.createElement('script');
+    s2.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js';
+    s2.onload = cb;
+    document.head.appendChild(s2);
+  };
+  document.head.appendChild(s1);
+}
+
+function initGSAP() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  loadGSAP(() => {
+    const { gsap } = window;
+    gsap.registerPlugin(window.ScrollTrigger);
+    const ST = window.ScrollTrigger;
+
+    // ── Hero parallax (bg grid drifts slower than content)
+    const bgGrid = document.querySelector('.hero-bg-grid');
+    if (bgGrid) {
+      gsap.to(bgGrid, {
+        y: 90, ease: 'none',
+        scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: 1 }
+      });
+    }
+
+    // ── Stagger card grids
+    const GRIDS = [
+      { wrap: '.ql-grid',        items: '.ql-card' },
+      { wrap: '.skill-cards-grid', items: '.skill-card' },
+      { wrap: '.soft-grid',      items: '.soft-card' },
+      { wrap: '.projects-grid',  items: '.project-card,.blog-card' },
+      { wrap: '.blog-grid',      items: '.blog-card' },
+      { wrap: '.certs-grid',     items: '.cert-card' },
+      { wrap: '.stats-grid',     items: '.stat-item' },
+    ];
+    GRIDS.forEach(({ wrap, items }) => {
+      const grid = document.querySelector(wrap);
+      if (!grid) return;
+      const cards = grid.querySelectorAll(items);
+      if (!cards.length) return;
+      // Clear CSS reveal opacity so GSAP takes over
+      cards.forEach(c => { c.style.opacity = ''; c.style.transform = ''; });
+      gsap.fromTo(cards,
+        { y: 28, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: 'power2.out',
+          scrollTrigger: { trigger: grid, start: 'top 82%', once: true } }
+      );
+    });
+
+    // ── Section label + title stagger reveal
+    document.querySelectorAll('.page-section').forEach(section => {
+      const label = section.querySelector('.section-label, .eyebrow');
+      const title = section.querySelector('.section-title');
+      if (!label && !title) return;
+      const els = [label, title].filter(Boolean);
+      gsap.fromTo(els,
+        { y: 22, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.65, stagger: 0.1, ease: 'power3.out',
+          scrollTrigger: { trigger: section, start: 'top 80%', once: true } }
+      );
+    });
+
+    // ── Timeline items stagger
+    const timeline = document.querySelector('.timeline');
+    if (timeline) {
+      gsap.fromTo(timeline.querySelectorAll('.timeline-item'),
+        { x: -24, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.55, stagger: 0.12, ease: 'power2.out',
+          scrollTrigger: { trigger: timeline, start: 'top 78%', once: true } }
+      );
+    }
+
+    // ── Edu card
+    const eduCard = document.querySelector('.edu-card');
+    if (eduCard) {
+      gsap.fromTo(eduCard,
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: 'power2.out',
+          scrollTrigger: { trigger: eduCard, start: 'top 80%', once: true } }
+      );
+    }
+
+    // ── About terminal card
+    const avWrap = document.querySelector('.av-wrap');
+    if (avWrap) {
+      gsap.fromTo(avWrap,
+        { x: -30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.7, ease: 'power3.out',
+          scrollTrigger: { trigger: avWrap, start: 'top 80%', once: true } }
+      );
+      gsap.fromTo(avWrap.querySelectorAll('.av-chip'),
+        { y: 12, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, stagger: 0.06, ease: 'power2.out',
+          scrollTrigger: { trigger: avWrap, start: 'top 75%', once: true } }
+      );
+    }
+  });
+}
 
 // ── STAT COUNTERS ────────────────────────────────────────────
 function initStatCounters() {

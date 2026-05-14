@@ -44,89 +44,37 @@
   <div class="container">
     <div class="about-grid">
 
-      <!-- SVG: AI / automation node network illustration -->
+      <!-- About illustration: terminal card -->
       <div class="about-illustration reveal">
-        <svg viewBox="0 0 400 420" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <radialGradient id="bgGlow" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(91,141,239,0.12)"/>
-              <stop offset="100%" stop-color="#111114" stop-opacity="0"/>
-            </radialGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="blur"/>
-              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-            </filter>
-          </defs>
-          <ellipse cx="200" cy="210" rx="190" ry="180" fill="url(#bgGlow)"/>
-          <g stroke="var(--border)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.7">
-            <line x1="200" y1="160" x2="200" y2="108"/>
-            <line x1="200" y1="160" x2="268" y2="195"/>
-            <line x1="200" y1="160" x2="260" y2="115"/>
-            <line x1="200" y1="160" x2="132" y2="195"/>
-            <line x1="200" y1="160" x2="140" y2="115"/>
-            <line x1="200" y1="160" x2="200" y2="230"/>
-            <line x1="200" y1="230" x2="268" y2="195"/>
-            <line x1="200" y1="230" x2="132" y2="195"/>
-          </g>
-          <g class="orbit-rotate">
-            <circle cx="200" cy="60" r="6" fill="#5B8DEF" opacity="0.25"/>
-            <circle cx="340" cy="200" r="5" fill="#5B8DEF" opacity="0.2"/>
-            <circle cx="60" cy="200" r="5" fill="#5B8DEF" opacity="0.2"/>
-          </g>
-          <circle cx="200" cy="134" r="3" fill="#5B8DEF" class="node-pulse"/>
-          <circle cx="234" cy="177" r="3" fill="#5B8DEF" class="node-pulse-2"/>
-          <circle cx="166" cy="177" r="3" fill="#5B8DEF" class="node-pulse-3"/>
-          <g>
-            <circle cx="200" cy="88" r="32" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="200" y="84" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#5B8DEF">n8n</text>
-            <text x="200" y="99" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#C0C0CA">Automation</text>
-          </g>
-          <g>
-            <circle cx="272" cy="112" r="28" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="272" y="108" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">Python</text>
-            <text x="272" y="121" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Backend</text>
-          </g>
-          <g>
-            <circle cx="288" cy="198" r="28" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="288" y="194" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">APIs</text>
-            <text x="288" y="207" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Integrations</text>
-          </g>
-          <g>
-            <circle cx="128" cy="112" r="28" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="128" y="108" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">AI</text>
-            <text x="128" y="121" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Agents</text>
-          </g>
-          <g>
-            <circle cx="112" cy="198" r="28" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="112" y="192" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">GSheets</text>
-            <text x="112" y="205" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Automation</text>
-          </g>
-          <g>
-            <circle cx="200" cy="248" r="28" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="200" y="244" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">FastAPI</text>
-            <text x="200" y="257" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Backend</text>
-          </g>
-          <circle cx="200" cy="160" r="46" fill="#5B8DEF" opacity="0.07"/>
-          <circle cx="200" cy="160" r="38" fill="#1C1C22" stroke="#5B8DEF" stroke-width="2.5"/>
-          <text x="200" y="155" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="#5B8DEF">AA</text>
-          <text x="200" y="172" text-anchor="middle" font-family="Plus Jakarta Sans,sans-serif" font-size="9" fill="#A0A0AB">Engineer</text>
-          <g class="float-chip">
-            <rect x="60" y="310" width="88" height="30" rx="15" fill="rgba(91,141,239,0.12)" stroke="var(--border)" stroke-width="1"/>
-            <text x="104" y="330" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="600" fill="#5B8DEF">Workflow Auto</text>
-          </g>
-          <g class="float-chip">
-            <rect x="162" y="308" width="76" height="30" rx="15" fill="rgba(91,141,239,0.12)" stroke="var(--border)" stroke-width="1"/>
-            <text x="200" y="328" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="600" fill="#5B8DEF">Multi-Agent</text>
-          </g>
-          <g class="float-chip">
-            <rect x="252" y="310" width="80" height="30" rx="15" fill="rgba(91,141,239,0.12)" stroke="var(--border)" stroke-width="1"/>
-            <text x="292" y="330" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="600" fill="#5B8DEF">No-Code AI</text>
-          </g>
-          <circle cx="50" cy="90" r="4" fill="#a8c0e0" opacity="0.6"/>
-          <circle cx="350" cy="130" r="3" fill="#a8c0e0" opacity="0.5"/>
-          <circle cx="340" cy="290" r="5" fill="#3A3A45" opacity="0.7"/>
-          <circle cx="60" cy="280" r="4" fill="#a8c0e0" opacity="0.5"/>
-        </svg>
+        <div class="av-wrap">
+          <div class="av-terminal">
+            <div class="av-title-bar">
+              <div class="av-dots">
+                <span class="av-dot" style="background:#FF5F56"></span>
+                <span class="av-dot" style="background:#FFBD2E"></span>
+                <span class="av-dot" style="background:#27C93F"></span>
+              </div>
+              <span class="av-filename">profile.json</span>
+            </div>
+            <div class="av-code">
+              <div class="av-row"><span class="av-brace">{</span></div>
+              <div class="av-row av-indent"><span class="av-key">"name"</span><span class="av-punct">: </span><span class="av-str">"Aman Agarwal"</span><span class="av-punct">,</span></div>
+              <div class="av-row av-indent"><span class="av-key">"role"</span><span class="av-punct">: </span><span class="av-str">"AI Automation Builder"</span><span class="av-punct">,</span></div>
+              <div class="av-row av-indent"><span class="av-key">"stack"</span><span class="av-punct">: [</span><span class="av-str">"n8n"</span><span class="av-punct">, </span><span class="av-str">"Python"</span><span class="av-punct">, </span><span class="av-str">"FastAPI"</span><span class="av-punct">],</span></div>
+              <div class="av-row av-indent"><span class="av-key">"approach"</span><span class="av-punct">: </span><span class="av-str">"Self-taught · Ships fast"</span><span class="av-punct">,</span></div>
+              <div class="av-row av-indent"><span class="av-key">"status"</span><span class="av-punct">: </span><span class="av-success">"Open to opportunities"</span></div>
+              <div class="av-row"><span class="av-brace">}</span><span class="av-cursor">|</span></div>
+            </div>
+          </div>
+          <div class="av-chips">
+            <span class="av-chip"><i data-lucide="zap"></i>n8n</span>
+            <span class="av-chip"><i data-lucide="terminal"></i>Python</span>
+            <span class="av-chip"><i data-lucide="link-2"></i>APIs</span>
+            <span class="av-chip"><i data-lucide="bot"></i>AI Agents</span>
+            <span class="av-chip"><i data-lucide="server"></i>FastAPI</span>
+            <span class="av-chip"><i data-lucide="table-2"></i>GSheets</span>
+          </div>
+        </div>
       </div>
 
       <!-- Text -->
