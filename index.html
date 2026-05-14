@@ -131,50 +131,38 @@
 </section>
 
 <!-- Quick links strip -->
-<section style="background:var(--bg-soft);padding:48px 0;border-top:1px solid var(--border)">
+<section class="ql-section">
   <div class="container">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
-      <a href="about.html" style="text-decoration:none" class="reveal">
-        <div class="tilt-card" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer">
-          <i data-lucide="user" style="width:32px;height:32px;stroke-width:1.5;color:var(--accent);margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:var(--text)">About</div>
-          <div style="font-size:.8rem;color:var(--text-soft);margin-top:.25rem">Who I am</div>
-        </div>
+    <div class="ql-grid">
+      <a href="about.html" class="ql-card reveal">
+        <div class="ql-card-icon"><i data-lucide="user"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">About</div><div class="ql-card-sub">Who I am</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
-      <a href="experience.html" style="text-decoration:none" class="reveal reveal-delay-1">
-        <div class="tilt-card" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer">
-          <i data-lucide="briefcase" style="width:32px;height:32px;stroke-width:1.5;color:var(--accent);margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:var(--text)">Experience</div>
-          <div style="font-size:.8rem;color:var(--text-soft);margin-top:.25rem">Where I've worked</div>
-        </div>
+      <a href="experience.html" class="ql-card reveal reveal-delay-1">
+        <div class="ql-card-icon"><i data-lucide="briefcase"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">Experience</div><div class="ql-card-sub">Where I've worked</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
-      <a href="projects.html" style="text-decoration:none" class="reveal reveal-delay-2">
-        <div class="tilt-card" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer">
-          <i data-lucide="rocket" style="width:32px;height:32px;stroke-width:1.5;color:var(--accent);margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:var(--text)">Projects</div>
-          <div style="font-size:.8rem;color:var(--text-soft);margin-top:.25rem">Things I've built</div>
-        </div>
+      <a href="projects.html" class="ql-card reveal reveal-delay-2">
+        <div class="ql-card-icon"><i data-lucide="rocket"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">Projects</div><div class="ql-card-sub">Things I've built</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
-      <a href="skills.html" style="text-decoration:none" class="reveal reveal-delay-3">
-        <div class="tilt-card" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer">
-          <i data-lucide="settings-2" style="width:32px;height:32px;stroke-width:1.5;color:var(--accent);margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:var(--text)">Skills</div>
-          <div style="font-size:.8rem;color:var(--text-soft);margin-top:.25rem">My toolkit</div>
-        </div>
+      <a href="skills.html" class="ql-card reveal reveal-delay-3">
+        <div class="ql-card-icon"><i data-lucide="settings-2"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">Skills</div><div class="ql-card-sub">My toolkit</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
-      <a href="blog.html" style="text-decoration:none" class="reveal reveal-delay-4">
-        <div class="tilt-card" style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:var(--shadow-sm);cursor:pointer">
-          <i data-lucide="pen-tool" style="width:32px;height:32px;stroke-width:1.5;color:var(--accent);margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:var(--text)">Blog</div>
-          <div style="font-size:.8rem;color:var(--text-soft);margin-top:.25rem">My writing</div>
-        </div>
+      <a href="blog.html" class="ql-card reveal reveal-delay-4">
+        <div class="ql-card-icon"><i data-lucide="pen-tool"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">Blog</div><div class="ql-card-sub">My writing</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
-      <a href="contact.html" style="text-decoration:none" class="reveal reveal-delay-4">
-        <div class="tilt-card" style="background:var(--accent);border:1px solid var(--accent);border-radius:16px;padding:1.5rem;text-align:center;box-shadow:0 4px 16px var(--accent-glow);cursor:pointer">
-          <i data-lucide="mail" style="width:32px;height:32px;stroke-width:1.5;color:#fff;margin-bottom:.5rem"></i>
-          <div style="font-family:var(--font-head);font-weight:600;color:#fff">Contact</div>
-          <div style="font-size:.8rem;color:rgba(255,255,255,.7);margin-top:.25rem">Let's talk</div>
-        </div>
+      <a href="contact.html" class="ql-card ql-card-contact reveal reveal-delay-4">
+        <div class="ql-card-icon"><i data-lucide="mail"></i></div>
+        <div class="ql-card-body"><div class="ql-card-title">Contact</div><div class="ql-card-sub">Let's talk</div></div>
+        <div class="ql-card-arrow"><i data-lucide="arrow-right"></i></div>
       </a>
     </div>
   </div>

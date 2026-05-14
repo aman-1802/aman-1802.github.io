@@ -10,9 +10,9 @@
 :root{
   --bg:#0A0A0B;--bg-soft:#111114;--bg-muted:#16161A;--bg-elevated:#1C1C22;
   --border:#26262E;--border-lit:#3A3A45;
-  --text:#F5F5F7;--text-mid:#A0A0AB;--text-soft:#6B6B76;
+  --text:#F5F5F7;--text-mid:#A0A0AB;--text-soft:#8A8A96;
   --accent:#5B8DEF;--accent-lt:rgba(91,141,239,0.12);--accent-dk:#4A7BD8;
-  --accent-2:#A78BFA;--accent-glow:rgba(91,141,239,0.25);
+  --accent-2:#A78BFA;--accent-warm:#E8B84B;--accent-glow:rgba(91,141,239,0.25);
   --success:#34D399;--danger:#F87171;
   --font-head:'Space Grotesk',sans-serif;--font-body:'Inter',sans-serif;
   --radius:12px;--radius-lg:20px;
@@ -70,7 +70,7 @@ body.page-exiting main{animation:pageExit .3s var(--ease) forwards}
 section+section{border-top:1px solid var(--border)}
 .section-soft{background:var(--bg-soft)}
 
-.section-label,.eyebrow{font-family:var(--font-head);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:.75rem}
+.section-label,.eyebrow{font-family:var(--font-head);font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-warm);margin-bottom:.75rem}
 .section-title{margin-bottom:1rem}
 .section-intro{color:var(--text-mid);max-width:560px;margin-bottom:3rem;font-size:1.05rem}
 
@@ -209,7 +209,7 @@ nav#main-nav.scrolled{background:rgba(10,10,11,0.72);backdrop-filter:blur(12px);
 .timeline-role{font-size:1.1rem;font-weight:700;font-family:var(--font-head)}
 .timeline-company{color:var(--accent);font-weight:600;font-size:.95rem}
 .timeline-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.25rem}
-.timeline-period,.timeline-location{font-size:.78rem;color:var(--text-soft);background:var(--bg-muted);padding:.2rem .7rem;border-radius:99px}
+.timeline-period,.timeline-location{font-size:.78rem;color:var(--text-mid);background:var(--bg-muted);padding:.2rem .7rem;border-radius:99px;border:1px solid var(--border)}
 .timeline-highlights{list-style:none;display:flex;flex-direction:column;gap:.5rem}
 .timeline-highlights li{display:flex;gap:.75rem;font-size:.92rem;color:var(--text-mid)}
 .timeline-highlights li::before{content:'→';color:var(--accent);font-weight:700;flex-shrink:0;margin-top:1px}
@@ -328,6 +328,30 @@ footer a:hover{color:var(--text)}
 #back-top.visible{opacity:1;transform:none;pointer-events:auto}
 #back-top:hover{background:var(--accent-dk)}
 #back-top svg{width:18px;height:18px}
+
+/* ── QUICK-LINK CARDS (home) ──────────────────────────────── */
+.ql-section{background:var(--bg-soft);padding:56px 0;border-top:1px solid var(--border)}
+.ql-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem}
+.ql-card{display:flex;align-items:center;gap:1rem;background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;text-decoration:none;transition:border-color .25s var(--ease),box-shadow .25s var(--ease),transform .25s var(--ease);position:relative;overflow:hidden}
+.ql-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease)}
+.ql-card:hover{border-color:var(--border-lit);box-shadow:var(--shadow-glow);transform:translateY(-2px);text-decoration:none}
+.ql-card:hover::before{transform:scaleX(1)}
+.ql-card-icon{width:46px;height:46px;border-radius:12px;background:var(--accent-lt);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ql-card-icon i{width:22px;height:22px;stroke-width:1.5;color:var(--accent)}
+.ql-card-body{flex:1}
+.ql-card-title{font-family:var(--font-head);font-weight:600;color:var(--text);font-size:.95rem}
+.ql-card-sub{font-size:.78rem;color:var(--text-mid);margin-top:.15rem}
+.ql-card-arrow{color:var(--text-soft);transition:transform .2s var(--ease),color .2s;flex-shrink:0}
+.ql-card-arrow i{width:18px;height:18px;stroke-width:2}
+.ql-card:hover .ql-card-arrow{transform:translateX(4px);color:var(--accent)}
+.ql-card-contact{background:linear-gradient(135deg,var(--accent) 0%,var(--accent-dk) 100%);border-color:transparent}
+.ql-card-contact .ql-card-icon{background:rgba(255,255,255,.15)}
+.ql-card-contact .ql-card-icon i{color:#fff}
+.ql-card-contact .ql-card-title{color:#fff}
+.ql-card-contact .ql-card-sub{color:rgba(255,255,255,.75)}
+.ql-card-contact .ql-card-arrow{color:rgba(255,255,255,.6)}
+.ql-card-contact:hover{box-shadow:0 8px 32px var(--accent-glow);border-color:transparent}
+.ql-card-contact:hover .ql-card-arrow{color:#fff}
 
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media(max-width:960px){
