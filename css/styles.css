@@ -279,15 +279,15 @@ nav#main-nav.scrolled{background:rgba(10,10,11,0.72);backdrop-filter:blur(12px);
 .cert-thumb-udemy{background:linear-gradient(135deg,#3B2F6E 0%,#512DA8 55%,#6A3FBF 100%);color:#fff}
 .cert-thumb-udemy::after{content:'UDEMY';position:absolute;top:1rem;right:1.1rem;font-family:'Space Grotesk',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.22em;color:rgba(255,255,255,.4)}
 .cert-thumb-default{background:linear-gradient(135deg,var(--bg-elevated),var(--bg-muted))}
-/* Badge pill */
-.cert-thumb-badge{font-family:'Space Grotesk',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.24rem .72rem;border-radius:99px;margin-bottom:.65rem;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px)}
+/* Badge pill — pinned top-left so it never shifts */
+.cert-thumb-badge{position:absolute;top:1rem;left:1.25rem;font-family:'Space Grotesk',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.24rem .72rem;border-radius:99px;background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px)}
 .cert-thumb-claude .cert-thumb-badge{background:rgba(61,32,7,.14);color:rgba(61,32,7,.9);border-color:rgba(61,32,7,.22)}
 /* Course title */
-.cert-thumb-course{font-family:'Space Grotesk',sans-serif;font-size:.95rem;font-weight:700;line-height:1.3;color:#fff;max-width:220px;text-shadow:0 1px 3px rgba(0,0,0,.3)}
+.cert-thumb-course{font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:700;line-height:1.3;color:#fff;max-width:230px;text-shadow:0 1px 4px rgba(0,0,0,.25)}
 .cert-thumb-claude .cert-thumb-course{color:rgba(30,12,0,.9);text-shadow:none}
 /* Issuer sub-line */
-.cert-thumb-by{font-size:.75rem;font-weight:600;margin-top:.32rem;color:rgba(255,255,255,.75)}
-.cert-thumb-claude .cert-thumb-by{color:rgba(30,12,0,.6)}
+.cert-thumb-by{font-size:.78rem;font-weight:600;margin-top:.35rem;color:rgba(255,255,255,.78)}
+.cert-thumb-claude .cert-thumb-by{color:rgba(30,12,0,.62)}
 .cert-body{padding:1.25rem 1.5rem 1.5rem;display:flex;flex-direction:column;flex:1}
 .cert-view-btn{display:inline-flex;align-items:center;gap:.4rem;margin-top:1rem;font-family:'Space Grotesk',sans-serif;font-size:.8rem;font-weight:600;color:var(--accent);background:var(--accent-lt);border:1px solid rgba(91,141,239,.25);padding:.4rem 1rem;border-radius:8px;text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;align-self:flex-start}
 .cert-view-btn:hover{background:rgba(91,141,239,.2);transform:translateY(-1px);box-shadow:0 4px 12px var(--accent-glow);text-decoration:none;color:var(--accent)}
