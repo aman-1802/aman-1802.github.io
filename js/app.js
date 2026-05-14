@@ -105,6 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.disabled = false; btn.textContent = 'Send Message';
     });
   }
+
+  // ── LUCIDE ICONS INIT ────────────────────────────────────
+  if (window.lucide) window.lucide.createIcons();
 });
 
 // ════════════════════════════════════════════════════════════
@@ -203,6 +206,7 @@ function renderExperience() {
     </div>`).join('');
   reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function renderProjects() {
@@ -217,14 +221,14 @@ function renderProjects() {
   if (filterBar) {
     filterBar.innerHTML = months.map(m => `
       <button class="proj-filter-btn${m==='All'?' active':''}" data-month="${m}"
-        style="background:${m==='All'?'var(--accent)':'var(--bg)'};color:${m==='All'?'#fff':'var(--text-mid)'};border:1.5px solid ${m==='All'?'var(--accent)':'var(--border)'};padding:.4rem 1.1rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-head)">
+        style="background:${m==='All'?'var(--accent)':'var(--bg-elevated)'};color:${m==='All'?'#fff':'var(--text-mid)'};border:1.5px solid ${m==='All'?'var(--accent)':'var(--border)'};padding:.4rem 1.1rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-head)">
         ${m}
       </button>`).join('');
 
     filterBar.querySelectorAll('.proj-filter-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         filterBar.querySelectorAll('.proj-filter-btn').forEach(b => {
-          b.style.background = 'var(--bg)';
+          b.style.background = 'var(--bg-elevated)';
           b.style.color = 'var(--text-mid)';
           b.style.borderColor = 'var(--border)';
           b.classList.remove('active');
@@ -278,47 +282,50 @@ function drawProjectCards(c, activeMonth) {
 
   reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function renderSkills() {
   const ICONS = {
-    'n8n / Workflow Automation': '⚡',
-    'Python': '🐍',
-    'API Integrations': '🔗',
-    'Multi-Agent AI Systems': '🤖',
-    'OOP & Software Design': '🏗️',
-    'Full-Stack Development': '💻',
-    'Google Sheets / Apps Script': '📊',
-    'MS Office Suite': '📝'
+    'n8n / Workflow Automation': 'zap',
+    'Python': 'terminal',
+    'API Integrations': 'link-2',
+    'Multi-Agent AI Systems': 'bot',
+    'OOP & Software Design': 'box',
+    'Full-Stack Development': 'code',
+    'Google Sheets / Apps Script': 'sheet',
+    'MS Office Suite': 'file-text'
   };
   const SOFT_ICONS = {
-    'Problem Solving': '🧩',
-    'Self-Learning': '📚',
-    'Project Ownership': '🎯',
-    'Clear Communication': '💬',
-    'Systems Thinking': '🔮'
+    'Problem Solving': 'puzzle',
+    'Self-Learning': 'book-open',
+    'Project Ownership': 'target',
+    'Clear Communication': 'message-circle',
+    'Systems Thinking': 'network'
   };
 
   const cards = document.getElementById('skill-cards');
   if (cards) {
     cards.innerHTML = PORTFOLIO.skills.technical.map(s => {
-      const icon = ICONS[s.name] || '⚙️';
+      const icon = ICONS[s.name] || 'settings-2';
       return `<div class="skill-card reveal">
-        <div class="skill-card-icon">${icon}</div>
+        <i data-lucide="${icon}" style="width:28px;height:28px;stroke-width:1.5;color:var(--accent)"></i>
         <div class="skill-card-name">${s.name}</div>
       </div>`;
     }).join('');
     reObserve(cards);
     cards.querySelectorAll('.skill-card').forEach(applyTilt);
+    if (window.lucide) window.lucide.createIcons();
   }
 
   const soft = document.getElementById('soft-cards');
   if (soft) {
     soft.innerHTML = PORTFOLIO.skills.soft.map(s => `
       <div class="soft-card">
-        <div class="soft-card-icon">${SOFT_ICONS[s] || '✨'}</div>
+        <div class="soft-card-icon"><i data-lucide="${SOFT_ICONS[s]||'star'}" style="width:22px;height:22px;stroke-width:1.5;color:var(--accent)"></i></div>
         <div class="soft-card-name">${s}</div>
       </div>`).join('');
+    if (window.lucide) window.lucide.createIcons();
   }
 
   const tools = document.getElementById('tools-chips');
@@ -333,7 +340,7 @@ function renderEducation() {
   if (!c) return;
   c.innerHTML = PORTFOLIO.education.map(e => `
     <div class="edu-card reveal tilt-card">
-      <div class="edu-icon">🎓</div>
+      <div class="edu-icon"><i data-lucide="graduation-cap" style="width:28px;height:28px;stroke-width:1.5;color:var(--accent)"></i></div>
       <div>
         <div class="edu-degree">${e.degree}</div>
         <div class="edu-institution">${e.institution}</div>
@@ -343,6 +350,7 @@ function renderEducation() {
     </div>`).join('');
   reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function renderCertifications() {
@@ -350,7 +358,7 @@ function renderCertifications() {
   if (!c) return;
   if (!PORTFOLIO.certifications || PORTFOLIO.certifications.length === 0) {
     c.innerHTML = `<div class="certs-empty reveal">
-      <div style="font-size:2.5rem;margin-bottom:.75rem">📜</div>
+      <div style="margin-bottom:.75rem"><i data-lucide="award" style="width:40px;height:40px;stroke-width:1.5;color:var(--text-soft)"></i></div>
       <h3 style="color:var(--text-mid);margin-bottom:.5rem">Certifications Coming Soon</h3>
       <p>Check back here for credentials and course completions.</p>
     </div>`;
@@ -365,6 +373,7 @@ function renderCertifications() {
     c.querySelectorAll('.tilt-card').forEach(applyTilt);
   }
   reObserve(c);
+  if (window.lucide) window.lucide.createIcons();
 }
 
 function renderBlog() {
@@ -372,10 +381,12 @@ function renderBlog() {
   if (!c) return;
   if (!PORTFOLIO.blog || PORTFOLIO.blog.length === 0) {
     c.innerHTML = `<div class="blog-empty">
-      <div style="font-size:2.5rem;margin-bottom:.75rem">✍️</div>
+      <div style="margin-bottom:.75rem"><i data-lucide="pen-tool" style="width:40px;height:40px;stroke-width:1.5;color:var(--text-soft)"></i></div>
       <h3>No posts yet — check back soon!</h3>
       <p>Thoughts on AI automation, building in public, and lessons from shipping real projects.</p>
-    </div>`; return;
+    </div>`;
+    if (window.lucide) window.lucide.createIcons();
+    return;
   }
   c.innerHTML = PORTFOLIO.blog.map((post,i)=>`
     <a href="${post.file}" class="blog-card tilt-card reveal reveal-delay-${(i%3)+1}" style="text-decoration:none;color:inherit;display:block">
@@ -389,6 +400,7 @@ function renderBlog() {
     </a>`).join('');
   reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
+  if (window.lucide) window.lucide.createIcons();
 }
 
 // ── HELPERS ──────────────────────────────────────────────────
