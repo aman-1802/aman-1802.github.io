@@ -506,7 +506,12 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
   .contact-layout{grid-template-columns:1fr;gap:2rem}
 }
 @media(max-width:768px){
-  .page-section{padding-top:calc(var(--nav-h)+40px);padding-bottom:64px}
+  /* ── Nav: always opaque on mobile so content never bleeds through */
+  nav#main-nav{background:rgba(10,10,11,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+  .nav-inner{padding:0 1rem}
+  /* ── Page sections: extra breathing room below the fixed nav */
+  .page-section{padding-top:calc(var(--nav-h)+56px);padding-bottom:64px}
+  #hero{padding-top:calc(var(--nav-h)+56px)!important}
   .nav-links{display:none}
   .nav-hamburger{display:flex}
   .form-row{grid-template-columns:1fr}
