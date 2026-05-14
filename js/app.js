@@ -114,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCommandPalette();
   initMagneticButtons();
   initChatbot();
+  initStatusPanel();
 
   // ── PHASE 3 MOTION ───────────────────────────────────────
   initScrollProgress();
@@ -979,6 +980,39 @@ function initChatbot() {
 
   sendBtn.addEventListener('click', sendMsg);
   inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') sendMsg(); });
+}
+
+// ── STATUS PANEL (injected above footer on all pages) ────────
+function initStatusPanel() {
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+
+  const bar = document.createElement('div');
+  bar.className = 'status-panel';
+  bar.innerHTML = `<div class="container"><div class="status-inner">
+    <span class="status-dot-live"></span>
+    <span class="status-item">System online</span>
+    <span class="status-sep">·</span>
+    <span class="status-item" id="status-time">--:--:--</span>
+    <span class="status-sep">·</span>
+    <span class="status-item">IST — Ahmedabad, IN</span>
+    <span class="status-sep">·</span>
+    <span class="status-item">Last deploy <strong>14 May 2026</strong></span>
+    <span class="status-sep">·</span>
+    <span class="status-item">Stack: <strong>n8n · Python · FastAPI</strong></span>
+  </div></div>`;
+
+  footer.parentNode.insertBefore(bar, footer);
+
+  const timeEl = document.getElementById('status-time');
+  function tick() {
+    if (!timeEl) return;
+    timeEl.textContent = new Date().toLocaleTimeString('en-IN', {
+      timeZone: 'Asia/Kolkata', hour12: false
+    });
+  }
+  tick();
+  setInterval(tick, 1000);
 }
 
 // ── MAGNETIC BUTTONS ─────────────────────────────────────────

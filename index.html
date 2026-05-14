@@ -70,9 +70,8 @@
           <span class="line"><span class="word" style="font-size:clamp(1.3rem,2.5vw,2rem);font-weight:400;color:var(--text-mid)">I build AI automation that ships.</span></span>
         </h1>
         <p class="hero-sub">
-          Mechanical Engineering graduate who independently ships
-          <strong>AI automation pipelines</strong> and <strong>workflow systems</strong>
-          using no-code and AI-first tools.
+          Mechanical engineering background. Currently shipping production workflows that connect
+          <strong>AI agents</strong>, <strong>APIs</strong>, and operations.
           Based in Ahmedabad, Gujarat.
         </p>
         <div class="hero-actions">
@@ -84,13 +83,13 @@
         </div>
       </div>
 
-      <!-- Right: Animated workflow node graph -->
+      <!-- Right: Animated workflow node graph — 6 nodes equally spaced at 60° -->
       <div class="hero-canvas-wrap">
-        <svg class="hero-graph" viewBox="0 0 480 460" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <svg class="hero-graph" viewBox="0 0 480 470" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <defs>
             <radialGradient id="hgBg" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="rgba(91,141,239,0.1)"/>
-              <stop offset="100%" stop-color="rgba(10,10,11,0)" stop-opacity="0"/>
+              <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
             </radialGradient>
             <filter id="hgGlow">
               <feGaussianBlur stdDeviation="2.5" result="b"/>
@@ -99,84 +98,76 @@
           </defs>
 
           <!-- Background glow -->
-          <ellipse cx="240" cy="230" rx="210" ry="195" fill="url(#hgBg)"/>
+          <ellipse cx="240" cy="235" rx="210" ry="200" fill="url(#hgBg)"/>
 
-          <!-- Static dashed edge lines -->
+          <!-- Static dashed edge lines (center-circle edge → outer node) -->
           <g stroke="var(--border-lit)" stroke-width="1.2" stroke-dasharray="4 4" opacity="0.55">
-            <line x1="240" y1="188" x2="240" y2="88"/>
-            <line x1="240" y1="188" x2="366" y2="143"/>
-            <line x1="282" y1="230" x2="397" y2="230"/>
-            <line x1="268" y1="261" x2="348" y2="352"/>
-            <line x1="212" y1="261" x2="132" y2="352"/>
-            <line x1="198" y1="230" x2="83" y2="230"/>
-            <line x1="240" y1="188" x2="114" y2="143"/>
+            <line x1="240" y1="193" x2="240" y2="82"/>   <!-- → n8n top -->
+            <line x1="277" y1="214" x2="392" y2="143"/>  <!-- → Python top-right -->
+            <line x1="277" y1="256" x2="392" y2="327"/>  <!-- → APIs bottom-right -->
+            <line x1="240" y1="277" x2="240" y2="390"/>  <!-- → AI bottom -->
+            <line x1="204" y1="256" x2="88" y2="327"/>   <!-- → Webhooks bottom-left -->
+            <line x1="204" y1="214" x2="88" y2="143"/>   <!-- → FastAPI top-left -->
           </g>
 
-          <!-- Animated flow pulses (pathLength normalised) -->
-          <path d="M240,188 L240,88"     pathLength="100" stroke="#5B8DEF" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-1"/>
-          <path d="M240,188 L366,143"    pathLength="100" stroke="#5B8DEF" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-2"/>
-          <path d="M282,230 L397,230"    pathLength="100" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-3"/>
-          <path d="M268,261 L348,352"    pathLength="100" stroke="#5B8DEF" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-4"/>
-          <path d="M212,261 L132,352"    pathLength="100" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-5"/>
-          <path d="M198,230 L83,230"     pathLength="100" stroke="#5B8DEF" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-6"/>
-          <path d="M240,188 L114,143"    pathLength="100" stroke="#A78BFA" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-7"/>
+          <!-- Animated flow pulses — alternating blue / violet -->
+          <path d="M240,193 L240,82"     pathLength="100" stroke="var(--accent)"   stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-1"/>
+          <path d="M277,214 L392,143"    pathLength="100" stroke="var(--accent-2)" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-2"/>
+          <path d="M277,256 L392,327"    pathLength="100" stroke="var(--accent)"   stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-3"/>
+          <path d="M240,277 L240,390"    pathLength="100" stroke="var(--accent-2)" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-4"/>
+          <path d="M204,256 L88,327"     pathLength="100" stroke="var(--accent)"   stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-5"/>
+          <path d="M204,214 L88,143"     pathLength="100" stroke="var(--accent-2)" stroke-width="2.5" stroke-dasharray="14 86" stroke-linecap="round" class="fe-6"/>
 
-          <!-- Outer nodes -->
-          <!-- n8n (top) -->
+          <!-- Outer nodes — 6 equally at 60° · radius 175 · center (240,235) -->
+          <!-- n8n — top (270°) -->
           <g class="hg-node">
-            <circle cx="240" cy="62" r="27" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="240" y="58" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="#5B8DEF">n8n</text>
-            <text x="240" y="72" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Workflows</text>
+            <circle cx="240" cy="60" r="27" fill="var(--accent-lt)" stroke="var(--accent)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="240" y="56" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="11" font-weight="700" fill="var(--accent)">n8n</text>
+            <text x="240" y="70" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Workflows</text>
           </g>
-          <!-- Python (top-right) -->
+          <!-- Python — top-right (330°) -->
           <g class="hg-node">
-            <circle cx="392" cy="128" r="26" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="392" y="124" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">Python</text>
-            <text x="392" y="137" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Backend</text>
+            <circle cx="392" cy="143" r="27" fill="var(--accent-2-lt)" stroke="var(--accent-2)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="392" y="139" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="var(--accent-2)">Python</text>
+            <text x="392" y="153" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Backend</text>
           </g>
-          <!-- APIs (right) -->
+          <!-- APIs — bottom-right (30°) -->
           <g class="hg-node">
-            <circle cx="423" cy="230" r="26" fill="rgba(167,139,250,0.12)" stroke="#A78BFA" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="423" y="226" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#A78BFA">APIs</text>
-            <text x="423" y="239" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Integrations</text>
+            <circle cx="392" cy="327" r="27" fill="var(--accent-lt)" stroke="var(--accent)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="392" y="323" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="var(--accent)">APIs</text>
+            <text x="392" y="337" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Integrations</text>
           </g>
-          <!-- AI Agents (bottom-right) -->
+          <!-- AI Agents — bottom (90°) -->
           <g class="hg-node">
-            <circle cx="370" cy="374" r="26" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="370" y="370" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="#5B8DEF">AI</text>
-            <text x="370" y="383" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Agents</text>
+            <circle cx="240" cy="412" r="27" fill="var(--accent-2-lt)" stroke="var(--accent-2)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="240" y="408" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="10" font-weight="700" fill="var(--accent-2)">AI</text>
+            <text x="240" y="422" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Agents</text>
           </g>
-          <!-- GSheets (bottom-left) -->
+          <!-- Webhooks — bottom-left (150°) -->
           <g class="hg-node">
-            <circle cx="110" cy="374" r="26" fill="rgba(167,139,250,0.12)" stroke="#A78BFA" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="110" y="370" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">GSheets</text>
-            <text x="110" y="383" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Data</text>
+            <circle cx="88" cy="327" r="27" fill="var(--accent-lt)" stroke="var(--accent)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="88" y="323" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="var(--accent)">Web</text>
+            <text x="88" y="337" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Hooks</text>
           </g>
-          <!-- Webhooks (left) -->
+          <!-- FastAPI — top-left (210°) -->
           <g class="hg-node">
-            <circle cx="57" cy="230" r="26" fill="rgba(91,141,239,0.12)" stroke="#5B8DEF" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="57" y="226" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="#5B8DEF">Web</text>
-            <text x="57" y="239" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Hooks</text>
-          </g>
-          <!-- FastAPI (top-left) -->
-          <g class="hg-node">
-            <circle cx="88" cy="128" r="26" fill="rgba(167,139,250,0.12)" stroke="#A78BFA" stroke-width="1.5" filter="url(#hgGlow)"/>
-            <text x="88" y="124" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="#A78BFA">FastAPI</text>
-            <text x="88" y="137" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="#C0C0CA">Backend</text>
+            <circle cx="88" cy="143" r="27" fill="var(--accent-2-lt)" stroke="var(--accent-2)" stroke-width="1.5" filter="url(#hgGlow)"/>
+            <text x="88" y="139" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700" fill="var(--accent-2)">FastAPI</text>
+            <text x="88" y="153" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="8.5" fill="var(--text-mid)">Backend</text>
           </g>
 
           <!-- Orbiting accent dots -->
           <g class="hg-orbit">
-            <circle cx="240" cy="175" r="4" fill="#5B8DEF" opacity="0.35"/>
-            <circle cx="298" cy="230" r="3" fill="#A78BFA" opacity="0.3"/>
-            <circle cx="182" cy="230" r="3" fill="#5B8DEF" opacity="0.3"/>
+            <circle cx="240" cy="180" r="4" fill="var(--accent)"   opacity="0.35"/>
+            <circle cx="298" cy="235" r="3" fill="var(--accent-2)" opacity="0.3"/>
+            <circle cx="182" cy="235" r="3" fill="var(--accent)"   opacity="0.3"/>
           </g>
 
           <!-- Center AA node -->
-          <circle cx="240" cy="230" r="52" fill="rgba(91,141,239,0.06)"/>
-          <circle cx="240" cy="230" r="42" fill="#1C1C22" stroke="#5B8DEF" stroke-width="2.5"/>
-          <text x="240" y="225" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="#5B8DEF">AA</text>
-          <text x="240" y="242" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="#C0C0CA">Builder</text>
+          <circle cx="240" cy="235" r="52" fill="var(--accent-lt)"/>
+          <circle cx="240" cy="235" r="42" fill="var(--bg-elevated)" stroke="var(--accent)" stroke-width="2.5"/>
+          <text x="240" y="230" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="22" font-weight="700" fill="var(--accent)">AA</text>
+          <text x="240" y="247" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-size="9" fill="var(--text-mid)">Builder</text>
         </svg>
       </div>
 
@@ -225,8 +216,8 @@
         <div class="now-item now-item-featured">
           <i data-lucide="sparkles"></i>
           <div>
-            <div class="now-item-title">Fine-tuning LLMs</div>
-            <div class="now-item-sub">Training custom models on domain-specific data for automation pipelines</div>
+            <div class="now-item-title">Exploring LLM Fine-tuning</div>
+            <div class="now-item-sub">Experimenting with parameter-efficient fine-tuning (LoRA) for domain-specific automation tasks</div>
           </div>
         </div>
         <div class="now-item">
