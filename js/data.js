@@ -81,7 +81,7 @@ const PORTFOLIO = {
       demo: "",
       featured: true,
       category: "automation"
-    }
+    },
     {
       title: "Engineered to the Last Atom | AURELIUS Chronometer",
       tags: ["AI Video", "Ad Creative", "Generative AI", "Motion Design", "Product Commercial"],
