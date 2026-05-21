@@ -266,9 +266,10 @@ nav#main-nav.scrolled{background:rgba(10,10,11,0.72);backdrop-filter:blur(12px);
 .proj-tag-creative{background:rgba(167,139,250,.1);color:var(--accent-2);border:1px solid rgba(167,139,250,.2)}
 .proj-creative-title{font-family:var(--font-head);font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.5rem;line-height:1.3}
 .proj-creative-desc{font-size:.88rem;color:var(--text-mid);line-height:1.65;flex:1}
-.proj-creative-date{font-size:.75rem;color:var(--text-soft);margin-top:.85rem}
-.proj-creative-link{display:inline-flex;align-items:center;gap:.35rem;margin-top:.85rem;font-family:var(--font-head);font-size:.82rem;font-weight:700;color:var(--accent-2);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);padding:.38rem 1rem;border-radius:8px;text-decoration:none;align-self:flex-start;transition:background .2s,transform .2s}
-.proj-creative-link:hover{background:rgba(167,139,250,.2);transform:translateY(-1px);text-decoration:none;color:var(--accent-2)}
+.proj-creative-footer{display:flex;align-items:center;justify-content:space-between;margin-top:1rem;padding-top:.85rem;border-top:1px solid var(--border)}
+.proj-creative-date{font-size:.75rem;color:var(--text-soft)}
+.proj-creative-link{font-family:var(--font-head);font-size:.8rem;font-weight:700;color:var(--accent-2)}
+.proj-creative-card:hover .proj-creative-link{text-decoration:underline}
 
 /* ── SKILLS REDESIGN ─────────────────────────────────────── */
 .skills-layout{display:flex;flex-direction:column;gap:3rem}

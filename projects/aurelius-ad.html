@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Engineered to the Last Atom | AURELIUS Chronometer — Aman Agarwal</title>
+  <meta name="description" content="A fully AI-generated luxury watch commercial for the fictional AURELIUS Chronometer brand — built with generative AI tools from concept to final cut." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+    .proj-post-wrap { max-width: 800px; margin: 0 auto; }
+
+    /* ── Video hero ── */
+    .proj-video-hero {
+      width: 100%; aspect-ratio: 16/9;
+      border-radius: 18px; overflow: hidden;
+      margin-bottom: 2rem;
+      box-shadow: 0 12px 56px rgba(0,0,0,.6), 0 0 0 1px var(--border);
+      background: #000;
+      position: relative;
+    }
+    .proj-video-hero iframe {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; border: none;
+    }
+
+    /* ── Meta bar ── */
+    .proj-meta {
+      display: flex; flex-wrap: wrap; gap: .65rem;
+      align-items: center; margin-bottom: 2rem;
+    }
+    .proj-meta-date { font-size: .82rem; color: var(--text-soft); }
+    .proj-meta-tag {
+      font-size: .72rem; font-weight: 600;
+      background: rgba(167,139,250,.1); color: var(--accent-2);
+      border: 1px solid rgba(167,139,250,.22);
+      padding: .2rem .75rem; border-radius: 6px; white-space: nowrap;
+    }
+
+    /* ── Body ── */
+    .proj-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
+    .proj-body h2 {
+      font-family: var(--font-head); font-size: 1.3rem; font-weight: 700;
+      color: var(--text); margin: 2.75rem 0 .85rem;
+      display: flex; align-items: center; gap: .6rem;
+    }
+    .proj-body h2::before {
+      content: ''; display: inline-block; width: 4px; height: 1.2em;
+      background: linear-gradient(180deg, var(--accent-2), var(--accent));
+      border-radius: 2px; flex-shrink: 0;
+    }
+    .proj-body p { margin-bottom: 1.35rem; }
+    .proj-body strong { color: var(--text); font-weight: 600; }
+
+    /* ── Tool pills ── */
+    .tool-pills { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.25rem 0 2rem; }
+    .tool-pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-family: var(--font-head); font-size: .78rem; font-weight: 600;
+      padding: .35rem 1rem; border-radius: 99px;
+      background: var(--bg-elevated); border: 1px solid var(--border-lit);
+      color: var(--text-mid);
+    }
+    .tool-pill i { width: 13px; height: 13px; stroke-width: 2; }
+
+    /* ── Callout quote ── */
+    .proj-callout {
+      background: rgba(167,139,250,.07);
+      border-left: 4px solid var(--accent-2);
+      border-radius: 0 12px 12px 0;
+      padding: 1.1rem 1.5rem; margin: 2rem 0;
+      font-size: .97rem; color: var(--text);
+      font-style: italic;
+    }
+
+    /* ── README placeholder ── */
+    .proj-readme {
+      margin-top: 3rem;
+      background: var(--bg-soft);
+      border: 2px dashed var(--border-lit);
+      border-radius: 16px;
+      padding: 2rem 2.25rem;
+    }
+    .proj-readme-label {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-family: var(--font-head); font-size: .72rem; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--accent-warm); margin-bottom: 1.25rem;
+    }
+    .proj-readme-label i { width: 14px; height: 14px; }
+    .proj-readme h3 {
+      font-family: var(--font-head); font-size: 1.05rem; font-weight: 700;
+      color: var(--text); margin-bottom: .6rem; margin-top: 1.5rem;
+    }
+    .proj-readme h3:first-of-type { margin-top: 0; }
+    .proj-readme p {
+      font-size: .92rem; color: var(--text-soft); line-height: 1.7;
+      font-style: italic;
+    }
+
+    .proj-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    /* ── Watch stat strip ── */
+    .watch-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1rem; margin: 2rem 0;
+    }
+    .watch-stat {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center;
+    }
+    .watch-stat-val {
+      font-family: var(--font-head); font-size: 1.6rem; font-weight: 800;
+      color: var(--accent-2); line-height: 1;
+    }
+    .watch-stat-lbl {
+      font-size: .72rem; color: var(--text-soft); margin-top: .35rem;
+      text-transform: uppercase; letter-spacing: .08em; font-weight: 600;
+    }
+  </style>
+</head>
+<body data-page="projects">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap">
+      <div class="loader-ring"></div><div class="loader-ring-2"></div>
+      <div class="loader-monogram">AA</div>
+    </div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li>
+    <li><a href="../projects.html" class="active">Projects</a></li>
+    <li><a href="../skills.html">Skills</a></li><li><a href="../education.html">Education</a></li>
+    <li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html">Blog</a></li>
+    <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a>
+  <a href="../projects.html">Projects</a><a href="../skills.html">Skills</a><a href="../education.html">Education</a>
+  <a href="../certifications.html">Certifications</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="proj-post-wrap">
+
+      <!-- Back -->
+      <a href="../projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--accent-2);text-decoration:none;margin-bottom:2rem;font-weight:600;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to Projects
+      </a>
+
+      <!-- Video hero -->
+      <div class="proj-video-hero">
+        <iframe
+          src="https://www.youtube.com/embed/iEKz3KSffRw?rel=0&modestbranding=1"
+          title="Engineered to the Last Atom | AURELIUS Chronometer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- Meta -->
+      <div class="proj-meta">
+        <span class="proj-meta-date">May 2026</span>
+        <span class="proj-meta-tag">AI Video</span>
+        <span class="proj-meta-tag">Ad Creative</span>
+        <span class="proj-meta-tag">Generative AI</span>
+        <span class="proj-meta-tag">Motion Design</span>
+        <span class="proj-meta-tag">Product Commercial</span>
+        <span class="proj-meta-tag">Prompt Engineering</span>
+      </div>
+
+      <!-- Title -->
+      <h1 style="font-family:var(--font-head);font-size:clamp(1.75rem,4vw,2.4rem);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:.75rem;">
+        Engineered to the Last Atom
+      </h1>
+      <p style="font-family:var(--font-head);font-size:1.05rem;color:var(--accent-2);font-weight:600;margin-bottom:2.5rem;letter-spacing:.04em;">
+        AURELIUS Chronometer — AI-Generated Commercial
+      </p>
+
+      <!-- Stats -->
+      <div class="watch-stats">
+        <div class="watch-stat">
+          <div class="watch-stat-val">100%</div>
+          <div class="watch-stat-lbl">AI Generated</div>
+        </div>
+        <div class="watch-stat">
+          <div class="watch-stat-val">0</div>
+          <div class="watch-stat-lbl">Real Footage</div>
+        </div>
+        <div class="watch-stat">
+          <div class="watch-stat-val">1</div>
+          <div class="watch-stat-lbl">Creator</div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="proj-body">
+
+        <h2>The Concept</h2>
+        <p>
+          <strong>AURELIUS</strong> is a fictional luxury watch brand I created entirely from scratch — brand name, identity, product visuals, and commercial. Every frame, every shot, every line of copy was generated using AI tools. No camera. No studio. No footage.
+        </p>
+
+        <div class="proj-callout">
+          "147 components. One watch." — The line that anchored the entire creative direction.
+        </div>
+
+        <h2>Tools Used</h2>
+        <div class="tool-pills">
+          <span class="tool-pill"><i data-lucide="sparkles"></i> AI Image Generation</span>
+          <span class="tool-pill"><i data-lucide="film"></i> AI Video Generation</span>
+          <span class="tool-pill"><i data-lucide="music"></i> AI Audio / Score</span>
+          <span class="tool-pill"><i data-lucide="type"></i> Prompt Engineering</span>
+          <span class="tool-pill"><i data-lucide="layers"></i> Motion Compositing</span>
+        </div>
+
+        <!-- ════════════════════════════════════════════════════ -->
+        <!--  README SECTION — Fill this in with your own story  -->
+        <!-- ════════════════════════════════════════════════════ -->
+        <div class="proj-readme">
+          <div class="proj-readme-label">
+            <i data-lucide="file-text"></i>
+            Behind the Build — Your Notes Go Here
+          </div>
+
+          <h3>How I Made This</h3>
+          <p>[ Write how you created this — what tools you used, how you generated the visuals, how you constructed the video, what prompts worked, what didn't. ]</p>
+
+          <h3>The Creative Process</h3>
+          <p>[ Describe your workflow — did you start with the script, the visuals, or the music? How did you go from idea to final cut? ]</p>
+
+          <h3>What I Learned</h3>
+          <p>[ Key takeaways — about AI video generation, prompt craft, creative direction, or anything else this project taught you. ]</p>
+
+          <h3>Challenges</h3>
+          <p>[ What was hard? Consistency across frames? Getting the right aesthetic? Voice / audio sync? ]</p>
+        </div>
+
+      </div><!-- /proj-body -->
+
+      <hr class="proj-divider" />
+
+      <!-- Footer nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <a href="../projects.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--accent-2);text-decoration:none;font-weight:600;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:14px;height:14px"><polyline points="15 18 9 12 15 6"/></svg>
+          All Projects
+        </a>
+        <a href="https://youtu.be/iEKz3KSffRw" target="_blank" rel="noopener"
+          style="display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-head);font-size:.85rem;font-weight:700;color:var(--accent-2);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);padding:.5rem 1.2rem;border-radius:8px;text-decoration:none;">
+          Watch on YouTube ↗
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text)">Aman Agarwal<span style="color:var(--accent)">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script src="../js/data.js"></script><script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>

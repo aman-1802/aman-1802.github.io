@@ -302,23 +302,23 @@ function projectCardHTML(p, i) {
 
   // Creative / video card
   if (p.category === 'creative') {
-    return `
-      <div class="proj-creative-card tilt-card reveal ${delay}">
-        ${p.videoEmbed ? `
-          <div class="proj-video-wrap">
-            <iframe src="${p.videoEmbed}" title="${p.title}" frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>` :
-          p.thumbnail ? `<div class="proj-creative-thumb"><img src="${p.thumbnail}" alt="${p.title}"/></div>` : ''}
-        <div class="proj-creative-body">
-          <div class="project-tags">${p.tags.map(t=>`<span class="project-tag proj-tag-creative">${t}</span>`).join('')}</div>
-          <div class="proj-creative-title">${p.title}</div>
-          <div class="proj-creative-desc">${p.description}</div>
-          ${p.date ? `<div class="proj-creative-date">${p.date}</div>` : ''}
-          ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener" class="proj-creative-link">Watch ↗</a>` : ''}
+    const cardInner = `
+      ${p.thumbnail ? `<div class="proj-creative-thumb"><img src="${p.thumbnail}" alt="${p.title}" loading="lazy"/></div>` :
+        p.videoEmbed ? `<div class="proj-video-wrap"><iframe src="${p.videoEmbed}" title="${p.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>` : ''}
+      <div class="proj-creative-body">
+        <div class="project-tags">${p.tags.map(t=>`<span class="project-tag proj-tag-creative">${t}</span>`).join('')}</div>
+        <div class="proj-creative-title">${p.title}</div>
+        <div class="proj-creative-desc">${p.description}</div>
+        <div class="proj-creative-footer">
+          ${p.date ? `<span class="proj-creative-date">${p.date}</span>` : ''}
+          <span class="proj-creative-link">${p.file ? 'View Project →' : 'Watch ↗'}</span>
         </div>
       </div>`;
+    // Link to detail page if available, else YouTube
+    if (p.file) {
+      return `<a href="${p.file}" class="proj-creative-card tilt-card reveal ${delay}" style="text-decoration:none;color:inherit">${cardInner}</a>`;
+    }
+    return `<a href="${p.demo||'#'}" target="_blank" rel="noopener" class="proj-creative-card tilt-card reveal ${delay}" style="text-decoration:none;color:inherit">${cardInner}</a>`;
   }
 
   // Standard automation card (with detail page)

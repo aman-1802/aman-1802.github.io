@@ -82,12 +82,28 @@ const PORTFOLIO = {
       featured: true,
       category: "automation"
     }
+    {
+      title: "Engineered to the Last Atom | AURELIUS Chronometer",
+      tags: ["AI Video", "Ad Creative", "Generative AI", "Motion Design", "Product Commercial"],
+      description: "A fully AI-generated luxury watch commercial — brand, visuals, motion, and copy created from scratch using generative AI tools. No camera. No studio. No real footage.",
+      file: "projects/aurelius-ad.html",
+      thumbnail: "https://img.youtube.com/vi/iEKz3KSffRw/maxresdefault.jpg",
+      videoEmbed: "https://www.youtube.com/embed/iEKz3KSffRw?rel=0&modestbranding=1",
+      date: "May 2026",
+      github: "",
+      demo: "https://youtu.be/iEKz3KSffRw",
+      featured: true,
+      category: "creative"
+    }
     // ── ADD NEW PROJECTS HERE ──
     // {
     //   title: "Your New Project",
     //   tags: ["Tag1", "Tag2"],
     //   description: "Project description here.",
     //   category: "automation", // or "creative"
+    //   file: "projects/your-project.html",
+    //   thumbnail: "assets/projects/your-thumbnail.png",
+    //   videoEmbed: "", // YouTube embed URL for creative projects
     //   github: "https://github.com/...",
     //   demo: "https://...",
     //   featured: false
