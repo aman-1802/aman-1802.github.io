@@ -117,9 +117,12 @@ const PORTFOLIO = {
       { name: "Python" },
       { name: "API Integrations" },
       { name: "Multi-Agent AI Systems" },
-      { name: "OOP & Software Design" },
-      { name: "Google Sheets / Apps Script" },
+      { name: "MCP" },
       { name: "MS Office Suite" }
+    ],
+    creative: [
+      "Storyframing / Designing",
+      "AI Image & Video Creation"
     ],
     soft: [
       "Problem Solving",
@@ -128,7 +131,7 @@ const PORTFOLIO = {
       "Clear Communication",
       "Systems Thinking"
     ],
-    tools: ["n8n", "Python", "VS Code", "Git", "Google Workspace", "Notion"]
+    tools: ["n8n", "Python", "VS Code", "Git", "Google Workspace", "Notion", "Claude", "Gemini", "ChatGPT"]
   },
 
   // ── EDUCATION ─────────────────────────────────────────────

@@ -354,9 +354,8 @@ function renderSkills() {
     'Python': 'terminal',
     'API Integrations': 'link-2',
     'Multi-Agent AI Systems': 'bot',
-    'OOP & Software Design': 'box',
+    'MCP': 'cpu',
     'Full-Stack Development': 'code',
-    'Google Sheets / Apps Script': 'sheet',
     'MS Office Suite': 'file-text'
   };
   const SOFT_ICONS = {
@@ -365,6 +364,10 @@ function renderSkills() {
     'Project Ownership': 'target',
     'Clear Communication': 'message-circle',
     'Systems Thinking': 'network'
+  };
+  const CREATIVE_ICONS = {
+    'Storyframing / Designing': 'layout-template',
+    'AI Image & Video Creation': 'film'
   };
 
   const cards = document.getElementById('skill-cards');
@@ -378,6 +381,16 @@ function renderSkills() {
     }).join('');
     reObserve(cards);
     cards.querySelectorAll('.skill-card').forEach(applyTilt);
+    if (window.lucide) window.lucide.createIcons();
+  }
+
+  const creative = document.getElementById('creative-cards');
+  if (creative && PORTFOLIO.skills.creative) {
+    creative.innerHTML = PORTFOLIO.skills.creative.map(s => `
+      <div class="soft-card">
+        <div class="soft-card-icon"><i data-lucide="${CREATIVE_ICONS[s]||'sparkles'}" style="width:22px;height:22px;stroke-width:1.5;color:var(--accent-2)"></i></div>
+        <div class="soft-card-name">${s}</div>
+      </div>`).join('');
     if (window.lucide) window.lucide.createIcons();
   }
 
