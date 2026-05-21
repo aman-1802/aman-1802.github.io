@@ -476,10 +476,16 @@ function renderBlog() {
 
 // ── HELPERS ──────────────────────────────────────────────────
 function reObserve(container) {
+  // Immediately reveal anything already in the viewport (synchronous — no flash)
+  container.querySelectorAll('.reveal').forEach(el => {
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+  });
+  // Observer handles the rest as user scrolls
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.08 });
-  container.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  container.querySelectorAll('.reveal:not(.visible)').forEach(el => obs.observe(el));
 }
 
 function applyTilt(card) {
@@ -552,7 +558,7 @@ function initGSAP() {
       { wrap: '.ql-grid',        items: '.ql-card' },
       { wrap: '.skill-cards-grid', items: '.skill-card' },
       { wrap: '.soft-grid',      items: '.soft-card' },
-      { wrap: '#projects-sections',  items: '.project-card,.blog-card,.proj-creative-card' },
+      // #projects-sections is dynamically rendered — reObserve() handles reveal, GSAP skips it
       { wrap: '.blog-grid',      items: '.blog-card' },
       { wrap: '.certs-grid',     items: '.cert-card' },
       { wrap: '.stats-grid',     items: '.stat-item' },
