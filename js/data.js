@@ -121,7 +121,7 @@ const PORTFOLIO = {
       { name: "MS Office Suite" }
     ],
     creative: [
-      "Storyframing / Designing",
+      "Visual Storyteller",
       "AI Image & Video Creation"
     ],
     soft: [

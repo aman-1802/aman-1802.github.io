@@ -366,7 +366,7 @@ function renderSkills() {
     'Systems Thinking': 'network'
   };
   const CREATIVE_ICONS = {
-    'Storyframing / Designing': 'layout-template',
+    'Visual Storyteller': 'layout-template',
     'AI Image & Video Creation': 'film'
   };
 
