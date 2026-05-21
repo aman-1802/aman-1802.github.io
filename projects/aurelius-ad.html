@@ -9,27 +9,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <style>
-    .proj-post-wrap { max-width: 800px; margin: 0 auto; }
+    .proj-post-wrap { max-width: 820px; margin: 0 auto; }
 
     /* ── Video hero ── */
     .proj-video-hero {
       width: 100%; aspect-ratio: 16/9;
-      border-radius: 18px; overflow: hidden;
-      margin-bottom: 2rem;
-      box-shadow: 0 12px 56px rgba(0,0,0,.6), 0 0 0 1px var(--border);
-      background: #000;
-      position: relative;
+      border-radius: 18px; overflow: hidden; margin-bottom: 2rem;
+      box-shadow: 0 12px 56px rgba(0,0,0,.65), 0 0 0 1px var(--border);
+      background: #000; position: relative;
     }
-    .proj-video-hero iframe {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; border: none;
-    }
+    .proj-video-hero iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
 
-    /* ── Meta bar ── */
-    .proj-meta {
-      display: flex; flex-wrap: wrap; gap: .65rem;
-      align-items: center; margin-bottom: 2rem;
-    }
+    /* ── Meta ── */
+    .proj-meta { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin-bottom: 2rem; }
     .proj-meta-date { font-size: .82rem; color: var(--text-soft); }
     .proj-meta-tag {
       font-size: .72rem; font-weight: 600;
@@ -38,86 +30,133 @@
       padding: .2rem .75rem; border-radius: 6px; white-space: nowrap;
     }
 
+    /* ── Stats ── */
+    .watch-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin: 2rem 0; }
+    .watch-stat { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center; }
+    .watch-stat-val { font-family: var(--font-head); font-size: 1.6rem; font-weight: 800; color: var(--accent-2); line-height: 1; }
+    .watch-stat-lbl { font-size: .72rem; color: var(--text-soft); margin-top: .35rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+
     /* ── Body ── */
-    .proj-body { font-size: 1.02rem; line-height: 1.85; color: var(--text-mid); }
-    .proj-body h2 {
-      font-family: var(--font-head); font-size: 1.3rem; font-weight: 700;
-      color: var(--text); margin: 2.75rem 0 .85rem;
-      display: flex; align-items: center; gap: .6rem;
-    }
-    .proj-body h2::before {
-      content: ''; display: inline-block; width: 4px; height: 1.2em;
-      background: linear-gradient(180deg, var(--accent-2), var(--accent));
-      border-radius: 2px; flex-shrink: 0;
-    }
-    .proj-body p { margin-bottom: 1.35rem; }
+    .proj-body { font-size: 1rem; line-height: 1.85; color: var(--text-mid); }
+    .proj-body p { margin-bottom: 1.25rem; }
     .proj-body strong { color: var(--text); font-weight: 600; }
 
-    /* ── Tool pills ── */
-    .tool-pills { display: flex; flex-wrap: wrap; gap: .55rem; margin: 1.25rem 0 2rem; }
-    .tool-pill {
-      display: inline-flex; align-items: center; gap: .4rem;
-      font-family: var(--font-head); font-size: .78rem; font-weight: 600;
-      padding: .35rem 1rem; border-radius: 99px;
-      background: var(--bg-elevated); border: 1px solid var(--border-lit);
-      color: var(--text-mid);
+    /* ── Section heading ── */
+    .sec-head {
+      display: flex; align-items: center; gap: .65rem;
+      font-family: var(--font-head); font-size: .72rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--accent-warm); margin-bottom: 1.5rem; margin-top: 3rem;
     }
-    .tool-pill i { width: 13px; height: 13px; stroke-width: 2; }
+    .sec-head i { width: 15px; height: 15px; }
 
-    /* ── Callout quote ── */
+    /* ── Callout ── */
     .proj-callout {
-      background: rgba(167,139,250,.07);
-      border-left: 4px solid var(--accent-2);
-      border-radius: 0 12px 12px 0;
-      padding: 1.1rem 1.5rem; margin: 2rem 0;
-      font-size: .97rem; color: var(--text);
-      font-style: italic;
+      background: rgba(167,139,250,.07); border-left: 4px solid var(--accent-2);
+      border-radius: 0 12px 12px 0; padding: 1.1rem 1.5rem; margin: 1.75rem 0;
+      font-size: 1rem; color: var(--text); font-style: italic; line-height: 1.65;
     }
 
-    /* ── README placeholder ── */
-    .proj-readme {
+    /* ── Process timeline ── */
+    .process-timeline { display: flex; flex-direction: column; gap: 0; margin: 1rem 0 2rem; }
+    .process-step {
+      display: flex; gap: 1.25rem; position: relative;
+    }
+    .process-step:not(:last-child)::after {
+      content: ''; position: absolute; left: 19px; top: 42px;
+      width: 2px; height: calc(100% - 10px);
+      background: linear-gradient(180deg, rgba(167,139,250,.4), rgba(167,139,250,.08));
+    }
+    .process-step-left { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; padding-top: 2px; }
+    .step-num {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(167,139,250,.12); border: 1.5px solid rgba(167,139,250,.35);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: .8rem; font-weight: 800; color: var(--accent-2);
+      z-index: 1;
+    }
+    .process-step-body { padding-bottom: 2rem; flex: 1; }
+    .step-tool-badge {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-family: var(--font-head); font-size: .7rem; font-weight: 700;
+      letter-spacing: .05em; text-transform: uppercase;
+      padding: .2rem .65rem; border-radius: 99px; margin-bottom: .6rem;
+      background: rgba(167,139,250,.1); color: var(--accent-2); border: 1px solid rgba(167,139,250,.25);
+    }
+    .step-tool-badge.badge-blue { background: rgba(91,141,239,.1); color: var(--accent); border-color: rgba(91,141,239,.25); }
+    .step-tool-badge.badge-green { background: rgba(52,211,153,.08); color: var(--success); border-color: rgba(52,211,153,.25); }
+    .step-tool-badge.badge-warm { background: rgba(232,184,75,.08); color: var(--accent-warm); border-color: rgba(232,184,75,.25); }
+    .step-title { font-family: var(--font-head); font-size: .98rem; font-weight: 700; color: var(--text); margin-bottom: .45rem; }
+    .step-desc { font-size: .9rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* ── Tool cards ── */
+    .tool-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px,1fr)); gap: .85rem; margin: 1rem 0 2rem; }
+    .tool-card {
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.1rem 1.25rem;
+      display: flex; flex-direction: column; gap: .4rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .tool-card:hover { border-color: rgba(167,139,250,.4); transform: translateY(-2px); }
+    .tool-card-icon {
+      width: 36px; height: 36px; border-radius: 10px; margin-bottom: .3rem;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(167,139,250,.1);
+    }
+    .tool-card-icon i { width: 17px; height: 17px; color: var(--accent-2); }
+    .tool-card-icon.ti-blue { background: rgba(91,141,239,.1); }
+    .tool-card-icon.ti-blue i { color: var(--accent); }
+    .tool-card-icon.ti-green { background: rgba(52,211,153,.08); }
+    .tool-card-icon.ti-green i { color: var(--success); }
+    .tool-card-icon.ti-warm { background: rgba(232,184,75,.08); }
+    .tool-card-icon.ti-warm i { color: var(--accent-warm); }
+    .tool-card-name { font-family: var(--font-head); font-size: .88rem; font-weight: 700; color: var(--text); }
+    .tool-card-role { font-size: .77rem; color: var(--text-soft); line-height: 1.5; }
+
+    /* ── Learning cards ── */
+    .learnings-grid { display: flex; flex-direction: column; gap: .85rem; margin: 1rem 0 2rem; }
+    .learning-card {
+      display: flex; gap: 1rem; align-items: flex-start;
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.15rem 1.4rem;
+      transition: border-color .2s;
+    }
+    .learning-card:hover { border-color: rgba(167,139,250,.3); }
+    .learning-num {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 8px;
+      background: rgba(167,139,250,.12); border: 1px solid rgba(167,139,250,.25);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-head); font-size: .78rem; font-weight: 800; color: var(--accent-2);
+    }
+    .learning-text { font-size: .92rem; color: var(--text-mid); line-height: 1.7; }
+    .learning-text strong { color: var(--text); }
+
+    /* ── Closing thought ── */
+    .closing-box {
+      background: linear-gradient(135deg, rgba(91,141,239,.08), rgba(167,139,250,.08));
+      border: 1px solid rgba(167,139,250,.2); border-radius: 16px;
+      padding: 1.75rem 2rem; margin-top: 1rem; text-align: center;
+    }
+    .closing-box p { font-size: .97rem; color: var(--text-mid); margin: 0; line-height: 1.75; }
+    .closing-box strong { color: var(--text); }
+
+    .proj-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+
+    /* ── Behind the build frame (preserved from original) ── */
+    .behind-frame {
       margin-top: 3rem;
       background: var(--bg-soft);
       border: 2px dashed var(--border-lit);
       border-radius: 16px;
-      padding: 2rem 2.25rem;
+      padding: 2.25rem 2.5rem;
     }
-    .proj-readme-label {
+    .behind-frame-label {
       display: inline-flex; align-items: center; gap: .5rem;
       font-family: var(--font-head); font-size: .72rem; font-weight: 700;
-      letter-spacing: .12em; text-transform: uppercase;
-      color: var(--accent-warm); margin-bottom: 1.25rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent-warm); margin-bottom: 0;
     }
-    .proj-readme-label i { width: 14px; height: 14px; }
-    .proj-readme h3 {
-      font-family: var(--font-head); font-size: 1.05rem; font-weight: 700;
-      color: var(--text); margin-bottom: .6rem; margin-top: 1.5rem;
-    }
-    .proj-readme h3:first-of-type { margin-top: 0; }
-    .proj-readme p {
-      font-size: .92rem; color: var(--text-soft); line-height: 1.7;
-      font-style: italic;
-    }
-
-    .proj-divider { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
-
-    /* ── Watch stat strip ── */
-    .watch-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 1rem; margin: 2rem 0;
-    }
-    .watch-stat {
-      background: var(--bg-elevated); border: 1px solid var(--border);
-      border-radius: 12px; padding: 1.1rem 1.25rem; text-align: center;
-    }
-    .watch-stat-val {
-      font-family: var(--font-head); font-size: 1.6rem; font-weight: 800;
-      color: var(--accent-2); line-height: 1;
-    }
-    .watch-stat-lbl {
-      font-size: .72rem; color: var(--text-soft); margin-top: .35rem;
-      text-transform: uppercase; letter-spacing: .08em; font-weight: 600;
-    }
+    .behind-frame-label i { width: 14px; height: 14px; }
   </style>
 </head>
 <body data-page="projects">
@@ -197,63 +236,170 @@
       <!-- Stats -->
       <div class="watch-stats">
         <div class="watch-stat">
-          <div class="watch-stat-val">100%</div>
-          <div class="watch-stat-lbl">AI Generated</div>
+          <div class="watch-stat-val">13</div>
+          <div class="watch-stat-lbl">AI Frames</div>
         </div>
         <div class="watch-stat">
-          <div class="watch-stat-val">0</div>
-          <div class="watch-stat-lbl">Real Footage</div>
+          <div class="watch-stat-val">4</div>
+          <div class="watch-stat-lbl">Tools Used</div>
         </div>
         <div class="watch-stat">
-          <div class="watch-stat-val">1</div>
-          <div class="watch-stat-lbl">Creator</div>
+          <div class="watch-stat-val">~80%</div>
+          <div class="watch-stat-lbl">AI-Driven Workflow</div>
         </div>
       </div>
 
       <!-- Body -->
       <div class="proj-body">
 
-        <h2>The Concept</h2>
         <p>
-          <strong>AURELIUS</strong> is a fictional luxury watch brand I created entirely from scratch — brand name, identity, product visuals, and commercial. Every frame, every shot, every line of copy was generated using AI tools. No camera. No studio. No footage.
+          <strong>AURELIUS</strong> is a fictional luxury watch brand created entirely from scratch — brand name, identity, product visuals, and the commercial itself. Every frame, every shot, every line of copy was built using AI tools. No camera. No studio. No real footage.
         </p>
 
         <div class="proj-callout">
           "147 components. One watch." — The line that anchored the entire creative direction.
         </div>
 
-        <h2>Tools Used</h2>
-        <div class="tool-pills">
-          <span class="tool-pill"><i data-lucide="sparkles"></i> AI Image Generation</span>
-          <span class="tool-pill"><i data-lucide="film"></i> AI Video Generation</span>
-          <span class="tool-pill"><i data-lucide="music"></i> AI Audio / Score</span>
-          <span class="tool-pill"><i data-lucide="type"></i> Prompt Engineering</span>
-          <span class="tool-pill"><i data-lucide="layers"></i> Motion Compositing</span>
+      </div><!-- /proj-body -->
+
+      <!-- ══════════════════════════════════════════════════════ -->
+      <!--  BEHIND THE BUILD FRAME                               -->
+      <!-- ══════════════════════════════════════════════════════ -->
+      <div class="behind-frame">
+
+        <div class="behind-frame-label">
+          <i data-lucide="clapperboard"></i>
+          Behind the Build
         </div>
 
-        <!-- ════════════════════════════════════════════════════ -->
-        <!--  README SECTION — Fill this in with your own story  -->
-        <!-- ════════════════════════════════════════════════════ -->
-        <div class="proj-readme">
-          <div class="proj-readme-label">
-            <i data-lucide="file-text"></i>
-            Behind the Build — Your Notes Go Here
+        <!-- ── HOW I MADE THIS ── -->
+        <div class="sec-head">
+          <i data-lucide="git-branch"></i>
+          The Production Pipeline
+        </div>
+
+        <div class="process-timeline">
+
+          <!-- Step 1 -->
+          <div class="process-step">
+            <div class="process-step-left"><div class="step-num">01</div></div>
+            <div class="process-step-body">
+              <div class="step-tool-badge badge-blue"><i data-lucide="sparkles"></i> Claude</div>
+              <div class="step-title">Concept, Design & Storyboarding</div>
+              <div class="step-desc">
+                Started with multiple brainstorming sessions on Claude to design a hero watch that would stay visually consistent across all 13 frames. Then asked Claude to write a complete 13-frame story arc — scenes covering the overall look, close-up shots, the dustproof and waterproof features, and the classic 7-layer explosion view showing the internal architecture. Claude also generated the final prompts for each frame. The goal: a royal, premium luxury aesthetic throughout.
+              </div>
+            </div>
           </div>
 
-          <h3>How I Made This</h3>
-          <p>[ Write how you created this — what tools you used, how you generated the visuals, how you constructed the video, what prompts worked, what didn't. ]</p>
+          <!-- Step 2 -->
+          <div class="process-step">
+            <div class="process-step-left"><div class="step-num">02</div></div>
+            <div class="process-step-body">
+              <div class="step-tool-badge">ChatGPT Image 2.0</div>
+              <div class="step-title">Image Generation — 13 Stills</div>
+              <div class="step-desc">
+                Switched to ChatGPT and used it purely for image creation. Copy-pasted each of Claude's prompts, tweaking them wherever needed to get the right output. Generated all 13 stills this way — one per scene in the storyboard. Researched real luxury brand websites for visual inspiration before finalising the aesthetic direction.
+              </div>
+            </div>
+          </div>
 
-          <h3>The Creative Process</h3>
-          <p>[ Describe your workflow — did you start with the script, the visuals, or the music? How did you go from idea to final cut? ]</p>
+          <!-- Step 3 -->
+          <div class="process-step">
+            <div class="process-step-left"><div class="step-num">03</div></div>
+            <div class="process-step-body">
+              <div class="step-tool-badge badge-green"><i data-lucide="film"></i> Gemini — VEO 3.1</div>
+              <div class="step-title">Animation — Bringing the Stills to Life</div>
+              <div class="step-desc">
+                Used Gemini's VEO 3.1 model to animate each of the 13 still images into 4–5 second video clips — which would combine to a near-60-second final video. Gemini also handled the audio generation for the commercial.
+              </div>
+            </div>
+          </div>
 
-          <h3>What I Learned</h3>
-          <p>[ Key takeaways — about AI video generation, prompt craft, creative direction, or anything else this project taught you. ]</p>
+          <!-- Step 4 -->
+          <div class="process-step">
+            <div class="process-step-left"><div class="step-num">04</div></div>
+            <div class="process-step-body">
+              <div class="step-tool-badge badge-warm"><i data-lucide="scissors"></i> VN Video Editor</div>
+              <div class="step-title">Manual Editing — The Human Touch</div>
+              <div class="step-desc">
+                AI could not stitch the clips together in a production-ready way — every attempt produced something absurd. So this step was done manually. Imported all 13 clips into VN, made the necessary cuts, synced audio, adjusted frame timings, and edited transitions between scenes. This is where the final polish happened.
+              </div>
+            </div>
+          </div>
 
-          <h3>Challenges</h3>
-          <p>[ What was hard? Consistency across frames? Getting the right aesthetic? Voice / audio sync? ]</p>
+        </div><!-- /process-timeline -->
+
+        <!-- ── TOOLS USED ── -->
+        <div class="sec-head">
+          <i data-lucide="wrench"></i>
+          Tools Used
         </div>
 
-      </div><!-- /proj-body -->
+        <div class="tool-cards">
+          <div class="tool-card">
+            <div class="tool-card-icon ti-blue"><i data-lucide="sparkles"></i></div>
+            <div class="tool-card-name">Claude</div>
+            <div class="tool-card-role">Brainstorming, idea generation & prompt creation</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon"><i data-lucide="image"></i></div>
+            <div class="tool-card-name">ChatGPT Image 2.0</div>
+            <div class="tool-card-role">All 13 still image frames</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon ti-green"><i data-lucide="video"></i></div>
+            <div class="tool-card-name">Gemini + VEO 3.1</div>
+            <div class="tool-card-role">Audio generation & animation of stills</div>
+          </div>
+          <div class="tool-card">
+            <div class="tool-card-icon ti-warm"><i data-lucide="scissors"></i></div>
+            <div class="tool-card-name">VN Video Editor</div>
+            <div class="tool-card-role">Cuts, transitions & final output</div>
+          </div>
+        </div>
+
+        <!-- ── KEY LEARNINGS ── -->
+        <div class="sec-head">
+          <i data-lucide="lightbulb"></i>
+          Key Learnings
+        </div>
+
+        <div class="learnings-grid">
+          <div class="learning-card">
+            <div class="learning-num">1</div>
+            <div class="learning-text">
+              <strong>AI image generation is excellent — but iterations are non-negotiable.</strong> ChatGPT's image model is nearly perfect, but accepting the first draft is rarely the right call. The model occasionally hallucinates. Multiple rounds of iteration are what separate a good output from a great one.
+            </div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-num">2</div>
+            <div class="learning-text">
+              <strong>AI video works best at short clip lengths (5–7 seconds).</strong> For longer formats, quality drops and coherence breaks. The smarter approach is to animate individual scenes and assemble them manually rather than asking AI to produce a full-length video in one shot.
+            </div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-num">3</div>
+            <div class="learning-text">
+              <strong>Consistency across frames is no longer a major challenge.</strong> Both ChatGPT and Gemini maintained the same watch design and environment throughout the entire video — something that used to be a serious limitation in earlier models. This was the most impressive observation from the whole process.
+            </div>
+          </div>
+          <div class="learning-card">
+            <div class="learning-num">4</div>
+            <div class="learning-text">
+              <strong>Planning is the single most critical step.</strong> The brainstorming and storyboarding session with Claude at the very start defined everything that followed. Without it, the final result would have looked completely different — and far less cohesive.
+            </div>
+          </div>
+        </div>
+
+        <!-- ── CLOSING THOUGHT ── -->
+        <div class="closing-box">
+          <p>
+            AI has improved dramatically in video and image creation — and it will only get faster from here. But the right objective has always been the same: <strong>use AI as an intelligent assistant</strong>, hand it the tasks that are mundane and repetitive, and always keep a human in the loop to monitor and refine what it delivers.
+          </p>
+        </div>
+
+      </div><!-- /behind-frame -->
 
       <hr class="proj-divider" />
 
