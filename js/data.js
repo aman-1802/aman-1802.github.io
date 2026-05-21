@@ -53,7 +53,8 @@ const PORTFOLIO = {
       date: "May 2026",
       github: "",
       demo: "",
-      featured: true
+      featured: true,
+      category: "automation"
     },
     {
       title: "SaudaaAI — Voice to Quotation, Instantly",
@@ -65,7 +66,8 @@ const PORTFOLIO = {
       date: "April 2026",
       github: "",
       demo: "",
-      featured: true
+      featured: true,
+      category: "automation"
     },
     {
       title: "Aeon to Telegram — AI Essay Summary Automation",
@@ -77,13 +79,15 @@ const PORTFOLIO = {
       date: "March 2026",
       github: "",
       demo: "",
-      featured: true
+      featured: true,
+      category: "automation"
     }
     // ── ADD NEW PROJECTS HERE ──
     // {
     //   title: "Your New Project",
     //   tags: ["Tag1", "Tag2"],
     //   description: "Project description here.",
+    //   category: "automation", // or "creative"
     //   github: "https://github.com/...",
     //   demo: "https://...",
     //   featured: false

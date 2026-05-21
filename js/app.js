@@ -226,80 +226,126 @@ function renderExperience() {
   if (window.lucide) window.lucide.createIcons();
 }
 
+// ── Category meta ───────────────────────────────────────────
+const PROJ_CATS = {
+  all:        { label: 'All',               icon: 'layout-grid' },
+  automation: { label: 'AI & Automation',   icon: 'cpu' },
+  creative:   { label: 'Creative',          icon: 'film' }
+};
+
 function renderProjects() {
-  const c = document.getElementById('projects-grid');
-  const filterBar = document.getElementById('projects-filter');
-  if (!c) return;
+  const tabBar  = document.getElementById('proj-cat-tabs');
+  const wrapper = document.getElementById('projects-sections');
+  if (!wrapper) return;
 
-  // Build unique month list (preserve order from data)
-  const months = ['All', ...new Set(PORTFOLIO.projects.map(p => p.date).filter(Boolean))];
+  // Build tab list from categories that actually exist in data
+  const usedCats = ['all', ...new Set(PORTFOLIO.projects.map(p => p.category).filter(Boolean))];
 
-  // Render filter chips
-  if (filterBar) {
-    filterBar.innerHTML = months.map(m => `
-      <button class="proj-filter-btn${m==='All'?' active':''}" data-month="${m}"
-        style="background:${m==='All'?'var(--accent)':'var(--bg-elevated)'};color:${m==='All'?'#fff':'var(--text-mid)'};border:1.5px solid ${m==='All'?'var(--accent)':'var(--border)'};padding:.4rem 1.1rem;border-radius:99px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-head)">
-        ${m}
-      </button>`).join('');
+  if (tabBar) {
+    tabBar.innerHTML = usedCats.map((cat, i) => {
+      const meta = PROJ_CATS[cat] || { label: cat, icon: 'folder' };
+      return `<button class="proj-cat-btn${i===0?' active':''}" data-cat="${cat}">
+        <i data-lucide="${meta.icon}"></i>${meta.label}
+      </button>`;
+    }).join('');
 
-    filterBar.querySelectorAll('.proj-filter-btn').forEach(btn => {
+    tabBar.querySelectorAll('.proj-cat-btn').forEach(btn => {
       btn.addEventListener('click', () => {
-        filterBar.querySelectorAll('.proj-filter-btn').forEach(b => {
-          b.style.background = 'var(--bg-elevated)';
-          b.style.color = 'var(--text-mid)';
-          b.style.borderColor = 'var(--border)';
-          b.classList.remove('active');
-        });
-        btn.style.background = 'var(--accent)';
-        btn.style.color = '#fff';
-        btn.style.borderColor = 'var(--accent)';
+        tabBar.querySelectorAll('.proj-cat-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        drawProjectCards(c, btn.dataset.month);
+        drawProjectSections(wrapper, btn.dataset.cat);
       });
     });
+
+    if (window.lucide) window.lucide.createIcons();
   }
 
-  drawProjectCards(c, 'All');
+  drawProjectSections(wrapper, 'all');
 }
 
-function drawProjectCards(c, activeMonth) {
-  const filtered = activeMonth === 'All'
-    ? PORTFOLIO.projects
-    : PORTFOLIO.projects.filter(p => p.date === activeMonth);
+function drawProjectSections(wrapper, activecat) {
+  const projects = PORTFOLIO.projects;
 
-  c.innerHTML = filtered.map((p, i) => {
-    if (p.file) {
-      return `
-        <a href="${p.file}" class="blog-card tilt-card reveal reveal-delay-${(i%3)+1}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column">
-          ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" style="width:100%;height:190px;object-fit:cover;display:block;" />` : ''}
-          <div class="blog-card-body">
-            <div class="project-tags" style="margin-bottom:.6rem">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
-            <div class="blog-card-title">${p.title}</div>
-            <div class="blog-card-summary">${p.description}</div>
-          </div>
-          <div class="blog-card-footer"><span class="blog-date">${p.date||''}</span><span class="blog-read">View Project →</span></div>
-        </a>`;
-    }
+  // Decide which categories to show
+  const catsToShow = activecat === 'all'
+    ? [...new Set(projects.map(p => p.category).filter(Boolean))]
+    : [activecat];
+
+  wrapper.innerHTML = catsToShow.map(cat => {
+    const list = projects.filter(p => p.category === cat);
+    if (!list.length) return '';
+    const meta = PROJ_CATS[cat] || { label: cat, icon: 'folder' };
     return `
-      <div class="project-card tilt-card reveal reveal-delay-${(i%3)+1}">
-        <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
-        <div class="project-title">${p.title}</div>
-        <div class="project-desc">${p.description}</div>
-        <div class="project-links">
-          ${p.github?`<a href="${p.github}" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>GitHub</a>`:''}
-          ${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener" class="project-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Live Demo</a>`:''}
-          ${!p.github&&!p.demo?`<span style="font-size:.8rem;color:var(--text-soft)">Links coming soon</span>`:''}
+      <div class="proj-section" data-cat="${cat}">
+        <div class="proj-section-header">
+          <span class="proj-section-icon"><i data-lucide="${meta.icon}"></i></span>
+          <span class="proj-section-label">${meta.label}</span>
+          <span class="proj-section-count">${list.length} project${list.length>1?'s':''}</span>
+        </div>
+        <div class="projects-grid proj-cat-grid-${cat}">
+          ${list.map((p, i) => projectCardHTML(p, i)).join('')}
         </div>
       </div>`;
   }).join('');
 
-  if (filtered.length === 0) {
-    c.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--text-soft)">No projects for this month yet.</div>`;
+  if (!wrapper.innerHTML.trim()) {
+    wrapper.innerHTML = `<div style="text-align:center;padding:3rem;color:var(--text-soft)">No projects in this category yet.</div>`;
   }
 
-  reObserve(c);
-  c.querySelectorAll('.tilt-card').forEach(applyTilt);
+  reObserve(wrapper);
+  wrapper.querySelectorAll('.tilt-card').forEach(applyTilt);
   if (window.lucide) window.lucide.createIcons();
+}
+
+function projectCardHTML(p, i) {
+  const delay = `reveal-delay-${(i % 3) + 1}`;
+
+  // Creative / video card
+  if (p.category === 'creative') {
+    return `
+      <div class="proj-creative-card tilt-card reveal ${delay}">
+        ${p.videoEmbed ? `
+          <div class="proj-video-wrap">
+            <iframe src="${p.videoEmbed}" title="${p.title}" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </div>` :
+          p.thumbnail ? `<div class="proj-creative-thumb"><img src="${p.thumbnail}" alt="${p.title}"/></div>` : ''}
+        <div class="proj-creative-body">
+          <div class="project-tags">${p.tags.map(t=>`<span class="project-tag proj-tag-creative">${t}</span>`).join('')}</div>
+          <div class="proj-creative-title">${p.title}</div>
+          <div class="proj-creative-desc">${p.description}</div>
+          ${p.date ? `<div class="proj-creative-date">${p.date}</div>` : ''}
+          ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener" class="proj-creative-link">Watch ↗</a>` : ''}
+        </div>
+      </div>`;
+  }
+
+  // Standard automation card (with detail page)
+  if (p.file) {
+    return `
+      <a href="${p.file}" class="blog-card tilt-card reveal ${delay}" style="text-decoration:none;color:inherit;display:flex;flex-direction:column">
+        ${p.thumbnail ? `<img src="${p.thumbnail}" alt="${p.title}" style="width:100%;height:190px;object-fit:cover;display:block;" />` : ''}
+        <div class="blog-card-body">
+          <div class="project-tags" style="margin-bottom:.6rem">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
+          <div class="blog-card-title">${p.title}</div>
+          <div class="blog-card-summary">${p.description}</div>
+        </div>
+        <div class="blog-card-footer"><span class="blog-date">${p.date||''}</span><span class="blog-read">View Project →</span></div>
+      </a>`;
+  }
+
+  // Fallback plain card
+  return `
+    <div class="project-card tilt-card reveal ${delay}">
+      <div class="project-tags">${p.tags.map(t=>`<span class="project-tag">${t}</span>`).join('')}</div>
+      <div class="project-title">${p.title}</div>
+      <div class="project-desc">${p.description}</div>
+      <div class="project-links">
+        ${p.github?`<a href="${p.github}" target="_blank" rel="noopener" class="project-link">GitHub</a>`:''}
+        ${p.demo?`<a href="${p.demo}" target="_blank" rel="noopener" class="project-link">Live Demo</a>`:''}
+      </div>
+    </div>`;
 }
 
 function renderSkills() {
@@ -506,7 +552,7 @@ function initGSAP() {
       { wrap: '.ql-grid',        items: '.ql-card' },
       { wrap: '.skill-cards-grid', items: '.skill-card' },
       { wrap: '.soft-grid',      items: '.soft-card' },
-      { wrap: '.projects-grid',  items: '.project-card,.blog-card' },
+      { wrap: '#projects-sections',  items: '.project-card,.blog-card,.proj-creative-card' },
       { wrap: '.blog-grid',      items: '.blog-card' },
       { wrap: '.certs-grid',     items: '.cert-card' },
       { wrap: '.stats-grid',     items: '.stat-item' },
