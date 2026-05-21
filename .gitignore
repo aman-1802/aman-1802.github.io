@@ -8,3 +8,6 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Local writeups — kept on disk only, never pushed to GitHub
+writeups/
