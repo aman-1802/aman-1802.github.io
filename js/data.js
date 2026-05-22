@@ -183,6 +183,14 @@ const PORTFOLIO = {
       file: "blog/second-brain-universe.html",
       thumbnail: "assets/blog/second-brain-universe.png",
       tags: ["AI", "Second Brain", "Claude", "Knowledge Management"]
+    },
+    {
+      title: "I Made a Bridal Film Without a Camera. Here Is How.",
+      date: "May 2026",
+      summary: "A sari brand. A brief about heritage, emotion, and light. And a team of AI tools instead of a crew. This is the story of how AANCHAL came to life — frame by frame, without a single real photograph.",
+      file: "blog/aanchal-bridal-film.html",
+      thumbnail: "assets/blog/aanchal-thumbnail.jpg",
+      tags: ["AI Video", "Bridal Film", "Generative AI", "Creative"]
     }
     // ── ADD NEW POSTS HERE ──
     // {

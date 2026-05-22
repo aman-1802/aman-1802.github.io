@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Made a Bridal Film Without a Camera — Aman Agarwal</title>
+  <meta name="description" content="800 credits, 14 frames, and an emotional story about a mother and a bride. The making of AANCHAL, an AI-generated bridal film." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <style>
+
+    /* ── Story-specific resets ── */
+    .story-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* ── Video slot at top ── */
+    .story-video {
+      width: 100%; aspect-ratio: 16/9;
+      border-radius: 18px; overflow: hidden;
+      margin-bottom: 3rem;
+      background: var(--bg-elevated);
+      border: 2px dashed var(--border-lit);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .75rem; position: relative;
+    }
+    .story-video iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: none;
+    }
+    .story-video-hint {
+      font-family: var(--font-head); font-size: .72rem; font-weight: 600;
+      letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft);
+    }
+
+    /* ── Disclaimer ── */
+    .story-disclaimer {
+      border: 1px solid rgba(232,184,75,.2);
+      border-radius: 10px; padding: .85rem 1.1rem;
+      margin-bottom: 2.75rem;
+      font-size: .8rem; color: var(--text-soft); line-height: 1.6;
+    }
+    .story-disclaimer strong { color: var(--accent-warm); }
+
+    /* ── Brand kicker ── */
+    .story-kicker {
+      font-family: var(--font-head); font-size: .72rem; font-weight: 700;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--accent-warm); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .story-kicker::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ── Title ── */
+    .story-title {
+      font-family: 'Lora', Georgia, serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 600; color: var(--text);
+      line-height: 1.18; margin-bottom: 1rem;
+      letter-spacing: -.01em;
+    }
+
+    /* ── Subtitle ── */
+    .story-subtitle {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.1rem; color: var(--text-soft);
+      font-style: italic; line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    /* ── Meta row ── */
+    .story-meta {
+      display: flex; align-items: center; gap: 1rem;
+      font-family: var(--font-head); font-size: .75rem;
+      color: var(--text-soft); margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .story-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border-lit); }
+
+    /* ── Body prose ── */
+    .story-body {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.07rem; line-height: 1.92;
+      color: var(--text-mid);
+    }
+    .story-body p { margin-bottom: 1.5rem; }
+    .story-body strong { color: var(--text); font-weight: 600; }
+
+    /* ── Drop cap for opening paragraph ── */
+    .story-body .drop-cap::first-letter {
+      font-size: 4.2rem; font-weight: 600; line-height: .85;
+      float: left; margin-right: .12em; margin-top: .1em;
+      color: var(--text); font-family: 'Lora', Georgia, serif;
+    }
+
+    /* ── Chapter heading ── */
+    .story-chapter {
+      font-family: var(--font-head); font-size: .7rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: var(--accent-warm); margin-top: 3.5rem; margin-bottom: .6rem;
+    }
+    .story-h2 {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--text); margin-bottom: 1.5rem; line-height: 1.3;
+    }
+
+    /* ── Pull quote ── */
+    .story-pull {
+      border-top: 2px solid var(--accent-warm);
+      border-bottom: 1px solid var(--border);
+      padding: 1.5rem 0;
+      margin: 2.75rem 0;
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1.25rem; font-style: italic;
+      color: var(--text); line-height: 1.55; text-align: center;
+    }
+
+    /* ── Full-width image ── */
+    .story-img-full {
+      width: calc(100% + 4rem); margin-left: -2rem;
+      display: block; margin-top: 3rem; margin-bottom: 0;
+      max-height: 520px; object-fit: cover;
+    }
+    @media(max-width:760px){ .story-img-full { width: 100%; margin-left: 0; } }
+    .story-img-caption {
+      font-family: var(--font-head); font-size: .7rem; font-weight: 500;
+      color: var(--text-soft); letter-spacing: .06em; text-align: right;
+      margin-top: .6rem; margin-bottom: 2.75rem;
+      padding-right: .25rem;
+    }
+
+    /* ── Contained image ── */
+    .story-img {
+      width: 100%; border-radius: 12px; display: block;
+      margin: 2.5rem 0 .5rem;
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+
+    /* ── Aside callout ── */
+    .story-aside {
+      border-left: 3px solid var(--accent-warm);
+      padding: .1rem 0 .1rem 1.4rem;
+      margin: 2.5rem 0;
+      font-family: 'Lora', Georgia, serif;
+      font-style: italic; font-size: 1rem;
+      color: var(--text); line-height: 1.7;
+    }
+
+    /* ── Storyboard block ── */
+    .story-board-wrap {
+      margin-top: 3.5rem;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+    }
+    .story-board-header {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: .6rem;
+      font-family: var(--font-head); font-size: .72rem; font-weight: 700;
+      letter-spacing: .15em; text-transform: uppercase;
+      color: var(--accent-warm);
+    }
+    .story-board-header i { width: 14px; height: 14px; }
+    .story-board-wrap img { width: 100%; display: block; }
+    .story-board-sub {
+      padding: .85rem 1.5rem;
+      font-family: 'Lora', Georgia, serif;
+      font-size: .82rem; font-style: italic; color: var(--text-soft);
+      text-align: center;
+    }
+
+    .story-divider {
+      border: none; border-top: 1px solid var(--border); margin: 3.5rem 0;
+    }
+
+    /* ── Closing byline ── */
+    .story-byline {
+      font-family: var(--font-head); font-size: .78rem; color: var(--text-soft);
+      text-align: center; margin-top: 2.5rem; letter-spacing: .06em;
+    }
+
+  </style>
+</head>
+<body data-page="blog">
+
+<div class="page-loader" id="page-loader">
+  <div class="loader-bg-dots"></div>
+  <div class="loader-inner">
+    <div class="loader-ring-wrap">
+      <div class="loader-ring"></div><div class="loader-ring-2"></div>
+      <div class="loader-monogram">AA</div>
+    </div>
+    <div class="loader-name-wrap"><span class="loader-type-text"></span><span class="loader-cursor">|</span></div>
+    <div class="loader-progress-track"><div class="loader-progress-fill"></div></div>
+  </div>
+  <div class="loader-curtain"></div>
+</div>
+
+<nav id="main-nav"><div class="nav-inner">
+  <a href="../index.html" class="nav-logo">AA<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li><li><a href="../about.html">About</a></li>
+    <li><a href="../experience.html">Experience</a></li><li><a href="../projects.html">Projects</a></li>
+    <li><a href="../skills.html">Skills</a></li><li><a href="../education.html">Education</a></li>
+    <li><a href="../certifications.html">Certifications</a></li>
+    <li><a href="../blog.html" class="active">Blog</a></li>
+    <li><a href="../contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="nav-mobile" id="mobile-nav">
+  <a href="../index.html">Home</a><a href="../about.html">About</a><a href="../experience.html">Experience</a>
+  <a href="../projects.html">Projects</a><a href="../skills.html">Skills</a><a href="../education.html">Education</a>
+  <a href="../certifications.html">Certifications</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a>
+</div>
+
+<main>
+<section class="page-section">
+  <div class="container">
+    <div class="story-wrap">
+
+      <!-- Back -->
+      <a href="../blog.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--accent);text-decoration:none;margin-bottom:2.5rem;font-weight:600;font-family:var(--font-head);">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><polyline points="15 18 9 12 15 6"/></svg>
+        All Posts
+      </a>
+
+      <!-- ── VIDEO SLOT ── Replace this block once the YouTube link is ready ── -->
+      <div class="story-video">
+        <i data-lucide="clapperboard" style="width:38px;height:38px;stroke-width:1.2;color:var(--text-soft);opacity:.4"></i>
+        <span class="story-video-hint">Film uploading soon</span>
+      </div>
+      <!--
+        TO ACTIVATE — swap the div above with:
+        <div class="story-video">
+          <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1"
+            title="AANCHAL Bridal Film" allowfullscreen
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+          </iframe>
+        </div>
+      -->
+
+      <!-- Disclaimer -->
+      <div class="story-disclaimer">
+        <strong>Note:</strong> The brand AANCHAL, all visuals, models, props, and generated content in this film are entirely fictional and AI-generated. The story concept, creative direction, and final edit were done by a human. Everything else was produced through AI tools.
+      </div>
+
+      <!-- Kicker -->
+      <div class="story-kicker">AANCHAL &nbsp;·&nbsp; Bridal Film &nbsp;·&nbsp; May 2026</div>
+
+      <!-- Title -->
+      <h1 class="story-title">I Made a Bridal Film Without a Camera.</h1>
+
+      <!-- Subtitle -->
+      <p class="story-subtitle">800 credits, 14 frames, and a quiet story about a mother letting go.</p>
+
+      <!-- Meta -->
+      <div class="story-meta">
+        <span>Aman Agarwal</span>
+        <span class="story-meta-dot"></span>
+        <span>May 2026</span>
+        <span class="story-meta-dot"></span>
+        <span>AI Video · Creative · Behind the Build</span>
+      </div>
+
+      <!-- ── BODY ── -->
+      <div class="story-body">
+
+        <p class="drop-cap">
+          It started on a plain sheet of paper. No laptop, no tools, no prompts open. Just a pen and whatever was running through my head at the time. The brand, the setting, the colour, the kind of emotion I wanted the film to carry. I wrote it all down before touching anything digital.
+        </p>
+
+        <p>
+          The brand is called <strong>AANCHAL</strong>. It is fictional, built entirely for this film. A saree brand rooted in the idea of inheritance. The story I wanted to tell was simple: a daughter getting ready on her wedding day, and a mother who walks into the room without needing to say much. That feeling of something being handed down quietly. A dupatta. A memory. An entire life compressed into a single gesture.
+        </p>
+
+        <p>
+          That was the core. Everything else was built around it.
+        </p>
+
+      </div>
+
+      <!-- Full-width image 1 — Haveli room -->
+      <img src="../assets/blog/aanchal-haveli.jpg" alt="The haveli set, golden afternoon light" class="story-img-full" />
+      <p class="story-img-caption">The haveli — brass diyas, flower petals, carved jharokhas. Every element generated before a single frame was shot.</p>
+
+      <div class="story-body">
+
+        <div class="story-chapter">The Process</div>
+        <h2 class="story-h2">Building the World Before the Story</h2>
+
+        <p>
+          Once the idea was on paper, I took it to Claude. I explained the brand, the emotional direction, and the visual world I was trying to build. Over a few rounds of back and forth, the story started to take proper shape. But before writing a single prompt or generating a single image, I did something I had skipped in my previous project. I locked everything down first.
+        </p>
+
+        <p>
+          The haveli setting. The antique mirror. The red lehenga with gold zardozi. The jewellery. The bride's features. The mother's appearance. Every element of the visual world was decided, documented, and agreed upon before anything was generated. This one step saved me enormous amounts of rework later.
+        </p>
+
+        <p>
+          I then used ChatGPT's image generation model to generate all the individual elements separately. The haveli room. The props. The models for both the bride and the mother. One piece at a time, reviewed and locked before moving forward.
+        </p>
+
+        <div class="story-pull">
+          "If you do not fix the visual world before you start generating, you will spend half your time trying to recover consistency you never had."
+        </div>
+
+        <div class="story-chapter">Frame by Frame</div>
+        <h2 class="story-h2">Breaking a Story Into 14 Shots</h2>
+
+        <p>
+          I went back to Claude and broke the entire film into scenes. The final storyboard had 14 frames, each with a shot description, a dialogue cue or a silence note, and a mood direction. Claude helped me write the prompts for each frame. I then tweaked them, iterated, and refined until each prompt felt tight enough to get close to what I had in mind.
+        </p>
+
+        <p>
+          Fourteen final frames meant generating somewhere between 20 and 25 images in total. Some of them were genuinely beautiful and very consistent with the world I had built. Others, especially in the later part of the film, were not quite right and had to be discarded.
+        </p>
+
+      </div>
+
+      <!-- Contained image — Bride close-up -->
+      <img src="../assets/blog/aanchal-closeup.jpg" alt="Close-up of the bride, eyes downcast, zardozi detail" class="story-img" />
+      <p class="story-img-caption" style="text-align:right;font-family:var(--font-head);font-size:.7rem;color:var(--text-soft);margin-bottom:2.5rem;">Frame 05 — "Aaj woh dulhan hai..." The lehenga, the maang tikka, and eyes that carry the whole scene.</p>
+
+      <div class="story-body">
+
+        <div class="story-chapter">The Hard Part</div>
+        <h2 class="story-h2">When AI Meets a Human Face</h2>
+
+        <p>
+          This is where AANCHAL was completely different from my previous project. The AURELIUS watch commercial had no human faces in it. It was all product shots and environments, and it worked beautifully. AI handles inanimate objects and set design with remarkable consistency.
+        </p>
+
+        <p>
+          AANCHAL was built entirely around human faces. Specifically, Indian faces. And this is where I spent most of my time, and most of my credits.
+        </p>
+
+        <div class="story-aside">
+          AI still struggles with face consistency. Sometimes it distorts subtle features. Sometimes it hallucinates an expression that was never there. And when you have two faces in the same frame, the chances of something going wrong increase considerably.
+        </div>
+
+        <p>
+          For the animation phase, I used Gemini and Google Flow. I burned through almost all the credits I had. Close to 800, mostly because I had to iterate so many times on frames involving faces. One prompt would produce something that felt cinematic and right. The very next iteration, with the same prompt and the same reference image, would produce something unrecognisable. That unpredictability is still a very real limitation of where this technology is right now.
+        </p>
+
+      </div>
+
+      <!-- Full-width image 2 — Mirror scene -->
+      <img src="../assets/blog/aanchal-mirror.jpg" alt="Bride seated before the antique mirror, moonlit haveli" class="story-img-full" />
+      <p class="story-img-caption">Frames 04 and 09 — The mirror sequence. Mother and daughter, past and present. The emotional centrepiece of the film.</p>
+
+      <div class="story-body">
+
+        <div class="story-chapter">Sound</div>
+        <h2 class="story-h2">A Decision About Voice</h2>
+
+        <p>
+          The original plan had a voiceover. I had finalised the Hindi script with Claude. I had a clear sense of how the dialogue should sound. Soft, warm, unhurried. But when I tried generating the voice using AI voice models, it did not hold up. The lip sync was off. The voices sounded clean in a way that felt wrong for the film. Too precise, too even, too far from the kind of emotional texture the story needed.
+        </p>
+
+        <p>
+          So I made a call. I dropped the voiceover entirely.
+        </p>
+
+        <p>
+          For the background score, I tried two platforms: Suno AI and Udio. Both are genuinely impressive for generating music. I was looking for something feminine, something rooted in Indian classical sensibility, and something that stayed quiet enough to let the images breathe. I found what I needed in Udio and stayed with it for the final film.
+        </p>
+
+        <div class="story-pull">
+          "The film runs on music alone. I think it is better for it."
+        </div>
+
+      </div>
+
+      <!-- Contained image — Corridor -->
+      <img src="../assets/blog/aanchal-corridor.jpg" alt="Bride walking through the lit corridor of the haveli" class="story-img" />
+      <p class="story-img-caption" style="text-align:right;font-family:var(--font-head);font-size:.7rem;color:var(--text-soft);margin-bottom:2.5rem;">Frame 12 — "She rises, walks toward the light." One of my favourite shots in the entire film.</p>
+
+      <div class="story-body">
+
+        <div class="story-chapter">The Edit</div>
+        <h2 class="story-h2">The Part That Still Belongs to a Human</h2>
+
+        <p>
+          The final assembly was done manually. I imported everything into VN, made the cuts, adjusted the pacing, added transitions, synced the music, and applied motion effects where the scene needed them. This part is still not something I would hand over to AI. Editorial instinct, the sense of when a shot needs one more second or half a second less, that still requires a person in the room.
+        </p>
+
+        <p>
+          AI contributed to roughly 80 percent of this film. The concept came from a person. The planning came from a person. The final edit came from a person. But the images, the animation, the music, all of that was generated.
+        </p>
+
+        <div class="story-chapter">What I Took Away</div>
+        <h2 class="story-h2">Consistency, Faces, and the Future</h2>
+
+        <p>
+          <strong>Inanimate objects and environments are essentially a solved problem.</strong> The haveli held up across 14 frames. The lehenga stayed the same. The jewellery, the props, the lighting direction: all consistent. ChatGPT maintained the visual world with impressive precision.
+        </p>
+
+        <p>
+          <strong>Human faces, especially in animation, are still the hard part.</strong> The distortions are sometimes subtle, sometimes obvious. Either way they are still there, and they break the illusion in a way that is hard to work around. This is the clearest gap between where AI video is today and where it needs to be for serious production work.
+        </p>
+
+        <p>
+          <strong>Voice for emotional content is not there yet.</strong> For utility-focused content, AI voice works fine. For something that needs to feel warm and human, the current output still sounds synthetic in a way that pulls you out of the experience.
+        </p>
+
+        <p>
+          <strong>The planning phase is everything.</strong> Locking the visual world before generating a single frame was the best decision I made in this project. It is not a creative constraint. It is what makes consistency possible at all.
+        </p>
+
+        <div class="story-chapter">Why This Field Excites Me</div>
+        <h2 class="story-h2">One Percent of the Budget</h2>
+
+        <p>
+          While I was working on this project, I came across something that stopped me mid-scroll. Higgsfield, an AI platform, had released a three-minute trailer for what they are calling the world's first 90-minute AI-generated science fiction heist feature film. The film is called Hell Crime.
+        </p>
+
+        <p>
+          Fifteen professional directors. Over 16,000 video clips generated. 253 final shots selected for the first episode. Total production cost: under 500,000 dollars. A traditional production of the same scale would have cost closer to 50 million.
+        </p>
+
+        <div class="story-pull">
+          One percent of the budget. That is not an improvement. That is a completely different industry.
+        </div>
+
+        <p>
+          When I watched those three minutes, the action, the VFX, the consistency across scenes, the human elements, it held up in a way that would have seemed impossible two years ago. And that is exactly why I keep building in this space.
+        </p>
+
+        <p>
+          AI is not replacing the person who decides what a story should feel like. But it is rapidly closing the gap between having an idea and being able to show it to the world. That gap used to require a studio, a crew, and months of production. Now it can start with a sheet of paper and a conversation.
+        </p>
+
+        <p>
+          I am genuinely excited about what comes next.
+        </p>
+
+      </div>
+
+      <hr class="story-divider" />
+
+      <!-- Storyboard -->
+      <div class="story-board-wrap">
+        <div class="story-board-header">
+          <i data-lucide="layout-grid"></i>
+          The Full Storyboard — 14 Frames
+        </div>
+        <img src="../assets/blog/aanchal-storyboard.jpg" alt="AANCHAL — 14-frame storyboard" />
+        <div class="story-board-sub">
+          "Virasat" — The Inheritance &nbsp;·&nbsp; 60-second bridal film &nbsp;·&nbsp; Maa ke aanchal se, aapke aangan tak.
+        </div>
+      </div>
+
+      <hr class="story-divider" />
+
+      <!-- Footer nav -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+        <a href="../blog.html" style="display:inline-flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--accent);text-decoration:none;font-weight:600;font-family:var(--font-head);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:13px;height:13px"><polyline points="15 18 9 12 15 6"/></svg>
+          All Posts
+        </a>
+        <div class="story-byline">Written by Aman Agarwal &nbsp;·&nbsp; May 2026</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container"><div class="footer-inner">
+    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text)">Aman Agarwal<span style="color:var(--accent)">.</span></div>
+    <div class="footer-links">
+      <a href="../about.html">About</a><a href="../projects.html">Projects</a><a href="../blog.html">Blog</a>
+      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
+  </div></div>
+</footer>
+<button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
+<script src="../js/data.js"></script><script src="../js/app.js"></script>
+<script>
+(function(){var id=(typeof PORTFOLIO!=='undefined')?PORTFOLIO.googleAnalyticsId:'';if(!id||id==='G-XXXXXXXXXX')return;var s=document.createElement('script');s.src='https://www.googletagmanager.com/gtag/js?id='+id;s.async=true;document.head.appendChild(s);window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',id)})();
+</script>
+</body>
+</html>
