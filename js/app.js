@@ -414,7 +414,11 @@ function renderEducation() {
   if (!c) return;
   c.innerHTML = PORTFOLIO.education.map(e => `
     <div class="edu-card reveal tilt-card">
-      <div class="edu-icon"><i data-lucide="graduation-cap" style="width:28px;height:28px;stroke-width:1.5;color:var(--accent)"></i></div>
+      <div class="edu-icon">
+        ${e.logo
+          ? `<img src="${e.logo}" alt="${e.institution} logo" class="edu-logo-img" />`
+          : `<i data-lucide="graduation-cap" style="width:28px;height:28px;stroke-width:1.5;color:var(--accent)"></i>`}
+      </div>
       <div>
         <div class="edu-degree">${e.degree}</div>
         <div class="edu-institution">${e.institution}</div>

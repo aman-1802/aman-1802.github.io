@@ -296,6 +296,7 @@ nav#main-nav.scrolled{background:rgba(10,10,11,0.72);backdrop-filter:blur(12px);
 .edu-card{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem 2.5rem;box-shadow:var(--shadow-sm);display:grid;grid-template-columns:auto 1fr;gap:1.5rem 2rem;align-items:start;max-width:760px;transition:box-shadow .3s,transform .3s}
 .edu-card:hover{box-shadow:var(--shadow-glow);transform:translateY(-3px)}
 .edu-icon{width:52px;height:52px;background:var(--accent-lt);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.5rem}
+.edu-logo-img{width:34px;height:34px;object-fit:contain}
 .edu-degree{font-size:1.15rem;font-weight:700;font-family:var(--font-head);margin-bottom:.25rem}
 .edu-institution{color:var(--accent);font-weight:600;margin-bottom:.5rem}
 .edu-meta{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:.75rem}
