@@ -77,10 +77,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── PAGE-SPECIFIC INIT ───────────────────────────────────
   switch (page) {
     case 'home':           initHero(); initStatCounters(); break;
-    case 'experience':     renderExperience(); break;
+    case 'about':          renderExperience(); renderSkills(); renderEducation(); break;
     case 'projects':       renderProjects(); break;
-    case 'skills':         renderSkills(); break;
-    case 'education':      renderEducation(); break;
     case 'certifications': renderCertifications(); break;
     case 'blog':           renderBlog(); break;
   }
@@ -672,11 +670,8 @@ function initSpotlight() {
 function initCommandPalette() {
   const CMD_PAGES = [
     { label:'Home',           icon:'home',           href:'index.html',          sub:'Portfolio overview' },
-    { label:'About',          icon:'user',           href:'about.html',          sub:'Who I am' },
-    { label:'Experience',     icon:'briefcase',      href:'experience.html',     sub:'Where I\'ve worked' },
+    { label:'About',          icon:'user',           href:'about.html',          sub:'Who I am, experience, education & skills' },
     { label:'Projects',       icon:'rocket',         href:'projects.html',       sub:'Things I\'ve built' },
-    { label:'Skills',         icon:'settings-2',     href:'skills.html',         sub:'My toolkit' },
-    { label:'Education',      icon:'graduation-cap', href:'education.html',      sub:'Academic background' },
     { label:'Certifications', icon:'award',          href:'certifications.html', sub:'Credentials & courses' },
     { label:'Blog',           icon:'pen-tool',       href:'blog.html',           sub:'My writing' },
     { label:'Contact',        icon:'mail',           href:'contact.html',        sub:'Let\'s talk' },
