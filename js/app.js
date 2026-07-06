@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ── PAGE-SPECIFIC INIT ───────────────────────────────────
   switch (page) {
     case 'home':           initHero(); initStatCounters(); break;
-    case 'about':          renderExperience(); renderSkills(); renderEducation(); break;
+    case 'about':          initAboutTabs(); renderExperience(); renderSkills(); renderEducation(); break;
     case 'projects':       renderProjects(); break;
     case 'certifications': renderCertifications(); break;
     case 'blog':           renderBlog(); break;
@@ -203,11 +203,21 @@ function initHero() {
 //  RENDER FUNCTIONS (one per page)
 // ════════════════════════════════════════════════════════════
 
+function initAboutTabs() {
+  const tabs = document.querySelectorAll('.about-rail-item, .about-mtab');
+  const panels = document.querySelectorAll('.about-panel');
+  function setTab(tab) {
+    tabs.forEach(b => b.classList.toggle('active', b.dataset.tab === tab));
+    panels.forEach(p => p.classList.toggle('active', p.dataset.panel === tab));
+  }
+  tabs.forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
+}
+
 function renderExperience() {
   const c = document.getElementById('experience-list');
   if (!c) return;
   c.innerHTML = PORTFOLIO.experience.map((e, i) => `
-    <div class="timeline-item reveal reveal-delay-${i+1}">
+    <div class="timeline-item">
       <div class="timeline-card tilt-card">
         <div class="timeline-header">
           <div><div class="timeline-role">${e.role}</div><div class="timeline-company">${e.company}</div></div>
@@ -219,7 +229,6 @@ function renderExperience() {
         <ul class="timeline-highlights">${e.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
       </div>
     </div>`).join('');
-  reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
   if (window.lucide) window.lucide.createIcons();
 }
@@ -372,40 +381,29 @@ function renderSkills() {
   if (cards) {
     cards.innerHTML = PORTFOLIO.skills.technical.map(s => {
       const icon = ICONS[s.name] || 'settings-2';
-      return `<div class="skill-card reveal">
-        <i data-lucide="${icon}" style="width:28px;height:28px;stroke-width:1.5;color:var(--accent)"></i>
-        <div class="skill-card-name">${s.name}</div>
-      </div>`;
+      return `<span class="skill-pill"><i data-lucide="${icon}"></i>${s.name}</span>`;
     }).join('');
-    reObserve(cards);
-    cards.querySelectorAll('.skill-card').forEach(applyTilt);
     if (window.lucide) window.lucide.createIcons();
   }
 
   const creative = document.getElementById('creative-cards');
   if (creative && PORTFOLIO.skills.creative) {
-    creative.innerHTML = PORTFOLIO.skills.creative.map(s => `
-      <div class="soft-card">
-        <div class="soft-card-icon"><i data-lucide="${CREATIVE_ICONS[s]||'sparkles'}" style="width:22px;height:22px;stroke-width:1.5;color:var(--accent-2)"></i></div>
-        <div class="soft-card-name">${s}</div>
-      </div>`).join('');
+    creative.innerHTML = PORTFOLIO.skills.creative.map(s =>
+      `<span class="skill-pill"><i data-lucide="${CREATIVE_ICONS[s]||'sparkles'}"></i>${s}</span>`).join('');
     if (window.lucide) window.lucide.createIcons();
   }
 
   const soft = document.getElementById('soft-cards');
   if (soft) {
-    soft.innerHTML = PORTFOLIO.skills.soft.map(s => `
-      <div class="soft-card">
-        <div class="soft-card-icon"><i data-lucide="${SOFT_ICONS[s]||'star'}" style="width:22px;height:22px;stroke-width:1.5;color:var(--accent)"></i></div>
-        <div class="soft-card-name">${s}</div>
-      </div>`).join('');
+    soft.innerHTML = PORTFOLIO.skills.soft.map(s =>
+      `<span class="skill-pill"><i data-lucide="${SOFT_ICONS[s]||'star'}"></i>${s}</span>`).join('');
     if (window.lucide) window.lucide.createIcons();
   }
 
   const tools = document.getElementById('tools-chips');
   if (tools) {
     tools.innerHTML = PORTFOLIO.skills.tools.map(t =>
-      `<span class="tool-chip">${t}</span>`).join('');
+      `<span class="skill-pill">${t}</span>`).join('');
   }
 }
 
@@ -413,7 +411,7 @@ function renderEducation() {
   const c = document.getElementById('education-list');
   if (!c) return;
   c.innerHTML = PORTFOLIO.education.map(e => `
-    <div class="edu-card reveal tilt-card">
+    <div class="edu-card tilt-card">
       <div class="edu-icon">
         ${e.logo
           ? `<img src="${e.logo}" alt="${e.institution} logo" class="edu-logo-img" />`
@@ -426,7 +424,6 @@ function renderEducation() {
         <p class="edu-details">${e.details}</p>
       </div>
     </div>`).join('');
-  reObserve(c);
   c.querySelectorAll('.tilt-card').forEach(applyTilt);
   if (window.lucide) window.lucide.createIcons();
 }
@@ -571,8 +568,6 @@ function initGSAP() {
     // ── Stagger card grids
     const GRIDS = [
       { wrap: '.ql-grid',        items: '.ql-card' },
-      { wrap: '.skill-cards-grid', items: '.skill-card' },
-      { wrap: '.soft-grid',      items: '.soft-card' },
       // #projects-sections is dynamically rendered — reObserve() handles reveal, GSAP skips it
       { wrap: '.blog-grid',      items: '.blog-card' },
       { wrap: '.certs-grid',     items: '.cert-card' },

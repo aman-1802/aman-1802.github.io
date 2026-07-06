@@ -39,135 +39,143 @@
 </div>
 
 <main>
-<section class="page-section">
-  <div class="container">
-    <div class="about-grid">
+<div class="about-app">
 
-      <!-- About illustration: terminal card -->
-      <div class="about-illustration reveal">
-        <div class="av-wrap">
-          <div class="av-terminal">
-            <div class="av-title-bar">
-              <div class="av-dots">
-                <span class="av-dot" style="background:#FF5F56"></span>
-                <span class="av-dot" style="background:#FFBD2E"></span>
-                <span class="av-dot" style="background:#27C93F"></span>
+  <!-- Desktop left rail -->
+  <nav class="about-rail" id="about-rail">
+    <button class="about-rail-item active" data-tab="intro" type="button"><i data-lucide="user"></i><span>Intro</span></button>
+    <button class="about-rail-item" data-tab="experience" type="button"><i data-lucide="briefcase"></i><span>Experience</span></button>
+    <button class="about-rail-item" data-tab="education" type="button"><i data-lucide="graduation-cap"></i><span>Education</span></button>
+    <button class="about-rail-item" data-tab="skills" type="button"><i data-lucide="settings-2"></i><span>Skills</span></button>
+  </nav>
+
+  <!-- Content pane -->
+  <div class="about-pane">
+
+    <!-- Intro -->
+    <section class="about-panel active" data-panel="intro">
+      <div class="about-grid">
+        <div class="about-illustration">
+          <div class="av-wrap">
+            <div class="av-terminal">
+              <div class="av-title-bar">
+                <div class="av-dots">
+                  <span class="av-dot" style="background:#FF5F56"></span>
+                  <span class="av-dot" style="background:#FFBD2E"></span>
+                  <span class="av-dot" style="background:#27C93F"></span>
+                </div>
+                <span class="av-filename">profile.json</span>
               </div>
-              <span class="av-filename">profile.json</span>
+              <div class="av-code">
+                <div class="av-row"><span class="av-brace">{</span></div>
+                <div class="av-row av-indent"><span class="av-key">"name"</span><span class="av-punct">: </span><span class="av-str">"Aman Agarwal"</span><span class="av-punct">,</span></div>
+                <div class="av-row av-indent"><span class="av-key">"role"</span><span class="av-punct">: </span><span class="av-str">"AI Automation Builder"</span><span class="av-punct">,</span></div>
+                <div class="av-row av-indent"><span class="av-key">"stack"</span><span class="av-punct">: [</span><span class="av-str">"n8n"</span><span class="av-punct">, </span><span class="av-str">"Python"</span><span class="av-punct">, </span><span class="av-str">"FastAPI"</span><span class="av-punct">],</span></div>
+                <div class="av-row av-indent"><span class="av-key">"approach"</span><span class="av-punct">: </span><span class="av-str">"Self-taught · Ships fast"</span><span class="av-punct">,</span></div>
+                <div class="av-row av-indent"><span class="av-key">"status"</span><span class="av-punct">: </span><span class="av-success">"Open to opportunities"</span></div>
+                <div class="av-row"><span class="av-brace">}</span><span class="av-cursor">|</span></div>
+              </div>
             </div>
-            <div class="av-code">
-              <div class="av-row"><span class="av-brace">{</span></div>
-              <div class="av-row av-indent"><span class="av-key">"name"</span><span class="av-punct">: </span><span class="av-str">"Aman Agarwal"</span><span class="av-punct">,</span></div>
-              <div class="av-row av-indent"><span class="av-key">"role"</span><span class="av-punct">: </span><span class="av-str">"AI Automation Builder"</span><span class="av-punct">,</span></div>
-              <div class="av-row av-indent"><span class="av-key">"stack"</span><span class="av-punct">: [</span><span class="av-str">"n8n"</span><span class="av-punct">, </span><span class="av-str">"Python"</span><span class="av-punct">, </span><span class="av-str">"FastAPI"</span><span class="av-punct">],</span></div>
-              <div class="av-row av-indent"><span class="av-key">"approach"</span><span class="av-punct">: </span><span class="av-str">"Self-taught · Ships fast"</span><span class="av-punct">,</span></div>
-              <div class="av-row av-indent"><span class="av-key">"status"</span><span class="av-punct">: </span><span class="av-success">"Open to opportunities"</span></div>
-              <div class="av-row"><span class="av-brace">}</span><span class="av-cursor">|</span></div>
+            <div class="av-chips">
+              <span class="av-chip"><i data-lucide="zap"></i>n8n</span>
+              <span class="av-chip"><i data-lucide="terminal"></i>Python</span>
+              <span class="av-chip"><i data-lucide="link-2"></i>APIs</span>
+              <span class="av-chip"><i data-lucide="bot"></i>AI Agents</span>
+              <span class="av-chip"><i data-lucide="server"></i>FastAPI</span>
+              <span class="av-chip"><i data-lucide="table-2"></i>GSheets</span>
             </div>
           </div>
-          <div class="av-chips">
-            <span class="av-chip"><i data-lucide="zap"></i>n8n</span>
-            <span class="av-chip"><i data-lucide="terminal"></i>Python</span>
-            <span class="av-chip"><i data-lucide="link-2"></i>APIs</span>
-            <span class="av-chip"><i data-lucide="bot"></i>AI Agents</span>
-            <span class="av-chip"><i data-lucide="server"></i>FastAPI</span>
-            <span class="av-chip"><i data-lucide="table-2"></i>GSheets</span>
+        </div>
+
+        <div class="about-text">
+          <div class="section-label">About Me</div>
+          <h2 class="section-title">Engineer by degree,<br/>builder by nature.</h2>
+          <p>
+            I'm a Mechanical Engineering graduate from SVNIT Surat who discovered a deep passion for building
+            software systems from the ground up. I specialize in <strong>AI-driven workflow automation</strong>
+            — creating tools that replace manual processes with intelligent, connected systems.
+          </p>
+          <p>
+            My approach is self-taught and independent. I leverage no-code platforms, AI-first tools,
+            and modern APIs to ship fast, functional products.
+          </p>
+          <div class="about-tags">
+            <span class="about-tag">AI Automation</span>
+            <span class="about-tag">n8n Workflows</span>
+            <span class="about-tag">API Integrations</span>
+            <span class="about-tag">Self-Taught Builder</span>
+          </div>
+          <div style="display:flex;gap:1rem;margin-top:1.75rem;flex-wrap:wrap;">
+            <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="assets/Resume_Aman_Agarwal.pdf" class="btn btn-outline" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download Resume
+            </a>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Text -->
-      <div class="about-text reveal reveal-delay-2">
-        <div class="section-label">About Me</div>
-        <h2 class="section-title">Engineer by degree,<br/>builder by nature.</h2>
-        <p>
-          I'm a Mechanical Engineering graduate from SVNIT Surat who discovered a deep passion for building
-          software systems from the ground up. I specialize in <strong>AI-driven workflow automation</strong>
-          — creating tools that replace manual processes with intelligent, connected systems.
-        </p>
-        <p>
-          My approach is self-taught and independent. I leverage no-code platforms, AI-first tools,
-          and modern APIs to ship fast, functional products. I enjoy owning entire projects end-to-end,
-          from architecture to deployment.
-        </p>
-        <div class="about-tags">
-          <span class="about-tag">AI Automation</span>
-          <span class="about-tag">n8n Workflows</span>
-          <span class="about-tag">API Integrations</span>
-          <span class="about-tag">Self-Taught Builder</span>
+    <!-- Experience -->
+    <section class="about-panel" data-panel="experience">
+      <div class="about-panel-head">
+        <div class="section-label">Experience</div>
+        <h2 class="section-title">Where I've Worked</h2>
+      </div>
+      <div class="timeline" id="experience-list"></div>
+    </section>
+
+    <!-- Education -->
+    <section class="about-panel" data-panel="education">
+      <div class="about-panel-head">
+        <div class="section-label">Education</div>
+        <h2 class="section-title">Academic Background</h2>
+      </div>
+      <div id="education-list"></div>
+    </section>
+
+    <!-- Skills -->
+    <section class="about-panel" data-panel="skills">
+      <div class="about-panel-head">
+        <div class="section-label">Skills</div>
+        <h2 class="section-title">My Toolkit</h2>
+      </div>
+      <div class="skills-panel-grid">
+        <div>
+          <div class="skills-category-title">Technical</div>
+          <div class="skill-pill-row" id="skill-cards"></div>
         </div>
-        <div style="display:flex;gap:1rem;margin-top:1.75rem;flex-wrap:wrap;">
-          <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener" class="btn btn-primary">
-            <svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-            LinkedIn
-          </a>
-          <a href="assets/Resume_Aman_Agarwal.pdf" class="btn btn-outline" download>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            Download Resume
-          </a>
+        <div>
+          <div class="skills-category-title">Creative</div>
+          <div class="skill-pill-row" id="creative-cards"></div>
+        </div>
+        <div>
+          <div class="skills-category-title">Soft Skills</div>
+          <div class="skill-pill-row" id="soft-cards"></div>
+        </div>
+        <div>
+          <div class="skills-category-title">Tools &amp; Platforms</div>
+          <div class="skill-pill-row" id="tools-chips"></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="page-section">
-  <div class="container">
-    <div class="section-label reveal">Experience</div>
-    <h2 class="section-title reveal">Where I've Worked</h2>
-    <p class="section-intro reveal reveal-delay-1">Hands-on engineering and development experience building real tools for real operations.</p>
-    <div class="timeline" id="experience-list"></div>
   </div>
-</section>
 
-<section class="page-section">
-  <div class="container">
-    <div class="section-label reveal">Education</div>
-    <h2 class="section-title reveal">Academic Background</h2>
-    <p class="section-intro reveal reveal-delay-1">Engineering fundamentals from a top NIT, complemented by self-driven technical learning.</p>
-    <div id="education-list"></div>
-  </div>
-</section>
+  <!-- Mobile bottom tab bar -->
+  <nav class="about-mobile-tabs" id="about-mobile-tabs">
+    <button class="about-mtab active" data-tab="intro" type="button"><i data-lucide="user"></i><span>Intro</span></button>
+    <button class="about-mtab" data-tab="experience" type="button"><i data-lucide="briefcase"></i><span>Experience</span></button>
+    <button class="about-mtab" data-tab="education" type="button"><i data-lucide="graduation-cap"></i><span>Education</span></button>
+    <button class="about-mtab" data-tab="skills" type="button"><i data-lucide="settings-2"></i><span>Skills</span></button>
+  </nav>
 
-<section class="page-section">
-  <div class="container">
-    <div class="section-label reveal">Skills</div>
-    <h2 class="section-title reveal">My Toolkit</h2>
-    <p class="section-intro reveal reveal-delay-1">Technical depth in automation and development, backed by strong problem-solving fundamentals.</p>
-
-    <div class="skills-layout reveal reveal-delay-2">
-      <div>
-        <div class="skills-category-title">Technical Skills</div>
-        <div class="skill-cards-grid" id="skill-cards"></div>
-      </div>
-      <div>
-        <div class="skills-category-title">Creative Skills</div>
-        <div class="soft-grid" id="creative-cards"></div>
-      </div>
-      <div>
-        <div class="skills-category-title">Soft Skills</div>
-        <div class="soft-grid" id="soft-cards"></div>
-      </div>
-      <div>
-        <div class="skills-category-title">Tools &amp; Platforms</div>
-        <div class="tools-grid" id="tools-chips"></div>
-      </div>
-    </div>
-  </div>
-</section>
+</div>
 </main>
 
-<footer>
-  <div class="container"><div class="footer-inner">
-    <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.1rem;color:var(--text)">Aman Agarwal<span style="color:var(--accent)">.</span></div>
-    <div class="footer-links">
-      <a href="about.html">About</a><a href="projects.html">Projects</a><a href="blog.html">Blog</a>
-      <a href="https://www.linkedin.com/in/aman-agarwal-992a70200" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a>
-    </div>
-    <div style="font-size:.8rem;color:rgba(255,255,255,.35)">© 2026 Aman Agarwal</div>
-  </div></div>
-</footer>
 <button id="back-top" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg></button>
 <script src="js/data.js"></script><script src="js/app.js"></script>
 <script>
