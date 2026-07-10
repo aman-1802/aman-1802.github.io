@@ -528,7 +528,7 @@ body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;bac
 /* ── RESPONSIVE ───────────────────────────────────────────── */
 @media(max-width:960px){
   .hero-layout{grid-template-columns:1fr}
-  .hero-canvas-wrap{display:none}
+  .hero-canvas-wrap{max-width:380px;margin:2rem auto 0}
   .about-grid{grid-template-columns:1fr;gap:2.5rem}
   .contact-layout{grid-template-columns:1fr;gap:2rem}
 }
